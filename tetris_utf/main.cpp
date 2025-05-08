@@ -1,10 +1,9 @@
+
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
 #include <Windows.h>
 #include <time.h>
-#include <limits.h>
-#include <stdlib.h>
 
 //*********************************
 //상수 선언
@@ -47,9 +46,8 @@ enum {
 //*********************************
 //전역변수선언
 //*********************************
-
 int level;
-int ab_x = 0, ab_y = 0;	//화면중 블럭이 나타나는 좌표의 절대위치
+int ab_x, ab_y;	//화면중 블럭이 나타나는 좌표의 절대위치
 int block_shape, block_angle, block_x, block_y;
 int next_block_shape;
 int score;
@@ -97,24 +95,21 @@ int move_block(int* shape, int* angle, int* x, int* y, int* next_shape);	//게임�
 int rotate_block(int shape, int* angle, int* x, int* y);
 int show_gameover();
 int show_gamestat();
-int show_logo();
+extern "C" int show_logo();
 int input_data();
 int check_full_line();
-int get_valid_int(int min, int max);
-void clear_line_mt(int x, int y);
-void clear_block(int x, int y);
+
 
 int main(int argc, char* argv[])
 {
 	int i;
 	int is_gameover = 0;
 	char keytemp;
-	show_logo();
 	init();
-	//	show_logo();
+	show_logo();
 	while (1)
 	{
-		is_gameover = 0;
+
 		input_data();
 		show_total_block();
 		block_shape = make_new_block();
@@ -185,15 +180,10 @@ int main(int argc, char* argv[])
 				show_cur_block(block_shape, block_angle, block_x, block_y);
 			}
 
-			if (stage_data[level].clear_line == lines + 1)	//클리어 스테이지
+			if (stage_data[level].clear_line == lines)	//클리어 스테이지
 			{
-				if (level == 9) {
-					lines = 0;
-				}
-				else {
-					level++;
-					lines = 0;
-				}
+				level++;
+				lines = 0;
 			}
 			if (is_gameover == 1)
 			{
@@ -460,16 +450,16 @@ int block_start(int shape, int* angle, int* x, int* y)
 int show_gameover()
 {
 	SetColor(RED);
-	gotoxy(5, 8);
-	printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-	gotoxy(5, 9);
-	printf("┃*************************┃");
-	gotoxy(5, 10);
-	printf("┃*       GAME OVER       *┃");
-	gotoxy(5, 11);
-	printf("┃*************************┃");
-	gotoxy(5, 12);
-	printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+	gotoxy(15, 8);
+	printf("┏━━━━━━━━━━━━━┓");
+	gotoxy(15, 9);
+	printf("┃**************************┃");
+	gotoxy(15, 10);
+	printf("┃*        GAME OVER       *┃");
+	gotoxy(15, 11);
+	printf("┃**************************┃");
+	gotoxy(15, 12);
+	printf("┗━━━━━━━━━━━━━┛");
 	fflush(stdin);
 	Sleep(1000);
 
@@ -561,7 +551,7 @@ int show_next_block(int shape)
 		{
 			if (i == 1 || i == 6 || j == 0 || j == 5)
 			{
-				printf("■ ");
+				printf("■");
 			}
 			else {
 				printf("  ");
@@ -604,7 +594,7 @@ int input_data()
 	int i = 0;
 	SetColor(GRAY);
 	gotoxy(10, 7);
-	printf("┏━━━━━━━━━━<GAME KEY>━━━━━━━━┓");
+	printf("┏━━━━<GAME KEY>━━━━━┓");
 	Sleep(10);
 	gotoxy(10, 8);
 	printf("┃ UP   : Rotate Block        ┃");
@@ -622,14 +612,14 @@ int input_data()
 	printf("┃ RIGHT: Move Right          ┃");
 	Sleep(10);
 	gotoxy(10, 13);
-	printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+	printf("┗━━━━━━━━━━━━━━┛");
 
 
 	while (i < 1 || i>8)
 	{
 		gotoxy(10, 3);
 		printf("Select Start level[1-8]:       \b\b\b\b\b\b\b");
-		i = get_valid_int(1, 8);
+		scanf_s("%d", &i);
 	}
 
 
@@ -640,102 +630,55 @@ int input_data()
 
 int show_logo()
 {
-	int i;
-
+	int i, j;
 	gotoxy(13, 3);
-	printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+	printf("┏━━━━━━━━━━━━━━━━━━━━━━━┓");
 	Sleep(100);
 	gotoxy(13, 4);
-	printf("┃◆ ◆ ◆  ◆ ◆ ◆  ◆ ◆ ◆   ◆ ◆ ◆   ◆  ◆ ◆ ◆ ┃");
+	printf("┃◆◆◆  ◆◆◆  ◆◆◆   ◆◆     ◆   ◆◆◆ ┃");
 	Sleep(100);
 	gotoxy(13, 5);
-	printf("┃  ◆    ◆        ◆     ◆   ◆   ◆  ◆     ┃");
+	printf("┃  ◆    ◆        ◆     ◆ ◆    ◆   ◆     ┃");
 	Sleep(100);
 	gotoxy(13, 6);
-	printf("┃  ◆    ◆ ◆ ◆    ◆     ◆ ◆     ◆    ◆   ┃");
+	printf("┃  ◆    ◆◆◆    ◆     ◆◆     ◆     ◆   ┃");
 	Sleep(100);
 	gotoxy(13, 7);
-	printf("┃  ◆    ◆        ◆     ◆  ◆    ◆      ◆ ┃");
+	printf("┃  ◆    ◆        ◆     ◆ ◆    ◆       ◆ ┃");
 	Sleep(100);
 	gotoxy(13, 8);
-	printf("┃  ◆    ◆ ◆ ◆    ◆     ◆   ◆   ◆  ◆ ◆ ◆ ┃");
+	printf("┃  ◆    ◆◆◆    ◆     ◆  ◆   ◆   ◆◆◆ ┃");
 	Sleep(100);
 	gotoxy(13, 9);
-	printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+	printf("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
 
-
-	gotoxy(23, 20);
+	gotoxy(28, 20);
 	printf("Please Press Any Key~!");
 
+	for (i = 0; i >= 0; i++) {
+		if (i % 40 == 0)
+		{
 
-	for (i = 0;; i++) {
-		if (i % 40 == 0) {
-			clear_block(6, 14);
-			clear_block(12, 14);
-			clear_block(19, 14);
-			clear_block(26, 14);
 
+			for (j = 0; j < 5; j++)
+			{
+				gotoxy(18, 14 + j);
+				printf("                                                          ");
+
+
+			}
 			show_cur_block(rand() % 7, rand() % 4, 6, 14);
 			show_cur_block(rand() % 7, rand() % 4, 12, 14);
 			show_cur_block(rand() % 7, rand() % 4, 19, 14);
-			show_cur_block(rand() % 7, rand() % 4, 26, 14);
+			show_cur_block(rand() % 7, rand() % 4, 24, 14);
 		}
-
-		if (_kbhit()) break;
+		if (_kbhit())
+			break;
 		Sleep(30);
 	}
 
 	_getche();
 	system("cls");
+
 	return 0;
-}
-
-void clear_block(int x, int y) {
-	for (int i = 0; i < 4; i++) {
-		gotoxy((x + 0) * 2 + ab_x, y + i + ab_y);
-		printf("        "); // 정확히 4칸 * 2 = 8칸 폭 지움
-	}
-}
-
-int get_valid_int(int min, int max) {
-	char buffer[100];
-	char* endptr;
-	long val;
-
-	while (1) {
-		clear_line_mt(10, 3);
-		printf("Select Start level[%d-%d]:       \b\b\b\b\b\b\b", min, max);
-		if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
-			clear_line_mt(10, 3);
-			printf("입력 오류가 발생했습니다.\n");
-			continue;
-		}
-
-		// 개행문자 제거
-		buffer[strcspn(buffer, "\n")] = 0;
-
-		val = strtol(buffer, &endptr, 10);
-
-		// 입력값이 숫자가 아니거나 끝에 이상한 문자가 있는 경우
-		if (*endptr != '\0') {
-			clear_line_mt(10, 3);
-			printf("숫자만 입력해주세요.\n");
-			continue;
-		}
-
-		// 범위 초과 or 오버플로우 방지
-		if (val < min || val > max || val > INT_MAX || val < INT_MIN) {
-			clear_line_mt(10, 3);
-			printf("%d에서 %d 사이의 값을 입력해주세요.\n", min, max);
-			continue;
-		}
-
-		return (int)val;
-	}
-}
-
-void clear_line_mt(int x, int y) {
-	gotoxy(x, y);
-	printf("                                                                                                                                          "); // 충분히 긴 공백
-	gotoxy(x, y);
 }
