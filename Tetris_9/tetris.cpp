@@ -456,14 +456,10 @@ int merge_block(int shape, int angle, int x, int y)
 
 int block_start(int shape, int* angle, int* x, int* y)
 {
-
 	*x = 5;
 	*y = -3;
 	*angle = 0;
 
-	if (strike_check(shape, *angle, *x, *y)) {
-		return 1; // 겹침 → 게임오버
-	}
 	return 0;
 }
 
