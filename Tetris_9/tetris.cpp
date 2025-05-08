@@ -493,25 +493,32 @@ int move_block(int* shape, int* angle, int* x, int* y, int* next_shape)
 {
 	erase_cur_block(*shape, *angle, *x, *y);
 
-	(*y)++;	//블럭을 한칸 아래로 내림
+	(*y)++;   //블럭을 한칸 아래로 내림
+
+
 	if (strike_check(*shape, *angle, *x, *y) == 1)
 	{
-		if (*y < 0)	//게임오버
+		if (*y < 0)   //게임오버
 		{
-
 			return 1;
 		}
 		(*y)--;
 		merge_block(*shape, *angle, *x, *y);
+
+		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
+			if (total_block[0][i] == 1) {
+				return 1;
+			}
+		}
 		*shape = *next_shape;
 		*next_shape = make_new_block();
-
-		block_start(*shape, angle, x, y);	//angle,x,y는 포인터임
+		block_start(*shape, angle, x, y);   //angle,x,y는 포인터임
 		show_next_block(*next_shape);
 		return 2;
 	}
 	return 0;
 }
+
 
 int rotate_block(int shape, int* angle, int* x, int* y)
 {
