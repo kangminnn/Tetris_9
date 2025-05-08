@@ -111,7 +111,6 @@ int main(int argc, char* argv[])
 	char keytemp;
 	show_logo();
 	init();
-	//	show_logo();
 	while (1)
 	{
 		is_gameover = 0;
@@ -185,7 +184,7 @@ int main(int argc, char* argv[])
 				show_cur_block(block_shape, block_angle, block_x, block_y);
 			}
 
-			if (stage_data[level].clear_line == lines + 1)	//클리어 스테이지
+			if (stage_data[level].clear_line <= lines)	//클리어 스테이지
 			{
 				if (level == 9) {
 					lines = 0;
@@ -231,6 +230,7 @@ void SetColor(int color)
 
 int init()
 {
+	memset(total_block, 0, sizeof(total_block)); // 쌓인 블록 전부 제거
 	int i, j;
 
 	srand((unsigned)time(NULL));
@@ -259,33 +259,35 @@ int init()
 	ab_x = 5;
 	ab_y = 1;
 
+	
+
 	stage_data[0].speed = 40;
 	stage_data[0].stick_rate = 20;
-	stage_data[0].clear_line = 20;
+	stage_data[0].clear_line = 2;
 	stage_data[1].speed = 38;
 	stage_data[1].stick_rate = 18;
-	stage_data[1].clear_line = 20;
+	stage_data[1].clear_line = 2;
 	stage_data[2].speed = 35;
 	stage_data[2].stick_rate = 18;
-	stage_data[2].clear_line = 20;
+	stage_data[2].clear_line = 2;
 	stage_data[3].speed = 30;
 	stage_data[3].stick_rate = 17;
-	stage_data[3].clear_line = 20;
+	stage_data[3].clear_line = 2;
 	stage_data[4].speed = 25;
 	stage_data[4].stick_rate = 16;
-	stage_data[4].clear_line = 20;
+	stage_data[4].clear_line = 2;
 	stage_data[5].speed = 20;
 	stage_data[5].stick_rate = 14;
-	stage_data[5].clear_line = 20;
+	stage_data[5].clear_line = 2;
 	stage_data[6].speed = 15;
 	stage_data[6].stick_rate = 14;
-	stage_data[6].clear_line = 20;
+	stage_data[6].clear_line = 2;
 	stage_data[7].speed = 10;
 	stage_data[7].stick_rate = 13;
-	stage_data[7].clear_line = 20;
+	stage_data[7].clear_line = 2;
 	stage_data[8].speed = 6;
 	stage_data[8].stick_rate = 12;
-	stage_data[8].clear_line = 20;
+	stage_data[8].clear_line = 2;
 	stage_data[9].speed = 4;
 	stage_data[9].stick_rate = 11;
 	stage_data[9].clear_line = 99999;
@@ -364,6 +366,7 @@ int erase_cur_block(int shape, int angle, int x, int y)
 
 int show_total_block()
 {
+	//system("cls");
 	int i, j;
 	SetColor(DARK_GRAY);
 	for (i = 0; i < 21; i++)
@@ -439,6 +442,9 @@ int merge_block(int shape, int angle, int x, int y)
 	{
 		for (j = 0; j < 4; j++)
 		{
+			if ((y + i) < 0 || (x + j) < 0) {
+				break;
+			}
 			total_block[y + i][x + j] |= block[shape][angle][i][j];
 		}
 	}
@@ -454,6 +460,10 @@ int block_start(int shape, int* angle, int* x, int* y)
 	*x = 5;
 	*y = -3;
 	*angle = 0;
+
+	if (strike_check(shape, *angle, *x, *y)) {
+		return 1; // 겹침 → 게임오버
+	}
 	return 0;
 }
 
@@ -544,6 +554,17 @@ int check_full_line()
 			for (j = 1; j < 13; j++)
 				total_block[0][j] = 0;
 			score += 100 + (level * 10) + (rand() % 10);
+
+			if (stage_data[level].clear_line <= lines)	//클리어 스테이지
+			{
+				if (level == 9) {
+					lines = 0;
+				}
+				else {
+					level++;
+					lines = 0;
+				}
+			}
 			show_gamestat();
 		}
 	}
