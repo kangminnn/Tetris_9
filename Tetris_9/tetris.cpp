@@ -256,6 +256,7 @@ int init()
 	//전역변수 초기화
 	level = 0;
 	lines = 0;
+	score = 0;
 	ab_x = 5;
 	ab_y = 1;
 
