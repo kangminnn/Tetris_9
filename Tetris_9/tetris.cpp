@@ -106,6 +106,7 @@ void clear_block(int x, int y);
 
 int main(int argc, char* argv[])
 {
+	//test¿ë
 	int i;
 	int is_gameover = 0;
 	char keytemp;
