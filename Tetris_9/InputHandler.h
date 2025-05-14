@@ -2,5 +2,7 @@
 
 class InputHandler {
 public:
-    char getInput(); // 방향키 입력 등
+    static int input_data();
+    static int get_valid_int(int min, int max);
+    static char getInput();
 };

@@ -2,9 +2,11 @@
 
 class Board {
 private:
-    int grid[20][10];   // 20x10 테트리스판
+    int grid[21][14];
 public:
-    void placeBlock(const Block& block);
-    int clearLines();   // 라인 제거 후 제거된 수 반환
-    bool isCollision(const Block& block) const;
+    Board();
+    void init();
+    bool strike_check(int shape, int angle, int x, int y) const;
+    void merge_block(int shape, int angle, int x, int y);
+    int check_full_line();
 };
