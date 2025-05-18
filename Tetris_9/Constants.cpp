@@ -1,4 +1,48 @@
 #include "Constants.h"
+#include <string>
+
+int level;
+int ab_x = 0, ab_y = 0;	//화면중 블럭이 나타나는 좌표의 절대위치
+int block_shape, block_angle, block_x, block_y;
+int next_block_shape;
+int score;
+int lines;
+char total_block[21][14];		//화면에 표시되는 블럭들
+struct STAGE stage_data[10];
+
+char block[7][4][4][4] = {
+	//막대모양
+	1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,	1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,	1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,	1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+
+	//네모모양
+	1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,	1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,	1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,	1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,
+
+	//'ㅓ' 모양
+	0,1,0,0,1,1,0,0,0,1,0,0,0,0,0,0,	1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,	1,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,	0,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,
+
+	//'ㄱ'모양
+	1,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,	1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,	1,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,	0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,
+
+	//'ㄴ' 모양
+	1,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,	1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,	0,1,0,0,0,1,0,0,1,1,0,0,0,0,0,0,	1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,
+
+	//'Z' 모양
+	1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,	0,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,	1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,	0,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,
+
+	//'S' 모양
+	0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,	1,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,	0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,	1,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0
+
+};
+
+void gotoxy(int x, int y) {
+	COORD pos = { static_cast<SHORT>(x), static_cast<SHORT>(y) };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+
+void SetColor(int color) {
+	static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, static_cast<WORD>(color));
+}
 
 void initStageData()
 {
@@ -32,4 +76,17 @@ void initStageData()
 	stage_data[9].speed = 4;
 	stage_data[9].stick_rate = 11;
 	stage_data[9].clear_line = 99999;
+}
+
+void clear_block(int x, int y) {
+	for (int i = 0; i < 4; i++) {
+		gotoxy((x + 0) * 2 + ab_x, y + i + ab_y);
+		cout<<"        "; // 정확히 4칸 * 2 = 8칸 폭 지움
+	}
+}
+
+void clear_line_mt(int x, int y) {
+	gotoxy(x, y);  // 콘솔 커서 이동 (이 함수는 그대로 사용)
+	cout << string(100, ' ');  // 공백 100개 출력
+	gotoxy(x, y);  // 커서를 다시 원위치
 }

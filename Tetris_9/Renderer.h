@@ -1,3 +1,4 @@
+//콘솔 출력
 #pragma once
 #include "Board.h"
 #include "Block.h"
@@ -12,6 +13,6 @@ public:
 	static int show_gamestat(int level, int score, int lines);
 	static int show_logo();
 	static int show_next_block(int shape);
-	static void drawStageFrame();
+	//static void drawStageFrame();
 
 };
