@@ -7,7 +7,7 @@
 int Renderer::show_total_block(const Board& board)
 {
 	int i, j;
-	SetColor(DARK_GRAY);
+	//SetColor(DARK_GRAY);
 	for (i = 0; i < 21; i++)
 	{
 		for (j = 0; j < 14; j++)
@@ -18,10 +18,10 @@ int Renderer::show_total_block(const Board& board)
 
 			}
 			else {
-				SetColor(DARK_GRAY);
+				SetColor(total_block[i][j].color);
 			}
 			gotoxy((j * 2) + ab_x, i + ab_y);
-			if (total_block[i][j] == 1)
+			if (total_block[i][j].occupied == 1)
 			{
 				cout << "бс";
 			}

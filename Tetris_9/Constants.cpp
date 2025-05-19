@@ -5,7 +5,7 @@ int level;
 int ab_x = 0, ab_y = 0;	//화면중 블럭이 나타나는 좌표의 절대위치
 int score;
 int lines;
-char total_block[21][14];		//화면에 표시되는 블럭들
+Cell total_block[21][14];		//화면에 표시되는 블럭들
 struct STAGE stage_data[10];
 
 char block[7][4][4][4] = {

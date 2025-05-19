@@ -145,6 +145,7 @@
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="RedBlock.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="StoryManager.cpp" />
     <ClCompile Include="tetris.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="RedBlock.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="StoryManager.h" />
   </ItemGroup>

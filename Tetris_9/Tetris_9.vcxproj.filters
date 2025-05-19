@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\data">
       <UniqueIdentifier>{f6827bc4-620f-4ea0-affe-7ec507100131}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\block">
+      <UniqueIdentifier>{0d4f4997-7b74-4581-b525-1ce02351c45c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tetris.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="StoryManager.cpp">
       <Filter>소스 파일\data</Filter>
     </ClCompile>
+    <ClCompile Include="RedBlock.cpp">
+      <Filter>소스 파일\block</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -75,6 +81,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="StoryManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBlock.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

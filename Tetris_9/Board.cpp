@@ -19,13 +19,13 @@ void Board::init() {
     // 벽 생성
     for (int i = 0; i < 20; ++i) {
         for (int j = 0; j < 14; ++j) {
-            total_block[i][j] = (j == 0 || j == 13) ? 1 : 0;
+            total_block[i][j].occupied = (j == 0 || j == 13) ? 1 : 0;
         }
     }
 
     // 바닥 생성
     for (int j = 0; j < 14; ++j) {
-        total_block[20][j] = 1;
+        total_block[20][j].occupied = 1;
     }
 }
 
@@ -39,7 +39,7 @@ int Board::check_full_line()
 	{
 		for (j = 1; j < 13; j++)
 		{
-			if (total_block[i][j] == 0)
+			if (total_block[i][j].occupied == 0)
 				break;
 		}
 		if (j == 13)	//한줄이 다 채워졌음
@@ -66,7 +66,7 @@ int Board::check_full_line()
 					total_block[k][j] = total_block[k - 1][j];
 			}
 			for (j = 1; j < 13; j++)
-				total_block[0][j] = 0;
+				total_block[0][j].occupied = 0;
 			score += 100 + (level * 10) + (rand() % 10);
 
 			if (stage_data[level].clear_line <= lines)	//클리어 스테이지
@@ -97,7 +97,7 @@ bool Board::strikeCheck(Block b)
 			if (((b.getX() + j) == 0) || ((b.getX() + j) == 13))
 				block_dat = 1;
 			else if (b.getY() + i >= 0)
-				block_dat = total_block[b.getY() + i][b.getX() + j];
+				block_dat = total_block[b.getY() + i][b.getX() + j].occupied;
 
 
 			if ((block_dat == 1) && (block[b.getShape()][b.getAngle()][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
@@ -120,7 +120,11 @@ void Board::mergeBlock(Block b)
 			if ((b.getY() + i) < 0 || (b.getX() + j) < 0) {
 				break;
 			}
-			total_block[b.getY() + i][b.getX() + j] |= block[b.getShape()][b.getAngle()][i][j];
+			//total_block[b.getY() + i][b.getX() + j].occupied |= block[b.getShape()][b.getAngle()][i][j];
+			if (block[b.getShape()][b.getAngle()][i][j]==1) {
+				total_block[b.getY() + i][b.getX() + j].occupied = 1;
+				total_block[b.getY() + i][b.getX() + j].color = b.getColor();
+			}
 		}
 	}
 	check_full_line();
@@ -140,7 +144,7 @@ bool Board::rotateStrikeCheck(Block b)
 			if (((b.getX() + j) == 0) || ((b.getX() + j) == 13))
 				block_dat = 1;
 			else if (b.getY() + i >= 0)
-				block_dat = total_block[b.getY() + i][b.getX() + j];
+				block_dat = total_block[b.getY() + i][b.getX() + j].occupied;
 
 
 			if ((block_dat == 1) && (block[b.getShape()][rotateAngle][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
@@ -169,7 +173,7 @@ int Board::moveBlock(Block& b)
 		mergeBlock(b);
 
 		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
-			if (total_block[0][i] == 1) {
+			if (total_block[0][i].occupied == 1) {
 				return 1;
 			}
 		}
