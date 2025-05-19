@@ -14,9 +14,9 @@ public:
 	static int show_logo();
 	//static int show_next_block(int shape);
 	//
-	static void showNextBlock(Block b);
-	static void showCurBlock(Block b);
-	static void eraseCurBlock(Block b);
+	static void showNextBlock(unique_ptr<Block>& b);
+	static void showCurBlock(unique_ptr<Block>& b);
+	static void eraseCurBlock(unique_ptr<Block>& b);
 	//static void drawStageFrame();
 
 };

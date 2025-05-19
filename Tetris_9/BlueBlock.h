@@ -1,10 +1,10 @@
 #pragma once
 #include "Block.h"
 #include "Board.h"
-class RedBlock : public Block {
+class BlueBlock : public Block {
 public:
-    //RedBlock();
-    RedBlock(int shape, int angle, int x, int y);
+    //BlueBlock();
+    BlueBlock(int shape, int angle, int x, int y);
     int getColor() const;
     //bool check(Board& board);
     //void active(Board& board);

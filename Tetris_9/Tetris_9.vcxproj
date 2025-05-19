@@ -141,25 +141,37 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockFactory.cpp" />
+    <ClCompile Include="BlueBlock.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Constants.cpp" />
+    <ClCompile Include="CyanBlock.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GreenBlock.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="PurpleBlock.cpp" />
     <ClCompile Include="RedBlock.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="StoryManager.cpp" />
     <ClCompile Include="tetris.cpp" />
+    <ClCompile Include="WhiteBlock.cpp" />
+    <ClCompile Include="YellowBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockFactory.h" />
+    <ClInclude Include="BlueBlock.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="CyanBlock.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GreenBlock.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="PurpleBlock.h" />
     <ClInclude Include="RedBlock.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="StoryManager.h" />
+    <ClInclude Include="WhiteBlock.h" />
+    <ClInclude Include="YellowBlock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

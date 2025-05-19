@@ -8,8 +8,8 @@
 class Game {
 private:
     Board board;
-    Block curBlock;
-    Block nextBlock;
+    unique_ptr<Block> curBlock;
+    unique_ptr<Block> nextBlock;
     int level;
     int score;
     int lines;

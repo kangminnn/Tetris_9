@@ -12,7 +12,6 @@ Game::Game()
 }
 
 
-
 void Game::run()
 {
 	int i;
@@ -54,7 +53,7 @@ void Game::run()
 						if (board.rotateStrikeCheck(curBlock) == false)
 						{
 							Renderer::eraseCurBlock(curBlock);
-							curBlock.setAngle((curBlock.getAngle() + 1) % 4);
+							curBlock->setAngle((curBlock->getAngle() + 1) % 4);
 							Renderer::showCurBlock(curBlock);
 						}
 						break;
@@ -68,12 +67,12 @@ void Game::run()
 
 						//	Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
 						//}
-						if (curBlock.getX() > 1)
+						if (curBlock->getX() > 1)
 						{
 							Renderer::eraseCurBlock(curBlock);
-							curBlock.setX(curBlock.getX() -1);
+							curBlock->setX(curBlock->getX() -1);
 							if (board.strikeCheck(curBlock) == true)
-								curBlock.setX(curBlock.getX() + 1);
+								curBlock->setX(curBlock->getX() + 1);
 
 							Renderer::showCurBlock(curBlock);
 						}
@@ -88,12 +87,12 @@ void Game::run()
 						//		block_x--;
 						//	Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
 						//}
-						if (curBlock.getX() < 14)
+						if (curBlock->getX() < 14)
 						{
 							Renderer::eraseCurBlock(curBlock);
-							curBlock.setX(curBlock.getX() + 1);
+							curBlock->setX(curBlock->getX() + 1);
 							if (board.strikeCheck(curBlock) == true)
-								curBlock.setX(curBlock.getX() - 1);
+								curBlock->setX(curBlock->getX() - 1);
 
 							Renderer::showCurBlock(curBlock);
 						}
@@ -109,7 +108,9 @@ void Game::run()
 							//BlockFactory::block_start(*shape, angle, x, y);   //angle,x,y는 포인터임
 							//Renderer::show_next_block(*next_shape);
 
-							curBlock = nextBlock;
+							curBlock = move(nextBlock);
+							curBlock->setX(5);
+							curBlock->setY(-4);
 							nextBlock = BlockFactory::makeBlock();
 							Renderer::showNextBlock(nextBlock);
 						}
@@ -129,7 +130,9 @@ void Game::run()
 					{
 						isGameOver = board.moveBlock(curBlock);
 						if (isGameOver == 2) {
-							curBlock = nextBlock;
+							curBlock = move(nextBlock);
+							curBlock->setX(5);
+							curBlock->setY(-4);
 							nextBlock = BlockFactory::makeBlock();
 							Renderer::showNextBlock(nextBlock);
 						}
@@ -145,7 +148,9 @@ void Game::run()
 				Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);*/
 				isGameOver = board.moveBlock(curBlock);
 				if (isGameOver == 2) {
-					curBlock = nextBlock;
+					curBlock = move(nextBlock);
+					curBlock->setX(5);
+					curBlock->setY(-4);
 					nextBlock = BlockFactory::makeBlock();
 					Renderer::showNextBlock(nextBlock);
 				}

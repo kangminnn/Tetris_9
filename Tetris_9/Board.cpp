@@ -85,7 +85,7 @@ int Board::check_full_line()
 	return 0;
 }
 
-bool Board::strikeCheck(Block b)
+bool Board::strikeCheck(unique_ptr<Block>& b)
 {
 	int i, j;
 	int block_dat = 0;
@@ -94,13 +94,13 @@ bool Board::strikeCheck(Block b)
 	{
 		for (j = 0; j < 4; j++)
 		{
-			if (((b.getX() + j) == 0) || ((b.getX() + j) == 13))
+			if (((b->getX() + j) == 0) || ((b->getX() + j) == 13))
 				block_dat = 1;
-			else if (b.getY() + i >= 0)
-				block_dat = total_block[b.getY() + i][b.getX() + j].occupied;
+			else if (b->getY() + i >= 0)
+				block_dat = total_block[b->getY() + i][b->getX() + j].occupied;
 
 
-			if ((block_dat == 1) && (block[b.getShape()][b.getAngle()][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
+			if ((block_dat == 1) && (block[b->getShape()][b->getAngle()][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
 			{
 				return true;
 			}
@@ -109,7 +109,7 @@ bool Board::strikeCheck(Block b)
 	return false;
 }
 
-void Board::mergeBlock(Block b)
+void Board::mergeBlock(unique_ptr<Block>& b)
 {
 
 	int i, j;
@@ -117,13 +117,13 @@ void Board::mergeBlock(Block b)
 	{
 		for (j = 0; j < 4; j++)
 		{
-			if ((b.getY() + i) < 0 || (b.getX() + j) < 0) {
+			if ((b->getY() + i) < 0 || (b->getX() + j) < 0) {
 				break;
 			}
 			//total_block[b.getY() + i][b.getX() + j].occupied |= block[b.getShape()][b.getAngle()][i][j];
-			if (block[b.getShape()][b.getAngle()][i][j]==1) {
-				total_block[b.getY() + i][b.getX() + j].occupied = 1;
-				total_block[b.getY() + i][b.getX() + j].color = b.getColor();
+			if (block[b->getShape()][b->getAngle()][i][j]==1) {
+				total_block[b->getY() + i][b->getX() + j].occupied = 1;
+				total_block[b->getY() + i][b->getX() + j].color = b->getColor();
 			}
 		}
 	}
@@ -131,23 +131,23 @@ void Board::mergeBlock(Block b)
 	Renderer::show_total_block(*this);
 }
 
-bool Board::rotateStrikeCheck(Block b)
+bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
 {
 	int i, j;
 	int block_dat = 0;
 
-	int rotateAngle = (b.getAngle() + 1) % 4;
+	int rotateAngle = (b->getAngle() + 1) % 4;
 	for (i = 0; i < 4; i++)
 	{
 		for (j = 0; j < 4; j++)
 		{
-			if (((b.getX() + j) == 0) || ((b.getX() + j) == 13))
+			if (((b->getX() + j) == 0) || ((b->getX() + j) == 13))
 				block_dat = 1;
-			else if (b.getY() + i >= 0)
-				block_dat = total_block[b.getY() + i][b.getX() + j].occupied;
+			else if (b->getY() + i >= 0)
+				block_dat = total_block[b->getY() + i][b->getX() + j].occupied;
 
 
-			if ((block_dat == 1) && (block[b.getShape()][rotateAngle][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
+			if ((block_dat == 1) && (block[b->getShape()][rotateAngle][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
 			{
 				return true;
 			}
@@ -156,20 +156,20 @@ bool Board::rotateStrikeCheck(Block b)
 	return false;
 }
 
-int Board::moveBlock(Block& b)
+int Board::moveBlock(unique_ptr<Block>& b)
 {
 	Renderer::eraseCurBlock(b);
 
-	b.setY(b.getY() + 1);   //블럭을 한칸 아래로 내림
+	b->setY(b->getY() + 1);   //블럭을 한칸 아래로 내림
 
 
 	if (strikeCheck(b) == true)
 	{
-		if (b.getY() < 0)   //게임오버
+		if (b->getY() < 0)   //게임오버
 		{
 			return 1;
 		}
-		b.setY(b.getY() - 1);
+		b->setY(b->getY() - 1);
 		mergeBlock(b);
 
 		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함

@@ -1,5 +1,6 @@
 //블록 정보, 회전, 이동
 #pragma once
+#include "Constants.h"
 
 class Block {
 protected:
@@ -10,7 +11,7 @@ public:
     Block() = default;
     Block(int shape, int angle, int x, int y);
     //void rotate_block();
-    int getColor() const; 
+    virtual int getColor() const = 0; 
     int getShape() const;
     int getAngle() const;
     int getX() const;
