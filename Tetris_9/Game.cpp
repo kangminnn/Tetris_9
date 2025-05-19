@@ -45,16 +45,16 @@ void Game::run()
 					{
 					case KEY_UP:		//회전하기
 
-						//if (board.strike_check(block_shape, (block_angle + 1) % 4, block_x, block_y) == 0)
-						//{
-						//	Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
-						//	block_angle = (block_angle + 1) % 4;
-						//	Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
-						//}
+						/*if (board.strike_check(block_shape, (block_angle + 1) % 4, block_x, block_y) == 0)
+						{
+							Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
+							block_angle = (block_angle + 1) % 4;
+							Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+						}*/
 						if (board.rotateStrikeCheck(curBlock) == false)
 						{
 							Renderer::eraseCurBlock(curBlock);
-							curBlock.setAngle((curBlock.getShape() + 1) % 4);
+							curBlock.setAngle((curBlock.getAngle() + 1) % 4);
 							Renderer::showCurBlock(curBlock);
 						}
 						break;
@@ -144,7 +144,11 @@ void Game::run()
 
 				Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);*/
 				isGameOver = board.moveBlock(curBlock);
-
+				if (isGameOver == 2) {
+					curBlock = nextBlock;
+					nextBlock = BlockFactory::makeBlock();
+					Renderer::showNextBlock(nextBlock);
+				}
 				Renderer::showCurBlock(curBlock);
 			}
 
