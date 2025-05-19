@@ -4,10 +4,9 @@
 #include <iomanip>
 
 
-int Renderer::show_total_block(const Board& board)
+int Renderer::show_total_block(int& level)
 {
 	int i, j;
-	//SetColor(DARK_GRAY);
 	for (i = 0; i < 21; i++)
 	{
 		for (j = 0; j < 14; j++)
@@ -15,20 +14,26 @@ int Renderer::show_total_block(const Board& board)
 			if (j == 0 || j == 13 || i == 20)		//레벨에 따라 외벽 색이 변함
 			{
 				SetColor((level % 6) + 1);
-
+				gotoxy((j * 2) + ab_x, i + ab_y);
+				if (total_block[i][j].occupied == 1)
+				{
+					cout << "□";
+				}
+				else {
+					cout << "  ";
+				}
 			}
 			else {
 				SetColor(total_block[i][j].color);
+				gotoxy((j * 2) + ab_x, i + ab_y);
+				if (total_block[i][j].occupied == 1)
+				{
+					cout << "■";
+				}
+				else {
+					cout << "  ";
+				}
 			}
-			gotoxy((j * 2) + ab_x, i + ab_y);
-			if (total_block[i][j].occupied == 1)
-			{
-				cout << "■";
-			}
-			else {
-				cout <<  "  ";
-			}
-
 		}
 	}
 	SetColor(BLACK);
@@ -39,15 +44,15 @@ int Renderer::show_total_block(const Board& board)
 int Renderer::show_gameover()
 {
 	SetColor(RED);
-	gotoxy(5, 8);
+	gotoxy(0, 8);
 	cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━┓";
-	gotoxy(5, 9);
+	gotoxy(0, 9);
 	cout << "┃*************************┃";
-	gotoxy(5, 10);
+	gotoxy(0, 10);
 	cout << "┃*       GAME OVER       *┃";
-	gotoxy(5, 11);
+	gotoxy(0, 11);
 	cout << "┃*************************┃";
-	gotoxy(5, 12);
+	gotoxy(0, 12);
 	cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━┛";
 	fflush(stdin);
 	Sleep(1000);
@@ -144,7 +149,7 @@ int Renderer::show_logo()
 void Renderer::showNextBlock(unique_ptr<Block>& b)
 {
 	int i, j;
-	SetColor((level + 1) % 6 + 1);
+	SetColor(GRAY);
 	for (i = 1; i < 7; i++)
 	{
 		gotoxy(30, i);
@@ -152,7 +157,7 @@ void Renderer::showNextBlock(unique_ptr<Block>& b)
 		{
 			if (i == 1 || i == 6 || j == 0 || j == 5)
 			{
-				cout << "■ ";
+				cout << "□ ";
 			}
 			else {
 				cout << "  ";

@@ -7,7 +7,7 @@
 
 
 
-int InputHandler::input_data()
+int InputHandler::input_data(int& level)
 {
 	int i = 0;
 	SetColor(GRAY);

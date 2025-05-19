@@ -32,7 +32,7 @@ void Board::init() {
 
 
 
-int Board::check_full_line()
+int Board::check_full_line(int& level, int& score, int& lines)
 {
 	int i, j, k;
 	for (i = 0; i < 20; i++)
@@ -45,7 +45,7 @@ int Board::check_full_line()
 		if (j == 13)	//한줄이 다 채워졌음
 		{
 			lines++;
-			Renderer::show_total_block(*this);
+			Renderer::show_total_block(level);
 			SetColor(BLUE);
 			gotoxy(1 * 2 + ab_x, i + ab_y);
 			for (j = 1; j < 13; j++)
@@ -127,8 +127,6 @@ void Board::mergeBlock(unique_ptr<Block>& b)
 			}
 		}
 	}
-	check_full_line();
-	Renderer::show_total_block(*this);
 }
 
 bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
@@ -156,7 +154,7 @@ bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
 	return false;
 }
 
-int Board::moveBlock(unique_ptr<Block>& b)
+int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines)
 {
 	Renderer::eraseCurBlock(b);
 
@@ -171,6 +169,8 @@ int Board::moveBlock(unique_ptr<Block>& b)
 		}
 		b->setY(b->getY() - 1);
 		mergeBlock(b);
+		check_full_line(level, score, lines);
+		Renderer::show_total_block(level);
 
 		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
 			if (total_block[0][i].occupied == 1) {

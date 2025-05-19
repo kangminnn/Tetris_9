@@ -6,7 +6,7 @@
 
 class Renderer {
 public:
-	static int show_total_block(const Board& board);
+	static int show_total_block(int& level);
 	//static int show_cur_block(int shape, int angle, int x, int y);
 	//static int erase_cur_block(int shape, int angle, int x, int y);
 	static int show_gameover();

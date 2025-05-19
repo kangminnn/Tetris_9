@@ -11,7 +11,7 @@
 #include "CyanBlock.h"
 #include "WhiteBlock.h"
 
-unique_ptr<Block> BlockFactory::makeBlock()
+unique_ptr<Block> BlockFactory::makeBlock(int& level)
 {
 	int shape;
 	int i;

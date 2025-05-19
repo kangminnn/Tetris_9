@@ -58,22 +58,22 @@
       <Filter>소스 파일\block</Filter>
     </ClCompile>
     <ClCompile Include="BlueBlock.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="YellowBlock.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="GreenBlock.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PurpleBlock.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\block</Filter>
     </ClCompile>
     <ClCompile Include="CyanBlock.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\block</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenBlock.cpp">
+      <Filter>소스 파일\block</Filter>
+    </ClCompile>
+    <ClCompile Include="PurpleBlock.cpp">
+      <Filter>소스 파일\block</Filter>
     </ClCompile>
     <ClCompile Include="WhiteBlock.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\block</Filter>
+    </ClCompile>
+    <ClCompile Include="YellowBlock.cpp">
+      <Filter>소스 파일\block</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

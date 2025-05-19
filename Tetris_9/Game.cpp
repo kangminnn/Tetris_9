@@ -21,13 +21,13 @@ void Game::run()
 	while (1)
 	{
 		isGameOver = 0;
-		InputHandler::input_data();
+		InputHandler::input_data(level);
 		initStageData();
-		Renderer::show_total_block(board);
+		Renderer::show_total_block(level);
 		//block_shape = BlockFactory::make_new_block();
 		//next_block_shape = BlockFactory::make_new_block();
-		curBlock = BlockFactory::makeBlock();
-		nextBlock = BlockFactory::makeBlock();
+		curBlock = BlockFactory::makeBlock(level);
+		nextBlock = BlockFactory::makeBlock(level);
 		Renderer::showNextBlock(nextBlock);
 		//BlockFactory::block_start(block_shape, &block_angle, &block_x, &block_y);
 		Renderer::show_gamestat(level, score, lines);
@@ -101,7 +101,7 @@ void Game::run()
 						//isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
 						//Renderer::showCurBlock(curBlock);
 
-						isGameOver = board.moveBlock(curBlock);
+						isGameOver = board.moveBlock(curBlock, level, score, lines);
 						if (isGameOver == 2) {
 							//*shape = *next_shape;
 							//*next_shape = BlockFactory::make_new_block();
@@ -111,7 +111,7 @@ void Game::run()
 							curBlock = move(nextBlock);
 							curBlock->setX(5);
 							curBlock->setY(-4);
-							nextBlock = BlockFactory::makeBlock();
+							nextBlock = BlockFactory::makeBlock(level);
 							Renderer::showNextBlock(nextBlock);
 						}
 						Renderer::showCurBlock(curBlock);
@@ -128,12 +128,12 @@ void Game::run()
 
 					while (isGameOver == 0)
 					{
-						isGameOver = board.moveBlock(curBlock);
+						isGameOver = board.moveBlock(curBlock, level, score, lines);
 						if (isGameOver == 2) {
 							curBlock = move(nextBlock);
 							curBlock->setX(5);
 							curBlock->setY(-4);
-							nextBlock = BlockFactory::makeBlock();
+							nextBlock = BlockFactory::makeBlock(level);
 							Renderer::showNextBlock(nextBlock);
 						}
 						Renderer::showCurBlock(curBlock);
@@ -146,12 +146,12 @@ void Game::run()
 		/*		isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
 
 				Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);*/
-				isGameOver = board.moveBlock(curBlock);
+				isGameOver = board.moveBlock(curBlock, level, score, lines);
 				if (isGameOver == 2) {
 					curBlock = move(nextBlock);
 					curBlock->setX(5);
 					curBlock->setY(-4);
-					nextBlock = BlockFactory::makeBlock();
+					nextBlock = BlockFactory::makeBlock(level);
 					Renderer::showNextBlock(nextBlock);
 				}
 				Renderer::showCurBlock(curBlock);
