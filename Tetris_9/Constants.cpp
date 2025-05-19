@@ -3,8 +3,6 @@
 
 int level;
 int ab_x = 0, ab_y = 0;	//화면중 블럭이 나타나는 좌표의 절대위치
-int block_shape, block_angle, block_x, block_y;
-int next_block_shape;
 int score;
 int lines;
 char total_block[21][14];		//화면에 표시되는 블럭들

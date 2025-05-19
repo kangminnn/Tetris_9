@@ -7,9 +7,11 @@
 
 
 Game::Game()
-	:level(0), lines(0), score(0), isGameOver(0), board(), currentBlock(), nextBlock()
+	:level(0), lines(0), score(0), isGameOver(0), board(), curBlock(), nextBlock()
 {
 }
+
+
 
 void Game::run()
 {
@@ -23,11 +25,14 @@ void Game::run()
 		InputHandler::input_data();
 		initStageData();
 		Renderer::show_total_block(board);
-		block_shape = BlockFactory::make_new_block();
-		next_block_shape = BlockFactory::make_new_block();
-		Renderer::show_next_block(next_block_shape);
-		BlockFactory::block_start(block_shape, &block_angle, &block_x, &block_y);
+		//block_shape = BlockFactory::make_new_block();
+		//next_block_shape = BlockFactory::make_new_block();
+		curBlock = BlockFactory::makeBlock();
+		nextBlock = BlockFactory::makeBlock();
+		Renderer::showNextBlock(nextBlock);
+		//BlockFactory::block_start(block_shape, &block_angle, &block_x, &block_y);
 		Renderer::show_gamestat(level, score, lines);
+
 		for (i = 1; 1; i++)
 		{
 			if (_kbhit())
@@ -40,55 +45,107 @@ void Game::run()
 					{
 					case KEY_UP:		//회전하기
 
-						if (board.strike_check(block_shape, (block_angle + 1) % 4, block_x, block_y) == 0)
+						//if (board.strike_check(block_shape, (block_angle + 1) % 4, block_x, block_y) == 0)
+						//{
+						//	Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
+						//	block_angle = (block_angle + 1) % 4;
+						//	Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+						//}
+						if (board.rotateStrikeCheck(curBlock) == false)
 						{
-							Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
-							block_angle = (block_angle + 1) % 4;
-							Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+							Renderer::eraseCurBlock(curBlock);
+							curBlock.setAngle((curBlock.getShape() + 1) % 4);
+							Renderer::showCurBlock(curBlock);
 						}
 						break;
 					case KEY_LEFT:		//왼쪽으로 이동
-						if (block_x > 1)
-						{
-							Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
-							block_x--;
-							if (board.strike_check(block_shape, block_angle, block_x, block_y) == 1)
-								block_x++;
+						//if (block_x > 1)
+						//{
+						//	Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
+						//	block_x--;
+						//	if (board.strike_check(block_shape, block_angle, block_x, block_y) == 1)
+						//		block_x++;
 
-							Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+						//	Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+						//}
+						if (curBlock.getX() > 1)
+						{
+							Renderer::eraseCurBlock(curBlock);
+							curBlock.setX(curBlock.getX() -1);
+							if (board.strikeCheck(curBlock) == true)
+								curBlock.setX(curBlock.getX() + 1);
+
+							Renderer::showCurBlock(curBlock);
 						}
 						break;
 					case KEY_RIGHT:		//오른쪽으로 이동
 
-						if (block_x < 14)
+						//if (block_x < 14)
+						//{
+						//	Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
+						//	block_x++;
+						//	if (board.strike_check(block_shape, block_angle, block_x, block_y) == 1)
+						//		block_x--;
+						//	Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+						//}
+						if (curBlock.getX() < 14)
 						{
-							Renderer::erase_cur_block(block_shape, block_angle, block_x, block_y);
-							block_x++;
-							if (board.strike_check(block_shape, block_angle, block_x, block_y) == 1)
-								block_x--;
-							Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+							Renderer::eraseCurBlock(curBlock);
+							curBlock.setX(curBlock.getX() + 1);
+							if (board.strikeCheck(curBlock) == true)
+								curBlock.setX(curBlock.getX() - 1);
+
+							Renderer::showCurBlock(curBlock);
 						}
 						break;
 					case KEY_DOWN:		//아래로 이동
-						isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
-						Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+						//isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
+						//Renderer::showCurBlock(curBlock);
+
+						isGameOver = board.moveBlock(curBlock);
+						if (isGameOver == 2) {
+							//*shape = *next_shape;
+							//*next_shape = BlockFactory::make_new_block();
+							//BlockFactory::block_start(*shape, angle, x, y);   //angle,x,y는 포인터임
+							//Renderer::show_next_block(*next_shape);
+
+							curBlock = nextBlock;
+							nextBlock = BlockFactory::makeBlock();
+							Renderer::showNextBlock(nextBlock);
+						}
+						Renderer::showCurBlock(curBlock);
 						break;
 					}
 				}
 				if (keytemp == 32)	//스페이스바를 눌렀을때
 				{
+					//while (isGameOver == 0)
+					//{
+					//	isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
+					//}
+					//Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+
 					while (isGameOver == 0)
 					{
-						isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
+						isGameOver = board.moveBlock(curBlock);
+						if (isGameOver == 2) {
+							curBlock = nextBlock;
+							nextBlock = BlockFactory::makeBlock();
+							Renderer::showNextBlock(nextBlock);
+						}
+						Renderer::showCurBlock(curBlock);
 					}
-					Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+					Renderer::showCurBlock(curBlock);
 				}
 			}
 			if (i % stage_data[level].speed == 0)
 			{
-				isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
+		/*		isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
 
-				Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);
+				Renderer::show_cur_block(block_shape, block_angle, block_x, block_y);*/
+				isGameOver = board.moveBlock(curBlock);
+
+				Renderer::showCurBlock(curBlock);
 			}
 
 			if (stage_data[level].clear_line <= lines)	//클리어 스테이지
@@ -115,34 +172,4 @@ void Game::run()
 		board.init();
 	}
 	return;
-}
-
-int Game::move_block(int* shape, int* angle, int* x, int* y, int* next_shape)
-{
-	Renderer::erase_cur_block(*shape, *angle, *x, *y);
-
-	(*y)++;   //블럭을 한칸 아래로 내림
-
-
-	if (board.strike_check(*shape, *angle, *x, *y) == 1)
-	{
-		if (*y < 0)   //게임오버
-		{
-			return 1;
-		}
-		(*y)--;
-		board.merge_block(*shape, *angle, *x, *y);
-
-		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
-			if (total_block[0][i] == 1) {
-				return 1;
-			}
-		}
-		*shape = *next_shape;
-		*next_shape = BlockFactory::make_new_block();
-		BlockFactory::block_start(*shape, angle, x, y);   //angle,x,y는 포인터임
-		Renderer::show_next_block(*next_shape);
-		return 2;
-	}
-	return 0;
 }

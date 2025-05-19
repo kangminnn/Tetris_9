@@ -36,74 +36,6 @@ int Renderer::show_total_block(const Board& board)
 	return 0;
 }
 
-int Renderer::show_cur_block(int shape, int angle, int x, int y)
-{
-	int i, j;
-
-	switch (shape)
-	{
-	case 0:
-		SetColor(RED);
-		break;
-	case 1:
-		SetColor(BLUE);
-		break;
-	case 2:
-		SetColor(SKY_BLUE);
-		break;
-	case 3:
-		SetColor(WHITE);
-		break;
-	case 4:
-		SetColor(YELLOW);
-		break;
-	case 5:
-		SetColor(VOILET);
-		break;
-	case 6:
-		SetColor(GREEN);
-		break;
-	}
-
-	for (i = 0; i < 4; i++)
-	{
-		for (j = 0; j < 4; j++)
-		{
-			if ((j + y) < 0)
-				continue;
-
-			if (block[shape][angle][j][i] == 1)
-			{
-				gotoxy((i + x) * 2 + ab_x, j + y + ab_y);
-				cout << "бс";
-
-			}
-		}
-	}
-	SetColor(BLACK);
-	gotoxy(77, 23);
-	return 0;
-}
-
-int Renderer::erase_cur_block(int shape, int angle, int x, int y)
-{
-	int i, j;
-	for (i = 0; i < 4; i++)
-	{
-		for (j = 0; j < 4; j++)
-		{
-			if (block[shape][angle][j][i] == 1)
-			{
-				gotoxy((i + x) * 2 + ab_x, j + y + ab_y);
-				cout << "  ";
-				//break;
-
-			}
-		}
-	}
-	return 0;
-}
-
 int Renderer::show_gameover()
 {
 	SetColor(RED);
@@ -189,10 +121,15 @@ int Renderer::show_logo()
 			clear_block(19, 14);
 			clear_block(26, 14);
 
-			show_cur_block(rand() % 7, rand() % 4, 6, 14);
-			show_cur_block(rand() % 7, rand() % 4, 12, 14);
-			show_cur_block(rand() % 7, rand() % 4, 19, 14);
-			show_cur_block(rand() % 7, rand() % 4, 26, 14);
+			//show_cur_block(rand() % 7, rand() % 4, 6, 14);
+			//show_cur_block(rand() % 7, rand() % 4, 12, 14);
+			//show_cur_block(rand() % 7, rand() % 4, 19, 14);
+			//show_cur_block(rand() % 7, rand() % 4, 26, 14);
+
+			showCurBlock(Block(rand() % 7, rand() % 4, 6, 14));
+			showCurBlock(Block(rand() % 7, rand() % 4, 12, 14));
+			showCurBlock(Block(rand() % 7, rand() % 4, 19, 14));
+			showCurBlock(Block(rand() % 7, rand() % 4, 26, 14));
 		}
 
 		if (_kbhit()) break;
@@ -204,7 +141,7 @@ int Renderer::show_logo()
 	return 0;
 }
 
-int Renderer::show_next_block(int shape)
+void Renderer::showNextBlock(Block b)
 {
 	int i, j;
 	SetColor((level + 1) % 6 + 1);
@@ -223,7 +160,80 @@ int Renderer::show_next_block(int shape)
 
 		}
 	}
-	show_cur_block(shape, 0, 17, 2);
-	return 0;
+	b.setX(17);
+	b.setY(2);
+	showCurBlock(b);
+
+
+	return ;
+}
+
+void Renderer::showCurBlock(Block b)
+{
+	int i, j;
+
+	switch (b.getShape())
+	{
+	case 0:
+		SetColor(RED);
+		break;
+	case 1:
+		SetColor(BLUE);
+		break;
+	case 2:
+		SetColor(SKY_BLUE);
+		break;
+	case 3:
+		SetColor(WHITE);
+		break;
+	case 4:
+		SetColor(YELLOW);
+		break;
+	case 5:
+		SetColor(VOILET);
+		break;
+	case 6:
+		SetColor(GREEN);
+		break;
+	}
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if ((j + b.getY()) < 0)
+				continue;
+
+			if (block[b.getShape()][b.getAngle()][j][i] == 1)
+			{
+				gotoxy((i + b.getX()) * 2 + ab_x, j + b.getY() + ab_y);
+				cout << "бс";
+
+			}
+		}
+	}
+	SetColor(BLACK);
+	gotoxy(77, 23);
+	return ;
+}
+
+void Renderer::eraseCurBlock(Block b)
+{
+
+	int i, j;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (block[b.getShape()][b.getAngle()][j][i] == 1)
+			{
+				gotoxy((i + b.getX()) * 2 + ab_x, j + b.getY() + ab_y);
+				cout << "  ";
+				//break;
+
+			}
+		}
+	}
+	return ;
 }
 

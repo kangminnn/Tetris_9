@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "Constants.h"
 #include "Renderer.h"
+#include"Block.h"
 #include <cstdlib>   // std::srand, std::rand
 #include <ctime>     // std::time
 #include <array>     // std::array
@@ -28,46 +29,8 @@ void Board::init() {
     }
 }
 
-bool Board::strike_check(int shape, int angle, int x, int y) const
-{
-	int i, j;
-	int block_dat = 0;
-
-	for (i = 0; i < 4; i++)
-	{
-		for (j = 0; j < 4; j++)
-		{
-			if (((x + j) == 0) || ((x + j) == 13))
-				block_dat = 1;
-			else if (y + i >= 0)
-				block_dat = total_block[y + i][x + j];
 
 
-			if ((block_dat == 1) && (block[shape][angle][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
-			{
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-void Board::merge_block(int shape, int angle, int x, int y)
-{
-	int i, j;
-	for (i = 0; i < 4; i++)
-	{
-		for (j = 0; j < 4; j++)
-		{
-			if ((y + i) < 0 || (x + j) < 0) {
-				break;
-			}
-			total_block[y + i][x + j] |= block[shape][angle][i][j];
-		}
-	}
-	check_full_line();
-	Renderer::show_total_block(*this);
-}
 
 int Board::check_full_line()
 {
@@ -121,3 +84,103 @@ int Board::check_full_line()
 	}
 	return 0;
 }
+
+bool Board::strikeCheck(Block b)
+{
+	int i, j;
+	int block_dat = 0;
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (((b.getX() + j) == 0) || ((b.getX() + j) == 13))
+				block_dat = 1;
+			else if (b.getY() + i >= 0)
+				block_dat = total_block[b.getY() + i][b.getX() + j];
+
+
+			if ((block_dat == 1) && (block[b.getShape()][b.getAngle()][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+void Board::mergeBlock(Block b)
+{
+
+	int i, j;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if ((b.getY() + i) < 0 || (b.getX() + j) < 0) {
+				break;
+			}
+			total_block[b.getY() + i][b.getX() + j] |= block[b.getShape()][b.getAngle()][i][j];
+		}
+	}
+	check_full_line();
+	Renderer::show_total_block(*this);
+}
+
+bool Board::rotateStrikeCheck(Block b)
+{
+	int i, j;
+	int block_dat = 0;
+
+	int rotateAngle = (b.getAngle() + 1) % 4;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (((b.getX() + j) == 0) || ((b.getX() + j) == 13))
+				block_dat = 1;
+			else if (b.getY() + i >= 0)
+				block_dat = total_block[b.getY() + i][b.getX() + j];
+
+
+			if ((block_dat == 1) && (block[b.getShape()][rotateAngle][i][j] == 1))																							//좌측벽의 좌표를 빼기위함
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int Board::moveBlock(Block& b)
+{
+	Renderer::eraseCurBlock(b);
+
+	b.setY(b.getY() + 1);   //블럭을 한칸 아래로 내림
+
+
+	if (strikeCheck(b) == true)
+	{
+		if (b.getY() < 0)   //게임오버
+		{
+			return 1;
+		}
+		b.setY(b.getY() - 1);
+		mergeBlock(b);
+
+		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
+			if (total_block[0][i] == 1) {
+				return 1;
+			}
+		}
+		//*shape = *next_shape;
+		//*next_shape = BlockFactory::make_new_block();
+		//BlockFactory::block_start(*shape, angle, x, y);   //angle,x,y는 포인터임
+		//Renderer::show_next_block(*next_shape);
+
+		
+		return 2;
+	}
+	return 0;
+}
+

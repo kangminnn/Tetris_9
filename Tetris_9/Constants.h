@@ -39,8 +39,6 @@ struct STAGE {
 
 extern int level;
 extern int ab_x, ab_y;	//화면중 블럭이 나타나는 좌표의 절대위치
-extern int block_shape, block_angle, block_x, block_y;
-extern int next_block_shape;
 extern int score;
 extern int lines;
 extern char total_block[21][14];		//화면에 표시되는 블럭들
