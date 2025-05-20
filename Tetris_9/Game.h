@@ -17,4 +17,5 @@ private:
 public:
     Game();
     void run();
+    void gameInit();
 };

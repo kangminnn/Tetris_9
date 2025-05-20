@@ -20,7 +20,6 @@ void Game::run()
 	board.init();
 	while (1)
 	{
-		isGameOver = 0;
 		InputHandler::input_data(level);
 		initStageData();
 		Renderer::show_total_block(level);
@@ -179,6 +178,15 @@ void Game::run()
 			gotoxy(77, 23);
 		}
 		board.init();
+		gameInit();
 	}
 	return;
+}
+
+void Game::gameInit()
+{
+	level = 0;
+	lines = 0;
+	score = 0;
+	isGameOver = 0;
 }
