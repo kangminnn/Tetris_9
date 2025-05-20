@@ -11,7 +11,7 @@ public:
     Block() = default;
     Block(int shape, int angle, int x, int y);
     //void rotate_block();
-    virtual int getColor() const = 0; 
+    virtual int getColor() const; 
     int getShape() const;
     int getAngle() const;
     int getX() const;

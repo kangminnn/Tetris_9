@@ -27,12 +27,14 @@ void Game::run()
 		//next_block_shape = BlockFactory::make_new_block();
 		curBlock = BlockFactory::makeBlock(level);
 		nextBlock = BlockFactory::makeBlock(level);
+		unique_ptr<Block> silhouetteBlock = make_unique<Block>(*curBlock);
 		Renderer::showNextBlock(nextBlock);
 		//BlockFactory::block_start(block_shape, &block_angle, &block_x, &block_y);
 		Renderer::show_gamestat(level, score, lines);
 
 		for (i = 1; 1; i++)
 		{
+
 			if (_kbhit())
 			{
 				keytemp = _getche();
@@ -133,6 +135,7 @@ void Game::run()
 							curBlock->setX(5);
 							curBlock->setY(-4);
 							nextBlock = BlockFactory::makeBlock(level);
+							silhouetteBlock = nullptr;
 							Renderer::showNextBlock(nextBlock);
 						}
 						Renderer::showCurBlock(curBlock);
@@ -140,6 +143,7 @@ void Game::run()
 					Renderer::showCurBlock(curBlock);
 				}
 			}
+
 			if (i % stage_data[level].speed == 0)
 			{
 		/*		isGameOver = move_block(&block_shape, &block_angle, &block_x, &block_y, &next_block_shape);
@@ -151,9 +155,11 @@ void Game::run()
 					curBlock->setX(5);
 					curBlock->setY(-4);
 					nextBlock = BlockFactory::makeBlock(level);
+					silhouetteBlock = nullptr;
 					Renderer::showNextBlock(nextBlock);
 				}
 				Renderer::showCurBlock(curBlock);
+
 			}
 
 			if (stage_data[level].clear_line <= lines)	//클리어 스테이지
@@ -172,6 +178,21 @@ void Game::run()
 				SetColor(GRAY);
 				break;
 			}
+
+			// 잔상 보이기
+			
+			if (silhouetteBlock != nullptr) {
+				Renderer::eraseCurBlock(silhouetteBlock);
+			}
+			silhouetteBlock = make_unique<Block>(*curBlock);
+			while (!board.strikeCheck(silhouetteBlock))
+			{
+				silhouetteBlock->setY(silhouetteBlock->getY() + 1);
+			}
+			silhouetteBlock->setY(silhouetteBlock->getY() - 1);
+
+			SetColor(GRAY);
+			Renderer::showCurBlock(silhouetteBlock);
 
 			gotoxy(77, 23);
 			Sleep(15);
