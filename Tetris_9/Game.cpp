@@ -192,7 +192,7 @@ void Game::run()
 			silhouetteBlock->setY(silhouetteBlock->getY() - 1);
 
 			SetColor(GRAY);
-			Renderer::showCurBlock(silhouetteBlock);
+			Renderer::showSilhouetteBlock(silhouetteBlock);
 
 			gotoxy(77, 23);
 			Sleep(15);

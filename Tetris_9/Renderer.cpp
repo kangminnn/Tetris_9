@@ -240,6 +240,28 @@ void Renderer::showCurBlock(unique_ptr<Block>& b)
 	return ;
 }
 
+void Renderer::showSilhouetteBlock(unique_ptr<Block>& b)
+{
+	SetColor(GRAY);
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if ((j + b->getY()) < 0)
+				continue;
+
+			if (block[b->getShape()][b->getAngle()][j][i] == 1)
+			{
+				gotoxy((i + b->getX()) * 2 + ab_x, j + b->getY() + ab_y);
+				cout << "бр";
+
+			}
+		}
+	}
+	SetColor(BLACK);
+	gotoxy(77, 23);
+}
+
 void Renderer::eraseCurBlock(unique_ptr<Block>& b)
 {
 
