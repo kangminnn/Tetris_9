@@ -113,6 +113,7 @@ void Game::run()
 							curBlock->setX(5);
 							curBlock->setY(-4);
 							nextBlock = BlockFactory::makeBlock(level);
+							silhouetteBlock = nullptr;
 							Renderer::showNextBlock(nextBlock);
 						}
 						Renderer::showCurBlock(curBlock);

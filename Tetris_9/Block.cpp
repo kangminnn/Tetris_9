@@ -11,7 +11,7 @@ Block::Block(int shape, int angle, int x, int y)
 
 int Block::getColor() const
 {
-	return GRAY;
+	return DARK_GRAY;
 }
 
 int Block::getShape() const
