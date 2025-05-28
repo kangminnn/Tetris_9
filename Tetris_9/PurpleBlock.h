@@ -3,9 +3,11 @@
 #include "Board.h"
 class PurpleBlock : public Block {
 public:
-    //PurpleBlock();
     PurpleBlock(int shape, int angle, int x, int y);
-    int getColor() const;
-    //bool check(Board& board);
-    //void active(Board& board);
+
+    int getColor() const override { return VOILET; }
+    std::string getColorName() const override { return "Violet"; }
+
+    bool check(const Board& board) const override;// 무조건 발동 예시
+    void active(Board& board) override; // 구현은 cpp에서
 };

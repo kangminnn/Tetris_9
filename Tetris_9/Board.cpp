@@ -111,6 +111,7 @@ bool Board::strikeCheck(unique_ptr<Block>& b)
 
 void Board::mergeBlock(unique_ptr<Block>& b)
 {
+	string test1 = b->getColorName(); //중단점 test용
 
 	int i, j;
 	for (i = 0; i < 4; i++)
@@ -169,8 +170,16 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines)
 		}
 		b->setY(b->getY() - 1);
 		mergeBlock(b);
+		// --- 능력 발동 구간 ---
+		// 착지한 블록의 능력 조건 체크 및 능력 발동
+		if (b->check(*this)) {// check 조건이 맞으면
+			//string test1 = b->getColorName(); //중단점 test용
+			b->active(*this); // active로 능력 발동
+		}
 		check_full_line(level, score, lines);
 		Renderer::show_total_block(level);
+
+		
 
 		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
 			if (total_block[0][i].occupied == 1) {

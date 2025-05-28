@@ -5,7 +5,11 @@ YellowBlock::YellowBlock(int shape, int angle, int x, int y)
 {
 }
 
-int YellowBlock::getColor() const
+bool YellowBlock::check(const Board& board) const
 {
-    return YELLOW;
+    return false;
+}
+
+void YellowBlock::active(Board& board)
+{
 }

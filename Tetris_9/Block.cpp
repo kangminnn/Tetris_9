@@ -9,11 +9,6 @@ Block::Block(int shape, int angle, int x, int y)
 	this->y = y;
 }
 
-int Block::getColor() const
-{
-	return DARK_GRAY;
-}
-
 int Block::getShape() const
 {
 	return shape;

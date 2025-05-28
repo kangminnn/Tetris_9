@@ -1,6 +1,9 @@
 //보드 상태, 라인 제거
 #pragma once
 #include"Block.h"
+#include <memory>
+using namespace std;
+
 class Board {
 private:
     int grid[21][14];

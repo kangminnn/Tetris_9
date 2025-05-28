@@ -5,7 +5,11 @@ PurpleBlock::PurpleBlock(int shape, int angle, int x, int y)
 {
 }
 
-int PurpleBlock::getColor() const
+bool PurpleBlock::check(const Board& board) const
 {
-    return VOILET;
+    return false;
+}
+
+void PurpleBlock::active(Board& board)
+{
 }

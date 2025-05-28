@@ -5,7 +5,12 @@ WhiteBlock::WhiteBlock(int shape, int angle, int x, int y)
 {
 }
 
-int WhiteBlock::getColor() const
+bool WhiteBlock::check(const Board& board) const
 {
-    return WHITE;
+    return false;
+}
+
+void WhiteBlock::active(Board& board)
+{
+    //¹«´É·Â
 }

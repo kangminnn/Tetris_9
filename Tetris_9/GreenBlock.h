@@ -4,10 +4,10 @@
 #include <utility>
 
 class GreenBlock : public Block {
+private:
+    bool abilityUsed;
 public:
-    GreenBlock(int shape, int angle, int x, int y)
-        : Block(shape, angle, x, y) {
-    }
+    GreenBlock(int shape, int angle, int x, int y);
 
     int getColor() const override { return GREEN; }
     std::string getColorName() const override { return "Green"; }

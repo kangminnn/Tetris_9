@@ -5,7 +5,11 @@ CyanBlock::CyanBlock(int shape, int angle, int x, int y)
 {
 }
 
-int CyanBlock::getColor() const
+bool CyanBlock::check(const Board& board) const
 {
-    return SKY_BLUE;
+    return false;
+}
+
+void CyanBlock::active(Board& board)
+{
 }

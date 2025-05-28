@@ -5,7 +5,11 @@ BlueBlock::BlueBlock(int shape, int angle, int x, int y)
 {
 }
 
-int BlueBlock::getColor() const
+bool BlueBlock::check(const Board& board) const
 {
-    return BLUE;
+    return false;
+}
+
+void BlueBlock::active(Board& board)
+{
 }

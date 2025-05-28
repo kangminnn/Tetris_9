@@ -5,7 +5,11 @@ RedBlock::RedBlock(int shape, int angle, int x, int y)
 {
 }
 
-int RedBlock::getColor() const
+bool RedBlock::check(const Board& board) const
 {
-	return RED;
+	return false;
+}
+
+void RedBlock::active(Board& board)
+{
 }
