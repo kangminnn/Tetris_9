@@ -16,8 +16,9 @@ public:
 	//
 	static void showNextBlock(unique_ptr<Block>& b);
 	static void showCurBlock(unique_ptr<Block>& b);
-	static void showSilhouetteBlock(unique_ptr<Block>& b);
+	static void showSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2);
 	static void eraseCurBlock(unique_ptr<Block>& b);
+	static void eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2);
 	//static void drawStageFrame();
 
 };

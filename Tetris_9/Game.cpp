@@ -183,7 +183,7 @@ void Game::run()
 			// ¿‹ªÛ ∫∏¿Ã±‚
 			
 			if (silhouetteBlock != nullptr) {
-				Renderer::eraseCurBlock(silhouetteBlock);
+				Renderer::eraseSilhouetteBlock(silhouetteBlock, curBlock);
 			}
 			silhouetteBlock = make_unique<Block>(*curBlock);
 			while (!board.strikeCheck(silhouetteBlock))
@@ -193,7 +193,7 @@ void Game::run()
 			silhouetteBlock->setY(silhouetteBlock->getY() - 1);
 
 			SetColor(GRAY);
-			Renderer::showSilhouetteBlock(silhouetteBlock);
+			Renderer::showSilhouetteBlock(silhouetteBlock, curBlock);
 
 			gotoxy(77, 23);
 			Sleep(15);
