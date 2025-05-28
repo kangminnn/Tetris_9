@@ -240,8 +240,9 @@ void Renderer::showCurBlock(unique_ptr<Block>& b)
 	return ;
 }
 
-void Renderer::showSilhouetteBlock(unique_ptr<Block>& b)
+void Renderer::showSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 {
+	if (b->getY() - b2->getY() <= 4) return;
 	SetColor(GRAY);
 	for (int i = 0; i < 4; i++)
 	{
@@ -264,7 +265,6 @@ void Renderer::showSilhouetteBlock(unique_ptr<Block>& b)
 
 void Renderer::eraseCurBlock(unique_ptr<Block>& b)
 {
-
 	int i, j;
 	for (i = 0; i < 4; i++)
 	{
@@ -281,4 +281,25 @@ void Renderer::eraseCurBlock(unique_ptr<Block>& b)
 	}
 	return ;
 }
+
+void Renderer::eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
+{
+	if (b->getY() - b2->getY() < 4) return;
+	int i, j;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (block[b->getShape()][b->getAngle()][j][i] == 1)
+			{
+				gotoxy((i + b->getX()) * 2 + ab_x, j + b->getY() + ab_y);
+				cout << "  ";
+				//break;
+
+			}
+		}
+	}
+	return;
+}
+
 
