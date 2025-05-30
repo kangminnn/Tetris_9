@@ -30,6 +30,12 @@ int InputHandler::input_data(int& level)
 	cout << "早 RIGHT: Move Right          早";
 	Sleep(10);
 	gotoxy(10, 13);
+	cout << "早 ESC  : pause               早";
+	Sleep(10);
+	gotoxy(10, 14);
+	cout << "早 SHIFT: block hold          早";
+	Sleep(10);
+	gotoxy(10, 15);
 	cout << "曲收收收收收收收收收收收收收收收收收收收收收收收收收收收收旭";
 
 
