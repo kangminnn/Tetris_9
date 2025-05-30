@@ -1,5 +1,6 @@
 #include "BlueBlock.h"
 #include "Constants.h"
+#include "PurpleBlock.h"
 
 BlueBlock::BlueBlock(int shape, int angle, int x, int y)
     :Block(shape, angle, x, y)
@@ -8,10 +9,15 @@ BlueBlock::BlueBlock(int shape, int angle, int x, int y)
 
 bool BlueBlock::check(const Board& board, int& level) const
 {
-    // 현재 스테이지에서 하늘색 블록의 능력이 비활성화되어 있다면 false 반환
+    // 보라색블록 작동되는지 확인
+    if (stage_data[level].abilities.purpleBlockAbility) {
+        PurpleBlock::update();
+    }
+    // 현재 스테이지에서 파란색 블록의 능력이 비활성화되어 있다면 false 반환
     if (!stage_data[level].abilities.blueBlockAbility) {
         return false;
     }
+    
     // 블록의 각 열을 확인
     for (int j = 0; j < 4; j++) {
         bool hasBlockInColumn = false;

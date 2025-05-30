@@ -62,22 +62,31 @@ int Board::check_full_line(int& level, int& score, int& lines)
 				}
 				else {
 					temp_row[j].occupied = 0;
-					temp_row[j].color = BLACK;
+					temp_row[j].color = 0;
 					temp_row[j].count = 0;
 				}
 			}
 
 			// 블록 이동 처리
 			if (has_remaining_yellow) {
-				// Yellow 블록이 남아있는 경우
-				for (k = i; k > 0; k--) {
-					for (j = 1; j < 13; j++) {
-						total_block[k][j] = total_block[k - 1][j];
+				// Yellow 블록이 있는 경우, 각 열마다 개별적으로 처리
+				for (j = 1; j < 13; j++) {
+					if (temp_row[j].color != YELLOW || temp_row[j].count != 1) {
+						// Yellow 블록이 아닌 위치만 위에서 내려오기
+						for (k = i; k > 0; k--) {
+							total_block[k][j] = total_block[k - 1][j];
+						}
+						// 최상단 초기화
+						total_block[0][j].occupied = 0;
+						total_block[0][j].color = 0;
+						total_block[0][j].count = 0;
 					}
 				}
 				// Yellow 블록 복원
 				for (j = 1; j < 13; j++) {
-					total_block[i][j] = temp_row[j];
+					if (temp_row[j].color == YELLOW && temp_row[j].count == 1) {
+						total_block[i][j] = temp_row[j];
+					}
 				}
 			}
 			else {
@@ -90,7 +99,7 @@ int Board::check_full_line(int& level, int& score, int& lines)
 				// 최상단 줄 초기화
 				for (j = 1; j < 13; j++) {
 					total_block[0][j].occupied = 0;
-					total_block[0][j].color = BLACK;
+					total_block[0][j].color = 0;
 					total_block[0][j].count = 0;
 				}
 			}
