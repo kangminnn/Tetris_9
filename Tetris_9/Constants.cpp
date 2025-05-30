@@ -88,3 +88,17 @@ void clear_line_mt(int x, int y) {
 	cout << string(100, ' ');  // 공백 100개 출력
 	gotoxy(x, y);  // 커서를 다시 원위치
 }
+
+void hideCursor() {
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+	cursorInfo.bVisible = FALSE; // 커서 숨김
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
+
+void showCursor() {
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+	cursorInfo.bVisible = TRUE; // 커서 표시
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}

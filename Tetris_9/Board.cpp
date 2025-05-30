@@ -98,6 +98,8 @@ bool Board::strikeCheck(unique_ptr<Block>& b)
 				block_dat = 1;
 			else if (b->getY() + i >= 0)
 				block_dat = total_block[b->getY() + i][b->getX() + j].occupied;
+			else
+				block_dat = 0;
 
 
 			if ((block_dat == 1) && (block[b->getShape()][b->getAngle()][i][j] == 1))																							//좌측벽의 좌표를 빼기위함

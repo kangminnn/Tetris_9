@@ -14,13 +14,16 @@ Game::Game()
 
 void Game::run()
 {
+	hideCursor();
 	int i;
 	char keytemp;
 	Renderer::show_logo();
 	board.init();
 	while (1)
 	{
+		showCursor();
 		InputHandler::input_data(level);
+		hideCursor();
 		initStageData();
 		Renderer::show_total_block(level);
 		//block_shape = BlockFactory::make_new_block();
@@ -142,6 +145,14 @@ void Game::run()
 						Renderer::showCurBlock(curBlock);
 					}
 					Renderer::showCurBlock(curBlock);
+				}
+				if (keytemp == 27) {//esc눌럿을때
+					while (!_kbhit()) {
+						// 대기 루프 (아무 키 입력될 때까지)
+						Renderer::show_pause();
+						Sleep(100);
+					}
+					Renderer::erase_pause();
 				}
 			}
 

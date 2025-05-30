@@ -10,6 +10,8 @@ public:
 	//static int show_cur_block(int shape, int angle, int x, int y);
 	//static int erase_cur_block(int shape, int angle, int x, int y);
 	static int show_gameover();
+	static void show_pause();
+	static void erase_pause();
 	static int show_gamestat(int level, int score, int lines);
 	static int show_logo();
 	//static int show_next_block(int shape);
