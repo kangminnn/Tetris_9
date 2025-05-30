@@ -1,7 +1,5 @@
 #include "GreenBlock.h"
-#include <set>
 #include <utility>
-#include <iostream>
 #include <vector>
 #include "Constants.h"
 using namespace std;
@@ -12,8 +10,12 @@ GreenBlock::GreenBlock(int shape, int angle, int x, int y)
     abilityUsed = false;
 }
 
-bool GreenBlock::check(const Board& board) const
+bool GreenBlock::check(const Board& board, int& level) const
 {
+    // 현재 스테이지에서 하늘색 블록의 능력이 비활성화되어 있다면 false 반환
+    if (!stage_data[level].abilities.greenBlockAbility) {
+        return false;
+    }
     return true;
 }
 
@@ -26,33 +28,49 @@ void GreenBlock::active(Board& board) {
     int baseX = getX();
     int baseY = getY();
 
-    // 1. 블록의 상대 위치 수집
-    vector<pair<int, int>> cells;
-    for (int i = 0; i < 4; ++i)
-        for (int j = 0; j < 4; ++j)
-            if (block[shape][angle][i][j] == 1)
-                cells.emplace_back(i, j); // (dy, dx)
+    // 1. 현재 블록이 차지하는 셀들의 위치를 파악
+    vector<pair<int, int>> blockCells;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            if (block[shape][angle][i][j] == 1) {
+                blockCells.emplace_back(baseY + i, baseX + j);
+            }
+        }
+    }
 
-    // 2. 최대 몇 칸 위로 올릴 수 있는지 계산
-    int maxOffset = 0;
-    while (true) {
-        bool canMoveUp = true;
-        for (const auto& [dy, dx] : cells) {
-            int newY = baseY + dy - (maxOffset + 1); // 위로 올리기
-            int newX = baseX + dx;
-            if (newY < 0 || total_block[newY][newX].occupied) {
-                canMoveUp = false;
+    // 2. 복제 블록을 위치시킬 수 있는 가장 가까운 높이 찾기
+    int minOffsetY = 1;  // 최소 1칸 위부터 시작
+    bool foundValidPosition = false;
+
+    while (minOffsetY < 21) {  // 보드의 높이 제한
+        bool canPlaceHere = true;
+
+        // 현재 오프셋에서 모든 블록 셀이 유효한지 확인
+        for (const auto& [cellY, cellX] : blockCells) {
+            int newY = cellY - minOffsetY;
+
+            // 보드 범위를 벗어나거나 이미 블록이 있는 경우
+            if (newY < 0 || total_block[newY][cellX].occupied) {
+                canPlaceHere = false;
                 break;
             }
         }
-        if (!canMoveUp) break;
-        ++maxOffset;
+
+        if (canPlaceHere) {
+            foundValidPosition = true;
+            break;
+        }
+
+        minOffsetY++;
     }
 
-    if (maxOffset == 0) return; // 복제 불가능
-
-    // 3. 복제 생성 (위로 maxOffset만큼 올려서 복사)
-    unique_ptr<Block> clone = make_unique<GreenBlock>(shape, angle, baseX, baseY - maxOffset);
-    board.mergeBlock(clone);
+    // 3. 유효한 위치를 찾았다면 복제 블록 생성
+    if (foundValidPosition) {
+        // 새로운 GreenBlock 생성 (복제 블록)
+        unique_ptr<Block> cloneBlock = make_unique<GreenBlock>(shape, angle, baseX, baseY - minOffsetY);
+        // 복제된 블록의 abilityUsed를 true로 설정하여 연쇄 복제 방지
+        static_cast<GreenBlock*>(cloneBlock.get())->abilityUsed = true;
+        // 보드에 복제 블록 병합
+        board.mergeBlock(cloneBlock);
+    }
 }
-

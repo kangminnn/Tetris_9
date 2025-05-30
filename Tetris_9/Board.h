@@ -7,6 +7,7 @@ using namespace std;
 class Board {
 private:
     int grid[21][14];
+    void checkAndRemoveCyanBlocks(int& level);
 public:
     Board() = default;
     void init();

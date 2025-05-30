@@ -5,7 +5,7 @@ YellowBlock::YellowBlock(int shape, int angle, int x, int y)
 {
 }
 
-bool YellowBlock::check(const Board& board) const
+bool YellowBlock::check(const Board& board, int& level) const
 {
     return false;
 }

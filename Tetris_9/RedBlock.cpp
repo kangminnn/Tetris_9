@@ -5,7 +5,7 @@ RedBlock::RedBlock(int shape, int angle, int x, int y)
 {
 }
 
-bool RedBlock::check(const Board& board) const
+bool RedBlock::check(const Board& board, int& level) const
 {
 	return false;
 }

@@ -5,7 +5,7 @@ WhiteBlock::WhiteBlock(int shape, int angle, int x, int y)
 {
 }
 
-bool WhiteBlock::check(const Board& board) const
+bool WhiteBlock::check(const Board& board, int& level) const
 {
     return false;
 }

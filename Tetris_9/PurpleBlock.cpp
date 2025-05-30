@@ -5,7 +5,7 @@ PurpleBlock::PurpleBlock(int shape, int angle, int x, int y)
 {
 }
 
-bool PurpleBlock::check(const Board& board) const
+bool PurpleBlock::check(const Board& board, int& level) const
 {
     return false;
 }
