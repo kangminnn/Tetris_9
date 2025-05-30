@@ -1,6 +1,7 @@
 #pragma once
 #include "Block.h"
 #include "Board.h"
+
 class PurpleBlock : public Block {
 public:
     PurpleBlock(int shape, int angle, int x, int y);
@@ -10,4 +11,5 @@ public:
 
     bool check(const Board& board) const override;// 무조건 발동 예시
     void active(Board& board) override; // 구현은 cpp에서
+    static void update();
 };

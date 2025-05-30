@@ -1,4 +1,5 @@
 #include "RedBlock.h"
+#include "PurpleBlock.h"
 #include <queue>
 
 RedBlock::RedBlock(int shape, int angle, int x, int y)
@@ -8,6 +9,7 @@ RedBlock::RedBlock(int shape, int angle, int x, int y)
 
 bool RedBlock::check(const Board& board) const
 {
+    PurpleBlock::update();
     //상하좌우 방향
     int dx[] = { -1, 1, 0, 0 };
     int dy[] = { 0, 0, -1, 1 };

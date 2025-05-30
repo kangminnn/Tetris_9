@@ -176,10 +176,11 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines)
 			//string test1 = b->getColorName(); //중단점 test용
 			b->active(*this); // active로 능력 발동
 		}
+
 		check_full_line(level, score, lines);
 		Renderer::show_total_block(level);
 
-		
+
 
 		for (int i = 1; i < 13; i++) { // 0부분과 13부분은 테두리로 제외해야함
 			if (total_block[0][i].occupied == 1) {
