@@ -93,7 +93,7 @@ void Renderer::erase_pause()
 }
 
 
-int Renderer::show_gamestat(int level, int score, int lines)
+int Renderer::show_gamestat(int level, int score)
 {
 	static int printed_text = 0;
 	SetColor(GRAY);
@@ -104,18 +104,11 @@ int Renderer::show_gamestat(int level, int score, int lines)
 
 		gotoxy(30, 13);
 		cout << "SCORE";
-
-		gotoxy(30, 16);
-		cout << "LINES";
-
-
 	}
 	gotoxy(36, 10);
 	cout << level + 1;
 	gotoxy(36, 13);
 	cout << score;
-	gotoxy(36, 16);
-	cout << stage_data[level].clear_line - lines;
 	return 0;
 }
 
@@ -161,10 +154,6 @@ int Renderer::show_logo()
 			clear_block(19, 14);
 			clear_block(26, 14);
 
-			//show_cur_block(rand() % 7, rand() % 4, 6, 14);
-			//show_cur_block(rand() % 7, rand() % 4, 12, 14);
-			//show_cur_block(rand() % 7, rand() % 4, 19, 14);
-			//show_cur_block(rand() % 7, rand() % 4, 26, 14);
 			int level = 5;
 			unique_ptr<Block> bl;
 			bl = BlockFactory::makeBlock(level);
@@ -179,10 +168,6 @@ int Renderer::show_logo()
 			bl = BlockFactory::makeBlock(level);
 			bl->setX(26); bl->setY(14);
 			showCurBlock(bl);
-			//showCurBlock(RedBlock(rand() % 7, rand() % 4, 6, 14));
-			//showCurBlock(BlueBlock(rand() % 7, rand() % 4, 12, 14));
-			//showCurBlock(GreenBlock(rand() % 7, rand() % 4, 19, 14));
-			//showCurBlock(YellowBlock(rand() % 7, rand() % 4, 26, 14));
 		}
 
 		if (_kbhit()) break;
@@ -225,30 +210,6 @@ void Renderer::showCurBlock(unique_ptr<Block>& b)
 {
 	int i, j;
 	SetColor(b->getColor());
-	//switch (b->getShape())
-	//{
-	//case 0:
-	//	SetColor(RED);
-	//	break;
-	//case 1:
-	//	SetColor(BLUE);
-	//	break;
-	//case 2:
-	//	SetColor(SKY_BLUE);
-	//	break;
-	//case 3:
-	//	SetColor(WHITE);
-	//	break;
-	//case 4:
-	//	SetColor(YELLOW);
-	//	break;
-	//case 5:
-	//	SetColor(VOILET);
-	//	break;
-	//case 6:
-	//	SetColor(GREEN);
-	//	break;
-	//}
 
 	for (i = 0; i < 4; i++)
 	{
@@ -325,7 +286,6 @@ void Renderer::eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 				gotoxy((i + b->getX()) * 2 + ab_x, j + b->getY() + ab_y);
 				cout << "  ";
 				//break;
-
 			}
 		}
 	}

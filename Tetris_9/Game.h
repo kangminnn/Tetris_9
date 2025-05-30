@@ -12,7 +12,6 @@ private:
     unique_ptr<Block> nextBlock;
     int level;
     int score;
-    int lines;
     int isGameOver;
 public:
     Game();

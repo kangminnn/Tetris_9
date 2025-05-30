@@ -11,11 +11,9 @@ private:
 public:
     Board() = default;
     void init();
-    //bool strike_check(int shape, int angle, int x, int y) const;
-    //void merge_block(int shape, int angle, int x, int y);
-    int check_full_line(int& level, int& score, int& lines);
+    int check_full_line(int& level, int& score);
     bool strikeCheck(unique_ptr<Block>& b);
     void mergeBlock(unique_ptr<Block>& b);
     bool rotateStrikeCheck(unique_ptr<Block>& b);
-    int moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines);
+    int moveBlock(unique_ptr<Block>& b, int& level, int& score);
 };

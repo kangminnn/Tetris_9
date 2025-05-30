@@ -31,7 +31,7 @@ void Board::init() {
 
 
 
-int Board::check_full_line(int& level, int& score, int& lines)
+int Board::check_full_line(int& level, int& score)
 {
 	int i, j, k;
 	for (i = 0; i < 20; i++)
@@ -43,8 +43,6 @@ int Board::check_full_line(int& level, int& score, int& lines)
 		}
 		if (j == 13)	//한줄이 다 채워졌음
 		{
-			lines++;
-
 			// Yellow 블록 처리를 위한 임시 배열
 			Cell temp_row[14];
 			bool has_remaining_yellow = false;
@@ -125,19 +123,19 @@ int Board::check_full_line(int& level, int& score, int& lines)
 				}
 			}
 
-			score += 100 + (level * 10) + (rand() % 10);
+			score += 10;
 
-			if (stage_data[level].clear_line <= lines)	//클리어 조건달성
+			if (stage_data[level].score <= score)	//클리어 조건달성
 			{
-				if (level == 9) {
-					lines = 0;
+				if (level == 7) {
+					//lines = 0;
 				}
 				else {
 					level++;
-					lines = 0;
+					score = 0;
 				}
 			}
-			Renderer::show_gamestat(level, score, lines);
+			Renderer::show_gamestat(level, score);
 		}
 	}
 	return 0;
@@ -213,7 +211,7 @@ bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
 	return false;
 }
 
-int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines)
+int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score)
 {
 	Renderer::eraseCurBlock(b);
 
@@ -238,7 +236,7 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines)
 			//string test1 = b->getColorName(); //중단점 test용
 			b->active(*this); // active로 능력 발동
 		}
-		check_full_line(level, score, lines);
+		check_full_line(level, score);
 		Renderer::show_total_block(level);
 
 		
@@ -248,12 +246,6 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& lines)
 				return 1;
 			}
 		}
-		//*shape = *next_shape;
-		//*next_shape = BlockFactory::make_new_block();
-		//BlockFactory::block_start(*shape, angle, x, y);   //angle,x,y는 포인터임
-		//Renderer::show_next_block(*next_shape);
-
-		
 		return 2;
 	}
 	return 0;

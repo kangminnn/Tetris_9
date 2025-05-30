@@ -45,8 +45,7 @@ struct BlockAbilities {
 // Add block abilities to stage data
 struct STAGE {
 	int speed;
-	int stick_rate;
-	int clear_line;
+	int score;
 	BlockAbilities abilities;  // Available abilities for this stage
 };
 
@@ -56,10 +55,7 @@ struct Cell {
 	int count = 0;
 };
 
-//extern int level;
 extern int ab_x, ab_y;	//화면중 블럭이 나타나는 좌표의 절대위치
-//extern int score;
-//extern int lines;
 extern Cell total_block[21][14];		//화면에 표시되는 블럭들
 extern struct STAGE stage_data[10];
 
