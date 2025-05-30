@@ -6,7 +6,7 @@ int ab_x = 0, ab_y = 0;	//화면중 블럭이 나타나는 좌표의 절대위치
 //int score;
 //int lines;
 Cell total_block[21][14];		//화면에 표시되는 블럭들
-struct STAGE stage_data[10];
+struct STAGE stage_data[8];
 
 char block[7][4][4][4] = {
 	//막대모양
@@ -82,7 +82,7 @@ void initStageData()
 
 	// Stage 7 //infinite mode
 	stage_data[7].speed = 10;
-	stage_data[7].score = 100;
+	stage_data[7].score = 10000000;
 	stage_data[7].abilities = { true, true, true, true, true, true };
 }
 

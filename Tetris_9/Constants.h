@@ -57,7 +57,7 @@ struct Cell {
 
 extern int ab_x, ab_y;	//화면중 블럭이 나타나는 좌표의 절대위치
 extern Cell total_block[21][14];		//화면에 표시되는 블럭들
-extern struct STAGE stage_data[10];
+extern struct STAGE stage_data[8];
 
 extern char block[7][4][4][4];
 

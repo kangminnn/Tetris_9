@@ -1,7 +1,8 @@
 #include "Board.h"
 #include "Constants.h"
 #include "Renderer.h"
-#include"Block.h"
+#include "Block.h"
+#include "StoryManager.h"
 #include <cstdlib>   // std::srand, std::rand
 #include <ctime>     // std::time
 #include <cstring>   // std::memset
@@ -127,8 +128,8 @@ int Board::check_full_line(int& level, int& score)
 
 			if (stage_data[level].score <= score)	//클리어 조건달성
 			{
-				if (level == 7) {
-					//lines = 0;
+				if (level == 6) {
+					StoryManager::showEnding();
 				}
 				else {
 					level++;

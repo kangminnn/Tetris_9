@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "BlockFactory.h"
 #include "InputHandler.h"
+#include "StoryManager.h"
 #include <conio.h>
 
 
@@ -131,8 +132,9 @@ void Game::run()
 
 			if (stage_data[level].score <= score)	//클리어 스테이지
 			{
-				if (level == 7) {
-					//ending
+				if (level == 6) {
+					StoryManager::showEnding();
+					break;
 				}
 				else {
 					level++;
