@@ -70,6 +70,8 @@ void SetColor(int color);
 void clear_line_mt(int x, int y);
 void clear_block(int x, int y);
 void initStageData();
+void hideCursor();
+void showCursor();
 
 class Constants
 {	

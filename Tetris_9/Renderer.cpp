@@ -63,6 +63,36 @@ int Renderer::show_gameover()
 	return 0;
 }
 
+void Renderer::show_pause()
+{
+	SetColor(BLUE);
+	gotoxy(2, 8);
+	cout << "旨收收收收收收收收收收收收收收收收收收收收收旬";
+	gotoxy(2, 9);
+	cout << "早*********************早";
+	gotoxy(2, 10);
+	cout << "早*       paused      *早";
+	gotoxy(2, 11);
+	cout << "早*********************早";
+	gotoxy(2, 12);
+	cout << "曲收收收收收收收收收收收收收收收收收收收收收旭";
+}
+
+void Renderer::erase_pause()
+{
+	gotoxy(2, 8);
+	cout << string(23, ' ');
+	gotoxy(2, 9);
+	cout << string(23, ' ');
+	gotoxy(2, 10);
+	cout << string(23, ' ');
+	gotoxy(2, 11);
+	cout << string(23, ' ');
+	gotoxy(2, 12);
+	cout << string(23, ' ');
+}
+
+
 int Renderer::show_gamestat(int level, int score, int lines)
 {
 	static int printed_text = 0;
