@@ -60,6 +60,8 @@ void BlueBlock::active(Board& board)
             }
         }
 
+        if (total_block[lowestBlockY][x + j].color == VOILET) { return; }
+
         if (lowestBlockY >= 0 && lowestBlockY < 19) {  // 경계 체크
             // 파란 블록 바로 아래 칸에 블록이 있고, 그 아래가 보드 범위 내라면
             if (total_block[lowestBlockY + 1][x + j].occupied == 1 &&
