@@ -148,10 +148,11 @@ void StoryManager::showIFNT()
 
 void StoryManager::showEnding()
 {
-	SetColor(GREEN);
+	SetColor(BLUE);
 	system("cls");
     centerPrint(4, "========================================", 80);
     centerPrint(6, "     [졸업 - 대마법사의 길]     ", 80);
+    SetColor(WHITE);
     centerPrint(8, "당신은 모든 속성의 마법을 익혔고,", 80);
     centerPrint(9, "무한한 마력의 흐름마저 받아들이는 법을 배웠습니다.", 80);
     centerPrint(11, "어느덧, 선생님들이 당신에게 고개를 숙입니다.", 80);

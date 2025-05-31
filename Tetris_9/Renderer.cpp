@@ -53,15 +53,15 @@ int Renderer::show_total_block(int& level)
 int Renderer::show_gameover()
 {
 	SetColor(RED);
-	gotoxy(0, 8);
+	gotoxy(0 + ab_x, 8 + ab_y);
 	cout << "旨收收收收收收收收收收收收收收收收收收收收收收收收收旬";
-	gotoxy(0, 9);
+	gotoxy(0 + ab_x, 9 + ab_y);
 	cout << "早*************************早";
-	gotoxy(0, 10);
+	gotoxy(0 + ab_x, 10 + ab_y);
 	cout << "早*       GAME OVER       *早";
-	gotoxy(0, 11);
+	gotoxy(0 + ab_x, 11 + ab_y);
 	cout << "早*************************早";
-	gotoxy(0, 12);
+	gotoxy(0 + ab_x, 12 + ab_y);
 	cout << "曲收收收收收收收收收收收收收收收收收收收收收收收收收旭";
 	fflush(stdin);
 	Sleep(1000);
@@ -75,29 +75,29 @@ int Renderer::show_gameover()
 void Renderer::show_pause()
 {
 	SetColor(BLUE);
-	gotoxy(2, 8);
+	gotoxy(2 + ab_x, 8 + ab_y);
 	cout << "旨收收收收收收收收收收收收收收收收收收收收收旬";
-	gotoxy(2, 9);
+	gotoxy(2 + ab_x, 9 + ab_y);
 	cout << "早*********************早";
-	gotoxy(2, 10);
+	gotoxy(2 + ab_x, 10 + ab_y);
 	cout << "早*       paused      *早";
-	gotoxy(2, 11);
+	gotoxy(2 + ab_x, 11 + ab_y);
 	cout << "早*********************早";
-	gotoxy(2, 12);
+	gotoxy(2 + ab_x, 12 + ab_y);
 	cout << "曲收收收收收收收收收收收收收收收收收收收收收旭";
 }
 
 void Renderer::erase_pause()
 {
-	gotoxy(2, 8);
+	gotoxy(2 + ab_x, 8 + ab_y);
 	cout << string(23, ' ');
-	gotoxy(2, 9);
+	gotoxy(2 + ab_x, 9 + ab_y);
 	cout << string(23, ' ');
-	gotoxy(2, 10);
+	gotoxy(2 + ab_x, 10 + ab_y);
 	cout << string(23, ' ');
-	gotoxy(2, 11);
+	gotoxy(2 + ab_x, 11 + ab_y);
 	cout << string(23, ' ');
-	gotoxy(2, 12);
+	gotoxy(2 + ab_x, 12 + ab_y);
 	cout << string(23, ' ');
 }
 
