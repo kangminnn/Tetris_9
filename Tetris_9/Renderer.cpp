@@ -13,16 +13,7 @@ int Renderer::show_total_block(int& level)
 		{
 			if (j == 0 || j == 13 || i == 20)		//레벨에 따라 외벽 색이 변함
 			{
-				switch (level) {
-				case 0: SetColor(BLUE); break;
-				case 1: SetColor(YELLOW); break;
-				case 2: SetColor(SKY_BLUE); break;
-				case 3: SetColor(RED); break;
-				case 4: SetColor(VOILET); break;
-				case 5: SetColor(GREEN); break;
-				case 6: SetColor(GRAY); break;
-				default: SetColor(WHITE); break;
-				}
+				SetStageColor(level);
 				gotoxy((j * 2) + ab_x, i + ab_y);
 				if (total_block[i][j].occupied == 1)
 				{
@@ -133,15 +124,52 @@ int Renderer::show_gamestat(int level, int score)
 	SetColor(GRAY);
 	if (printed_text == 0)
 	{
-		gotoxy(30 + ab_x, 10 + ab_y);
-		cout << "STAGE";
+		gotoxy(30 + ab_x, ab_y);
+		SetStageColor(level);
+		if(level<=5) cout << "Class "<< level+1 <<" : ";
+		switch (level) {
+		case 0: cout << "물 속성 마법"; break;
+		case 1: cout << "비전 속성 마법"; break;
+		case 2: cout << "냉기 속성 마법"; break;
+		case 3: cout << "화염 속성 마법"; break;
+		case 4: cout << "암흑 속성 마법"; break;
+		case 5: cout << "자연 속성 마법"; break;
+		case 6: cout << "보스 스테이지"; break;
+		case 7: cout << "무한 모드"; break;
+		}
 
+		SetColor(GRAY);
+		gotoxy(30 + ab_x, 11 + ab_y);
+		cout << "┏━━━━━━━━━━<GAME KEY>━━━━━━━━┓";
+		Sleep(10);
+		gotoxy(30 + ab_x, 12 + ab_y);
+		cout << "┃ UP   : Rotate Block        ┃";
+		Sleep(10);
 		gotoxy(30 + ab_x, 13 + ab_y);
+		cout << "┃ DOWN : Move One-Step Down  ┃";
+		Sleep(10);
+		gotoxy(30 + ab_x, 14 + ab_y);
+		cout << "┃ SPACE: Move Bottom Down    ┃";
+		Sleep(10);
+		gotoxy(30 + ab_x, 15 + ab_y);
+		cout << "┃ LEFT : Move Left           ┃";
+		Sleep(10);
+		gotoxy(30 + ab_x, 16 + ab_y);
+		cout << "┃ RIGHT: Move Right          ┃";
+		Sleep(10);
+		gotoxy(30 + ab_x, 17 + ab_y);
+		cout << "┃ ESC  : pause               ┃";
+		Sleep(10);
+		gotoxy(30 + ab_x, 18 + ab_y);
+		cout << "┃ SHIFT: block hold          ┃";
+		Sleep(10);
+		gotoxy(30 + ab_x, 19 + ab_y);
+		cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
+		gotoxy(45 + ab_x, 9 + ab_y);
 		cout << "SCORE";
 	}
-	gotoxy(36 + ab_x, 10 + ab_y);
-	cout << level + 1;
-	gotoxy(36 + ab_x, 13 + ab_y);
+
+	gotoxy(51 + ab_x, 9 + ab_y);
 	cout << score;
 	return 0;
 }
@@ -230,12 +258,12 @@ void Renderer::showNextBlock(unique_ptr<Block>& b)
 {
 	int i, j;
 	SetColor(GRAY);
-	for (i = 1; i < 7; i++)
+	for (i = 4; i < 10; i++)
 	{
 		gotoxy(30 + ab_x, i + ab_y);
 		for (j = 0; j < 6; j++)
 		{
-			if (i == 1 || i == 6 || j == 0 || j == 5)
+			if (i == 4 || i == 9 || j == 0 || j == 5)
 			{
 				cout << "□ ";
 			}
@@ -246,7 +274,7 @@ void Renderer::showNextBlock(unique_ptr<Block>& b)
 		}
 	}
 	b->setX(17);
-	b->setY(2);
+	b->setY(5);
 	showCurBlock(b);
 
 

@@ -57,7 +57,7 @@ void StoryManager::showLV1()
 
 void StoryManager::showLV2()
 {
-    SetColor(BLUE);
+    SetColor(YELLOW);
     system("cls");
     centerPrint(5, "[2단계 - 이중의 비전]", 80);
     SetColor(WHITE);
@@ -70,7 +70,7 @@ void StoryManager::showLV2()
 
 void StoryManager::showLV3()
 {
-    SetColor(BLUE);
+    SetColor(SKY_BLUE);
     system("cls");
     centerPrint(5, "[3단계 - 서리의 숨결]", 80);
     SetColor(WHITE);
@@ -83,7 +83,7 @@ void StoryManager::showLV3()
 
 void StoryManager::showLV4()
 {
-    SetColor(BLUE);
+    SetColor(RED);
     system("cls");
     centerPrint(5, "[4단계 - 불꽃의 낙인]", 80);
     SetColor(WHITE);
@@ -96,7 +96,7 @@ void StoryManager::showLV4()
 
 void StoryManager::showLV5()
 {
-    SetColor(BLUE);
+    SetColor(VOILET);
     system("cls");
     centerPrint(5, "[5단계 - 암흑의 간섭]", 80);
     SetColor(WHITE);
@@ -109,7 +109,7 @@ void StoryManager::showLV5()
 
 void StoryManager::showLV6()
 {
-    SetColor(BLUE);
+    SetColor(GREEN);
     system("cls");
     centerPrint(5, "[6단계 - 자연의 반향]", 80);
     SetColor(WHITE);
@@ -122,7 +122,7 @@ void StoryManager::showLV6()
 
 void StoryManager::showLV7()
 {
-    SetColor(BLUE);
+    SetColor(GRAY);
     system("cls");
     centerPrint(5, "[7단계 - 시험의 전당]", 80);
     SetColor(WHITE);

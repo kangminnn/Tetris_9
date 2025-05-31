@@ -1,4 +1,4 @@
-#define NOMINMAX
+ï»¿#define NOMINMAX
 #include "InputHandler.h"
 #include "Constants.h"
 #include <string>
@@ -11,38 +11,51 @@ int InputHandler::input_data(int& level)
 {
 	int i = 0;
 	SetColor(GRAY);
-	gotoxy(10, 7);
-	cout << "¦®¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬<GAME KEY>¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¯";
+	gotoxy(10, 7); cout << "â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”<Select Class>â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”“";
 	Sleep(10);
-	gotoxy(10, 8);
-	cout << "¦­ UP   : Rotate Block        ¦­";
+	gotoxy(10, 8); cout << "â”ƒ                                                    â”ƒ";
 	Sleep(10);
-	gotoxy(10, 9);
-	cout << "¦­ DOWN : Move One-Step Down  ¦­";
+	gotoxy(10, 9); cout << "â”ƒ Class 1 : íë¦„ê³¼ ì§ˆì„œ - ë¬¼ì˜ ì •í™” (íŒŒë‘ ë¸”ëŸ­)      â”ƒ";
 	Sleep(10);
-	gotoxy(10, 10);
-	cout << "¦­ SPACE: Move Bottom Down    ¦­";
+	gotoxy(10, 10); cout << "â”ƒ                                                    â”ƒ";
 	Sleep(10);
-	gotoxy(10, 11);
-	cout << "¦­ LEFT : Move Left           ¦­";
+	gotoxy(10, 11); cout << "â”ƒ Class 2 : ê²¹ì³ì§„ ì§„ì‹¤ - ë¹„ì „ ë§ˆë²• (ë…¸ë‘ ë¸”ëŸ­)      â”ƒ";
 	Sleep(10);
-	gotoxy(10, 12);
-	cout << "¦­ RIGHT: Move Right          ¦­";
+	gotoxy(10, 12); cout << "â”ƒ                                                    â”ƒ";
 	Sleep(10);
-	gotoxy(10, 13);
-	cout << "¦­ ESC  : pause               ¦­";
+	gotoxy(10, 13); cout << "â”ƒ Class 3 : ì‹œê°„ì˜ ì–¼ìŒ - ëƒ‰ê¸° ë§ˆë²• (í•˜ëŠ˜ìƒ‰ ë¸”ëŸ­)    â”ƒ";
 	Sleep(10);
-	gotoxy(10, 14);
-	cout << "¦­ SHIFT: block hold          ¦­";
+	gotoxy(10, 14); cout << "â”ƒ                                                    â”ƒ";
 	Sleep(10);
-	gotoxy(10, 15);
-	cout << "¦±¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦°";
+	gotoxy(10, 15); cout << "â”ƒ Class 4 : í™”ì—¼ì˜ ê²©ë¥˜ - í™”ì—¼ ë§ˆë²• (ë¹¨ê°• ë¸”ëŸ­)      â”ƒ";
+	Sleep(10);
+	gotoxy(10, 16); cout << "â”ƒ                                                    â”ƒ";
+	Sleep(10);
+	gotoxy(10, 17); cout << "â”ƒ Class 5 : ê¸ˆì§€ëœ ë§ˆë²• - ì•”í‘ ë§ˆë²• (ë³´ë¼ ë¸”ëŸ­)      â”ƒ";
+	Sleep(10);
+	gotoxy(10, 18); cout << "â”ƒ                                                    â”ƒ";
+	Sleep(10);
+	gotoxy(10, 19); cout << "â”ƒ Class 6 : ìƒëª…ì˜ ìˆœí™˜ - ìì—° ë§ˆë²• (ì´ˆë¡ ë¸”ëŸ­)      â”ƒ";
+	Sleep(10);
+	gotoxy(10, 20); cout << "â”ƒ                                                    â”ƒ";
+	Sleep(10);
+	gotoxy(10, 21); cout << "â”ƒ BOSS MODE : ì•”í‘ì˜ ëŒ€ë§ˆë„ì‚¬ ã€Œë²¡íƒ€ë¥´ã€ ì™€ì˜ ê²°íˆ¬   â”ƒ";
+	Sleep(10);
+	gotoxy(10, 22); cout << "â”ƒ                                                    â”ƒ";
+	Sleep(10);
+	gotoxy(10, 23); cout << "â”ƒ INFINITE MODE : ë¬´í•œì˜ íƒ‘ - ì•„ë¥´ì¹´ë‚˜ ë§ˆìŠ¤í„°        â”ƒ";
+	Sleep(10);
+	gotoxy(10, 24); cout << "â”ƒ                                                    â”ƒ";
+	Sleep(10);
+	gotoxy(10, 25); cout << "â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›";
 
+	gotoxy(10, 4);
+	cout << "Select 7 for boss stage, 8 for infinite mode";
 
 	while (i < 1 || i>8)
 	{
-		gotoxy(10, 3);
-		cout << "Select Start level[1-8]:       \b\b\b\b\b\b\b";
+		//gotoxy(10, 3);
+		//cout << "Select Start class[1-6]:       \b\b\b\b\b\b\b";
 		i = get_valid_int(1, 8);
 	}
 
@@ -57,28 +70,28 @@ int InputHandler::get_valid_int(int min, int max) {
 
 	while (true) {
 		clear_line_mt(10, 3);
-		cout << "Select Start level[" << min << "-" << max << "]: ";
+		cout << "Select Start Class[" << min << "-" << max - 2 << "]: ";
 		getline(cin, input);
 
-		// ÀÔ·Â ¿À·ù Ã³¸®
+		// ì…ë ¥ ì˜¤ë¥˜ ì²˜ë¦¬
 		if (cin.fail()) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			clear_line_mt(10, 3);
-			cout << "ÀÔ·Â ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.\n";
+			cout << "ì…ë ¥ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.\n";
 			continue;
 		}
 
 		std::istringstream iss(input);
 		if (!(iss >> val) || !(iss.eof())) {
 			clear_line_mt(10, 3);
-			cout << "¼ıÀÚ¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+			cout << "ìˆ«ìë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n";
 			continue;
 		}
 
 		if (val < min || val > max) {
 			clear_line_mt(10, 3);
-			cout << min << "¿¡¼­ " << max << " »çÀÌÀÇ °ªÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+			cout << min << "ì—ì„œ " << max << " ì‚¬ì´ì˜ ê°’ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.\n";
 			continue;
 		}
 
