@@ -256,7 +256,7 @@ void Renderer::showCurBlock(unique_ptr<Block>& b)
 void Renderer::showSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 {
 	if (b->getY() - b2->getY() <= 4) return;
-	SetColor(GRAY);
+	SetColor(b->getColor());
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)

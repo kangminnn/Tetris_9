@@ -41,6 +41,7 @@ void StoryManager::showLevelUp(int level)
     case 6: showLV7(); break;
     case 7: showIFNT(); break;
     }
+
 }
 void StoryManager::showLV1()
 {
@@ -51,6 +52,7 @@ void StoryManager::showLV1()
     centerPrint(7, "아르카나 마법학교에 입학한 당신.", 80);
     centerPrint(9, "첫 수업은 물의 흐름을 이해하고 다루는 것이었다.", 80);
     centerPrint(11, "블럭은 무너지지 않는다. 흘러내릴 뿐이다.", 80);
+    drawWizard(0);
     waitForKeyAfterDelay();
     system("cls");
 }
@@ -64,6 +66,7 @@ void StoryManager::showLV2()
     centerPrint(7, "마법은 환상을 만든다. 그리고 환상은 쉽게 사라지지 않는다.", 80);
     centerPrint(9, "노란 블럭은 한 번의 제거로는 사라지지 않는다.", 80);
     centerPrint(11, "진실을 보려면 한 꺼풀 더 벗겨야 한다.", 80);
+    drawWizard(1);
     waitForKeyAfterDelay();
     system("cls");
 }
@@ -78,6 +81,7 @@ void StoryManager::showLV3()
     centerPrint(9, "하늘색 블럭은 즉시 사라지지 않는다.", 80);
     centerPrint(11, "시간의 흐름 속에서 천천히 사라질 것이다.", 80);
     waitForKeyAfterDelay();
+    drawWizard(2);
     system("cls");
 }
 
@@ -91,6 +95,7 @@ void StoryManager::showLV4()
     centerPrint(9, "빨간 블럭은 터지며 주변 블럭까지 함께 제거한다.", 80);
     centerPrint(11, "제어되지 않은 힘은 파멸을 부른다.", 80);
     waitForKeyAfterDelay();
+    drawWizard(3);
     system("cls");
 }
 
@@ -104,6 +109,7 @@ void StoryManager::showLV5()
     centerPrint(9, "주변의 불과 물 속성을 무력화시킨다.", 80);
     centerPrint(11, "질서의 마법은 어둠 앞에서 무기력하다.", 80);
     waitForKeyAfterDelay();
+    drawWizard(4);
     system("cls");
 }
 
@@ -117,6 +123,7 @@ void StoryManager::showLV6()
     centerPrint(9, "생명의 마법은 하나에서 여럿을 창조한다.", 80);
     centerPrint(11, "단순한 제거는 해결책이 아니다.", 80);
     waitForKeyAfterDelay();
+    drawWizard(5);
     system("cls");
 }
 
@@ -130,6 +137,7 @@ void StoryManager::showLV7()
     centerPrint(9, "모든 속성을 능숙하게 활용하지 못하면 상대할 수 없다.", 80);
     centerPrint(11, "이제 진정한 마법사의 시험이 시작된다.", 80);
     waitForKeyAfterDelay();
+    drawWizard(6);
     system("cls");
 }
 
@@ -143,6 +151,7 @@ void StoryManager::showIFNT()
     centerPrint(9, "시간도, 규칙도 의미가 없다.", 80);
     centerPrint(11, "자신만의 방식으로 마법을 이어가라.", 80);
     waitForKeyAfterDelay();
+    drawWizard(7);
     system("cls");
 }
 
@@ -165,4 +174,83 @@ void StoryManager::showEnding()
     centerPrint(23, "게임을 종료하려면 아무 키나 누르세요...", 80);
     waitForKeyAfterDelay();
     system("cls");
+}
+
+
+
+void StoryManager::particle(int color)
+{
+    SetColor(color);
+
+    gotoxy(46, 14); cout << "*";
+    gotoxy(59, 14); cout << "*";
+
+    gotoxy(49, 15); cout << "*";
+    gotoxy(55, 15); cout << "*";
+    gotoxy(61, 15); cout << "*";
+
+    gotoxy(52, 16); cout << "*";
+    gotoxy(63, 16); cout << "*";
+}
+
+void StoryManager::drawWizard(int level)
+{
+
+    if (level == 0) {
+        centerPrint(14, "  /^\\", 80);
+        centerPrint(15, "   (o_o) /", 80);
+        centerPrint(16, "  <|||>/", 80);
+        centerPrint(17, " /   \\", 80);
+        particle(BLUE);
+    }
+    else if (level == 1) {
+        centerPrint(14, "  /*\\", 80);
+        centerPrint(15, "   (o_o) /", 80);
+        centerPrint(16, "  <|||>/", 80);
+        centerPrint(17, " /   \\", 80);
+        particle(YELLOW);
+    }
+    else if (level == 2) {
+        centerPrint(14, "  /^\\", 80);
+        centerPrint(15, "  /^^^\\", 80);
+        centerPrint(16, "   (o_o) /", 80);
+        centerPrint(17, "  <|||>/", 80);
+        centerPrint(18, " /   \\", 80);
+        particle(SKY_BLUE);
+    }
+    else if (level == 3) {
+        centerPrint(14, "  /^\\", 80);
+        centerPrint(15, "  /^*^\\", 80);
+        centerPrint(16, "   (o_o) /", 80);
+        centerPrint(17, "  <|||>/", 80);
+        centerPrint(18, " /   \\", 80);
+        particle(RED);
+    }
+    else if (level == 4) {
+        centerPrint(14, "  /^\\", 80);
+        centerPrint(15, "  /^^^\\", 80);
+        centerPrint(16, "  /^^^^^\\", 80);
+        centerPrint(17, "   (o_o) /", 80);
+        centerPrint(18, "  <|||>/", 80);
+        centerPrint(19, " /   \\", 80);
+        particle(VOILET);
+    }
+    else if (level == 5) {
+        centerPrint(14, "  /^\\", 80);
+        centerPrint(15, "  /^*^\\", 80);
+        centerPrint(16, "  /^^^^^\\", 80);
+        centerPrint(17, "   (o_o) /", 80);
+        centerPrint(18, "  <|||>/", 80);
+        centerPrint(19, " /   \\", 80);
+        particle(GREEN);
+    }
+    else if (level == 6) {
+        centerPrint(14, "  /^\\", 80);
+        centerPrint(15, "  /^*^\\", 80);
+        centerPrint(16, "  /^***^\\", 80);
+        centerPrint(17, "   (o_o) /", 80);
+        centerPrint(18, "  <|||>/", 80);
+        centerPrint(19, " /   \\", 80);
+        particle(GRAY);
+    }
 }
