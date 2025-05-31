@@ -35,11 +35,11 @@ enum {
 // 블럭 특수능력 On/Off
 struct BlockAbilities {
 	bool blueBlockAbility;     // 블루블럭(누르기)
-	bool greenBlockAbility;    // 그린블록(복제)
-	bool cyanBlockAbility;  // 하늘블록(소멸)
 	bool yellowBlockAbility;   // 노랑블록(잔상)
+	bool cyanBlockAbility;  // 하늘블록(소멸)
 	bool redBlockAbility;  // 빨강블록(폭발)
 	bool purpleBlockAbility;   // 보라블록(오염)
+	bool greenBlockAbility;    // 그린블록(복제)
 };
 
 // Add block abilities to stage data

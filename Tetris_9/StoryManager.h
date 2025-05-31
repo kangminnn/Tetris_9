@@ -6,6 +6,6 @@
 class StoryManager {
 public:
     //void showIntro();
-    //void showLevelUp(int level);
+    void showLevelUp(int level);
     static void showEnding();
 };

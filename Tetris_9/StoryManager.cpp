@@ -1,5 +1,10 @@
 #include "StoryManager.h"
 
+void StoryManager::showLevelUp(int level)
+{
+
+}
+
 void StoryManager::showEnding()
 {
 	system("cls");
