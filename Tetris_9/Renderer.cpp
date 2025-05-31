@@ -369,4 +369,142 @@ void Renderer::eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 	return;
 }
 
+void Renderer::showWizard(int level)
+{
+	
+
+
+		if (level == 0) {
+			gotoxy(ab_x + 65, ab_y + 10); cout << "    /^\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "   (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "   <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << "  /     \\";
+		}
+		else if (level == 1) {
+			gotoxy(ab_x + 65, ab_y + 10); cout << "    /*\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "   (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "   <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << "  /     \\";
+		}
+		else if (level == 2) {
+			gotoxy(ab_x + 65, ab_y + 9); cout << "   /^\\";
+			gotoxy(ab_x + 65, ab_y + 10); cout << "  /^^^\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "  (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << " /     \\";
+		}
+		else if (level == 3) {
+			gotoxy(ab_x + 65, ab_y + 9); cout << "   /^\\";
+			gotoxy(ab_x + 65, ab_y + 10); cout << "  /^*^\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "  (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << " /     \\";
+		}
+		else if (level == 4) {
+			gotoxy(ab_x + 65, ab_y + 8); cout << "   /^\\";
+			gotoxy(ab_x + 65, ab_y + 9); cout << "  /^^^\\";
+			gotoxy(ab_x + 65, ab_y + 10); cout << " /^^^^^\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "  (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << " /     \\";
+		}
+		else if (level == 5) {
+			gotoxy(ab_x + 65, ab_y + 8); cout << "   /^\\";
+			gotoxy(ab_x + 65, ab_y + 9); cout << "  /^*^\\";
+			gotoxy(ab_x + 65, ab_y + 10); cout << " /^^^^^\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "  (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << " /     \\";
+		}
+		else if (level == 6) {
+			gotoxy(ab_x + 65, ab_y + 8); cout << "   /^\\";
+			gotoxy(ab_x + 65, ab_y + 9); cout << "  /^*^\\";
+			gotoxy(ab_x + 65, ab_y + 10); cout << " /^***^\\";
+			gotoxy(ab_x + 65, ab_y + 11); cout << "  (o_o) /";
+			gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
+			gotoxy(ab_x + 65, ab_y + 13); cout << " /     \\";
+		}
+
+}
+
+void Renderer::particle(int color)
+{
+	int colors[] = { RED, YELLOW, SKY_BLUE, RED, VOILET, GREEN };
+	SetColor(colors[color]);
+
+	int base_x = ab_x + 75;
+	int base_y = ab_y + 10;
+
+	gotoxy(base_x, base_y);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x, base_y);
+	cout << " ";
+	Sleep(100);
+	
+	gotoxy(base_x+2, base_y+1);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+2, base_y+1);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x+4, base_y+2);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+4, base_y+2);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x+6, base_y+1);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+6, base_y+1);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x+8, base_y);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+8, base_y);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x+10, base_y+1);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+10, base_y+1);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x+12, base_y+2);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+12, base_y+2);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x+14, base_y+1);
+	cout << "*";
+	Sleep(150);
+	gotoxy(base_x+14, base_y+1);
+	cout << " ";
+	Sleep(100);
+
+	gotoxy(base_x + 16, base_y + 0);
+	cout << " *";
+	gotoxy(base_x+15, base_y+1);
+	cout << "* * *";
+	gotoxy(base_x + 16, base_y + 2);
+	cout << " *";
+	Sleep(150);
+	gotoxy(base_x + 16, base_y + 0);
+	cout << "  ";
+	gotoxy(base_x + 15, base_y + 1);
+	cout << "     ";
+	gotoxy(base_x + 16, base_y + 2);
+	cout << "  ";
+	Sleep(100);
+}
+
 

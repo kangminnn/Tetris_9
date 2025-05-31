@@ -34,7 +34,7 @@ void Game::run()
 		unique_ptr<Block> silhouetteBlock = make_unique<Block>(*curBlock);
 		Renderer::showNextBlock(nextBlock);
 		Renderer::show_gamestat(level, score);
-
+		Renderer::showWizard(level);
 		for (i = 1; 1; i++)
 		{
 
