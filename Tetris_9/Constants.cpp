@@ -47,37 +47,37 @@ void initStageData()
 {
 	// Stage 0 (Tutorial stage)
 	stage_data[0].speed = 40;
-	stage_data[0].score = 100;
+	stage_data[0].score = SCORE;
 	stage_data[0].abilities = { true, false, false, false, false, false };  // Only blue block ability enabled
 
 	// Stage 1
 	stage_data[1].speed = 38;
-	stage_data[1].score = 100;
+	stage_data[1].score = SCORE;
 	stage_data[1].abilities = { true, true, false, false, false, false };  // Blue and yellow abilities
 
 	// Stage 2
 	stage_data[2].speed = 35;
-	stage_data[2].score = 100;
+	stage_data[2].score = SCORE;
 	stage_data[2].abilities = { true, true, true, false, false, false };  // Blue, yellow, and sky blue abilities
 
 	// Stage 3
 	stage_data[3].speed = 30;
-	stage_data[3].score = 100;
+	stage_data[3].score = SCORE;
 	stage_data[3].abilities = { true, true, true, true, false, false };  // Blue, yellow, sky blue, red
 
 	// Stage 4 (Mix it up - disable some abilities)
 	stage_data[4].speed = 25;
-	stage_data[4].score = 100;
+	stage_data[4].score = SCORE;
 	stage_data[4].abilities = { true, true, true, true, true, false }; // Blue, yellow, sky blue, red, purple
 
 	// Stage 5
 	stage_data[5].speed = 20;
-	stage_data[5].score = 100;
+	stage_data[5].score = SCORE;
 	stage_data[5].abilities = { true, true, true, true, true, true }; // Blue, yellow, sky blue, red, purple, green
 
 	// Stage 6 //boss stage
 	stage_data[6].speed = 15;
-	stage_data[6].score = 100;
+	stage_data[6].score = SCORE;
 	stage_data[6].abilities = { true, true, true, true, true, true };
 
 	// Stage 7 //infinite mode

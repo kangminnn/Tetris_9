@@ -13,6 +13,8 @@ using namespace std;
 #define KEY_UP 0x48
 #define KEY_DOWN 0x50
 
+#define SCORE 30 //디버그용 실제론 100으로할거
+
 enum {
 	BLACK,      /*  0 : 까망 */
 	DARK_BLUE,    /*  1 : 어두운 파랑 */

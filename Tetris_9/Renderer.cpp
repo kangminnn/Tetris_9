@@ -154,18 +154,31 @@ int Renderer::show_logo()
 			clear_block(19, 14);
 			clear_block(26, 14);
 
-			int level = 5;
+			int color[7] = { 0,1,2,3,4,5,6 };
+			int shape[7] = { 0,1,2,3,4,5,6 };
+			// Fisher-Yates ¼ÅÇÃ
+			for (int i = 6; i > 0; i--) {
+				int j = rand() % (i + 1);
+				int temp = color[i];
+				color[i] = color[j];
+				color[j] = temp;
+				j = rand() % (i + 1);
+				temp = shape[i];
+				shape[i] = shape[j];
+				shape[j] = temp;
+			}
+
 			unique_ptr<Block> bl;
-			bl = BlockFactory::makeBlock(level);
+			bl = BlockFactory::makeLogoBlock(color[0], shape[0]);
 			bl->setX(6); bl->setY(14);
 			showCurBlock(bl);
-			bl = BlockFactory::makeBlock(level);
+			bl = BlockFactory::makeLogoBlock(color[1], shape[1]);
 			bl->setX(12); bl->setY(14);
 			showCurBlock(bl);
-			bl = BlockFactory::makeBlock(level);
+			bl = BlockFactory::makeLogoBlock(color[2], shape[2]);
 			bl->setX(19); bl->setY(14);
 			showCurBlock(bl);
-			bl = BlockFactory::makeBlock(level);
+			bl = BlockFactory::makeLogoBlock(color[3], shape[3]);
 			bl->setX(26); bl->setY(14);
 			showCurBlock(bl);
 		}

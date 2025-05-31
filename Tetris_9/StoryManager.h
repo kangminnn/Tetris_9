@@ -5,7 +5,7 @@
 
 class StoryManager {
 public:
-    //void showIntro();
-    void showLevelUp(int level);
+    static void showIntro();
+    static void showLevelUp(int level);
     static void showEnding();
 };

@@ -133,6 +133,7 @@ int Board::check_full_line(int& level, int& score)
 				}
 				else {
 					level++;
+					StoryManager::showLevelUp(level);
 					score = 0;
 				}
 			}

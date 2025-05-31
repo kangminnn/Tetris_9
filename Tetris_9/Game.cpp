@@ -19,6 +19,7 @@ void Game::run()
 	int i;
 	char keytemp;
 	Renderer::show_logo();
+	StoryManager::showIntro();
 	board.init();
 	while (1)
 	{
@@ -138,6 +139,7 @@ void Game::run()
 				}
 				else {
 					level++;
+					StoryManager::showLevelUp(level);
 					score = 0;
 				}
 			}

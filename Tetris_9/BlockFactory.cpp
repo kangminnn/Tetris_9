@@ -25,3 +25,14 @@ unique_ptr<Block> BlockFactory::makeBlock(int& level)
     if (stage_data[level].abilities.greenBlockAbility && r > 60 && r <= 67) return make_unique<GreenBlock>(shape, 0, 5, -4);
     else return make_unique<WhiteBlock>(shape, 0, 5, -4);
 }
+
+unique_ptr<Block> BlockFactory::makeLogoBlock(int& color, int& shape)
+{
+    if (color == 0) return make_unique<BlueBlock>(shape, 0, 5, -4);
+    if (color == 1) return make_unique<YellowBlock>(shape, 0, 5, -4);
+    if (color == 2) return make_unique<CyanBlock>(shape, 0, 5, -4);
+    if (color == 3) return make_unique<RedBlock>(shape, 0, 5, -4);
+    if (color == 4) return make_unique<PurpleBlock>(shape, 0, 5, -4);
+    if (color == 5) return make_unique<GreenBlock>(shape, 0, 5, -4);
+    else return make_unique<WhiteBlock>(shape, 0, 5, -4);
+}

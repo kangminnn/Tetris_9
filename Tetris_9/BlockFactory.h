@@ -7,4 +7,5 @@ class BlockFactory
 {
 public:
 	static unique_ptr<Block> makeBlock(int& level);
+	static unique_ptr<Block> makeLogoBlock(int& color, int& shape);
 };
