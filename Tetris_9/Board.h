@@ -15,5 +15,6 @@ public:
     bool strikeCheck(unique_ptr<Block>& b);
     void mergeBlock(unique_ptr<Block>& b);
     bool rotateStrikeCheck(unique_ptr<Block>& b);
+    bool tryRotate(unique_ptr<Block>& b);
     int moveBlock(unique_ptr<Block>& b, int& level, int& score);
 };

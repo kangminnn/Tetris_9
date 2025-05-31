@@ -53,6 +53,9 @@ void Game::run()
 							curBlock->setAngle((curBlock->getAngle() + 1) % 4);
 							Renderer::showCurBlock(curBlock);
 						}
+						else {
+							while(!board.tryRotate(curBlock));
+						}
 						break;
 					case KEY_LEFT:		//왼쪽으로 이동
 						if (curBlock->getX() > 1)
