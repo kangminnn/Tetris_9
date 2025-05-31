@@ -132,6 +132,7 @@ void centerPrint(int y, const string& text, int width) {
 	cout << text;
 }
 
+
 // 엔딩이나 스테이지 출력 후 대기
 void waitForKeyAfterDelay() {
 	Sleep(2000);       // 1. 대기
