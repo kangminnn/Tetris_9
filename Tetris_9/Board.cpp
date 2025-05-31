@@ -130,7 +130,7 @@ int Board::check_full_line(int& level, int& score)
 			if (stage_data[level].score <= score)	//클리어 조건달성
 			{
 				if (level == 6) {
-					StoryManager::showEnding();
+					//StoryManager::showEnding();
 				}
 				else {
 					level++;
