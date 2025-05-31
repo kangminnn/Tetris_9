@@ -66,6 +66,7 @@ extern char block[7][4][4][4];
 
 void gotoxy(int x, int y);
 void SetColor(int color);
+void SetStageColor(int level);
 void clear_line_mt(int x, int y);
 void clear_block(int x, int y);
 void initStageData();

@@ -42,6 +42,19 @@ void SetColor(int color) {
 	SetConsoleTextAttribute(hConsole, static_cast<WORD>(color));
 }
 
+void SetStageColor(int level) {
+	switch (level) {
+	case 0: SetColor(BLUE); break;
+	case 1: SetColor(YELLOW); break;
+	case 2: SetColor(SKY_BLUE); break;
+	case 3: SetColor(RED); break;
+	case 4: SetColor(VOILET); break;
+	case 5: SetColor(GREEN); break;
+	case 6: SetColor(GRAY); break;
+	default: SetColor(WHITE); break;
+	}
+}
+
 //abilities {blue, green, cyan, yellow, red, purple}
 void initStageData()
 {
