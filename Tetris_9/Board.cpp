@@ -161,7 +161,7 @@ bool Board::strikeCheck(unique_ptr<Block>& b)
 			else
 				block_dat = 0;
 
-			if ((block_dat == 1) && (block[b->getShape()][b->getAngle()][i][j] == 1))																							//ÁÂÃøº®ÀÇ ÁÂÇ¥¸¦ »©±âÀ§ÇÔ
+			if ((block_dat == 1) && (block[b->getShape()][b->getAngle()][i][j] == 1))			//ÁÂÃøº®ÀÇ ÁÂÇ¥¸¦ »©±âÀ§ÇÔ
 			{
 				return true;
 			}
@@ -212,6 +212,21 @@ bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
 			}
 		}
 	}
+	return false;
+}
+
+bool Board::tryRotate(unique_ptr<Block>& b)
+{
+	Renderer::eraseCurBlock(b);
+	b->setX(b->getX() - 1);
+	if (rotateStrikeCheck(b) == false)
+	{
+		Renderer::eraseCurBlock(b);
+		b->setAngle((b->getAngle() + 1) % 4);
+		Renderer::showCurBlock(b);
+		return true;
+	}
+	Renderer::showCurBlock(b);
 	return false;
 }
 
