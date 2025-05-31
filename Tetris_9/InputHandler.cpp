@@ -52,12 +52,7 @@ int InputHandler::input_data(int& level)
 	gotoxy(10, 4);
 	cout << "Select 7 for boss stage, 8 for infinite mode";
 
-	while (i < 1 || i>8)
-	{
-		//gotoxy(10, 3);
-		//cout << "Select Start class[1-6]:       \b\b\b\b\b\b\b";
-		i = get_valid_int(1, 8);
-	}
+	i = get_valid_int(1, 8);
 
 	level = i - 1;
 	system("cls");
