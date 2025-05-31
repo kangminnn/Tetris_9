@@ -80,8 +80,8 @@ void StoryManager::showLV3()
     centerPrint(7, "차가운 기운이 느껴진다.", 80);
     centerPrint(9, "하늘색 블럭은 즉시 사라지지 않는다.", 80);
     centerPrint(11, "시간의 흐름 속에서 천천히 사라질 것이다.", 80);
-    waitForKeyAfterDelay();
     drawWizard(2);
+    waitForKeyAfterDelay();
     system("cls");
 }
 
@@ -94,8 +94,8 @@ void StoryManager::showLV4()
     centerPrint(7, "열정은 폭발한다. 마법의 불꽃이 내려꽂힌다.", 80);
     centerPrint(9, "빨간 블럭은 터지며 주변 블럭까지 함께 제거한다.", 80);
     centerPrint(11, "제어되지 않은 힘은 파멸을 부른다.", 80);
-    waitForKeyAfterDelay();
     drawWizard(3);
+    waitForKeyAfterDelay();
     system("cls");
 }
 
@@ -108,8 +108,8 @@ void StoryManager::showLV5()
     centerPrint(7, "보라색 블럭은 혼돈의 상징.", 80);
     centerPrint(9, "주변의 불과 물 속성을 무력화시킨다.", 80);
     centerPrint(11, "질서의 마법은 어둠 앞에서 무기력하다.", 80);
-    waitForKeyAfterDelay();
     drawWizard(4);
+    waitForKeyAfterDelay();
     system("cls");
 }
 
@@ -122,8 +122,8 @@ void StoryManager::showLV6()
     centerPrint(7, "초록 블럭은 자신을 복제한다.", 80);
     centerPrint(9, "생명의 마법은 하나에서 여럿을 창조한다.", 80);
     centerPrint(11, "단순한 제거는 해결책이 아니다.", 80);
-    waitForKeyAfterDelay();
     drawWizard(5);
+    waitForKeyAfterDelay();
     system("cls");
 }
 
@@ -136,8 +136,8 @@ void StoryManager::showLV7()
     centerPrint(7, "당신 앞에 보스가 나타났다.", 80);
     centerPrint(9, "모든 속성을 능숙하게 활용하지 못하면 상대할 수 없다.", 80);
     centerPrint(11, "이제 진정한 마법사의 시험이 시작된다.", 80);
-    waitForKeyAfterDelay();
     drawWizard(6);
+    waitForKeyAfterDelay();
     system("cls");
 }
 
@@ -150,8 +150,8 @@ void StoryManager::showIFNT()
     centerPrint(7, "이곳은 끝없는 마법의 흐름이 이어지는 공간.", 80);
     centerPrint(9, "시간도, 규칙도 의미가 없다.", 80);
     centerPrint(11, "자신만의 방식으로 마법을 이어가라.", 80);
+    drawWizard(6);
     waitForKeyAfterDelay();
-    drawWizard(7);
     system("cls");
 }
 
@@ -179,19 +179,42 @@ void StoryManager::showEnding()
 
 
 
-void StoryManager::particle(int color)
+void StoryManager::particle(int color, int c)
 {
     SetColor(color);
+    if (c == 0) {
+        gotoxy(46, 14); cout << "*";
+        gotoxy(59, 14); cout << "*";
 
-    gotoxy(46, 14); cout << "*";
-    gotoxy(59, 14); cout << "*";
+        gotoxy(49, 15); cout << "*";
+        gotoxy(55, 15); cout << "*";
+        gotoxy(61, 15); cout << "*";
 
-    gotoxy(49, 15); cout << "*";
-    gotoxy(55, 15); cout << "*";
-    gotoxy(61, 15); cout << "*";
+        gotoxy(52, 16); cout << "*";
+        gotoxy(63, 16); cout << "*";
+    }
+    else if (c == 1) {
+        gotoxy(46, 15); cout << "*";
+        gotoxy(59, 15); cout << "*";
 
-    gotoxy(52, 16); cout << "*";
-    gotoxy(63, 16); cout << "*";
+        gotoxy(49, 16); cout << "*";
+        gotoxy(55, 16); cout << "*";
+        gotoxy(61, 16); cout << "*";
+
+        gotoxy(52, 17); cout << "*";
+        gotoxy(63, 17); cout << "*";
+    }
+    else if (c == 2) {
+        gotoxy(46, 16); cout << "*";
+        gotoxy(59, 16); cout << "*";
+
+        gotoxy(49, 17); cout << "*";
+        gotoxy(55, 17); cout << "*";
+        gotoxy(61, 17); cout << "*";
+
+        gotoxy(52, 18); cout << "*";
+        gotoxy(63, 18); cout << "*";
+    }
 }
 
 void StoryManager::drawWizard(int level)
@@ -202,14 +225,14 @@ void StoryManager::drawWizard(int level)
         centerPrint(15, "   (o_o) /", 80);
         centerPrint(16, "  <|||>/", 80);
         centerPrint(17, " /   \\", 80);
-        particle(BLUE);
+        particle(BLUE, 0);
     }
     else if (level == 1) {
         centerPrint(14, "  /*\\", 80);
         centerPrint(15, "   (o_o) /", 80);
         centerPrint(16, "  <|||>/", 80);
         centerPrint(17, " /   \\", 80);
-        particle(YELLOW);
+        particle(YELLOW, 0);
     }
     else if (level == 2) {
         centerPrint(14, "  /^\\", 80);
@@ -217,7 +240,7 @@ void StoryManager::drawWizard(int level)
         centerPrint(16, "   (o_o) /", 80);
         centerPrint(17, "  <|||>/", 80);
         centerPrint(18, " /   \\", 80);
-        particle(SKY_BLUE);
+        particle(SKY_BLUE, 1);
     }
     else if (level == 3) {
         centerPrint(14, "  /^\\", 80);
@@ -225,7 +248,7 @@ void StoryManager::drawWizard(int level)
         centerPrint(16, "   (o_o) /", 80);
         centerPrint(17, "  <|||>/", 80);
         centerPrint(18, " /   \\", 80);
-        particle(RED);
+        particle(RED, 1);
     }
     else if (level == 4) {
         centerPrint(14, "  /^\\", 80);
@@ -234,7 +257,7 @@ void StoryManager::drawWizard(int level)
         centerPrint(17, "   (o_o) /", 80);
         centerPrint(18, "  <|||>/", 80);
         centerPrint(19, " /   \\", 80);
-        particle(VOILET);
+        particle(VOILET, 2);
     }
     else if (level == 5) {
         centerPrint(14, "  /^\\", 80);
@@ -243,7 +266,7 @@ void StoryManager::drawWizard(int level)
         centerPrint(17, "   (o_o) /", 80);
         centerPrint(18, "  <|||>/", 80);
         centerPrint(19, " /   \\", 80);
-        particle(GREEN);
+        particle(GREEN, 2);
     }
     else if (level == 6) {
         centerPrint(14, "  /^\\", 80);
@@ -252,6 +275,6 @@ void StoryManager::drawWizard(int level)
         centerPrint(17, "   (o_o) /", 80);
         centerPrint(18, "  <|||>/", 80);
         centerPrint(19, " /   \\", 80);
-        particle(GRAY);
+        particle(GRAY, 2);
     }
 }

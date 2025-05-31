@@ -16,6 +16,6 @@ public:
     static void showLV7();
     static void showIFNT();
     static void showEnding();
-    static void particle(int color);
+    static void particle(int color, int c);
     static void drawWizard(int level);
 };
