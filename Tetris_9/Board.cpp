@@ -62,8 +62,33 @@ int Board::check_full_line(int& level, int& score)
 				}
 				else {
 					temp_row[j].occupied = 0;
-					temp_row[j].color = 0;
+					temp_row[j].color = total_block[i][j].color;
 					temp_row[j].count = 0;
+				}
+			}
+
+			// 시각적 효과 표시 (Yellow 블록이 처음 지워지는 경우는 제외)
+			gotoxy(1 * 2 + ab_x, i + ab_y);
+			for (j = 1; j < 13; j++) {
+				if (!(temp_row[j].color == YELLOW && temp_row[j].count == 1)) {  // Yellow 블록이 처음 지워지는 경우 제외
+					SetColor(temp_row[j].color);
+					cout << "□";
+					SetColor(BLACK);
+					cout << "□";
+					Sleep(50);
+				}
+				else {
+					SetColor(YELLOW);
+					cout << "■";  // Yellow 블록 위치는 이펙트 없이 빈칸
+					SetColor(BLACK);
+					cout << "□";
+				}
+			}
+			gotoxy(1 * 2 + ab_x, i + ab_y);
+			for (j = 1; j < 13; j++) {
+				if (!(temp_row[j].color == YELLOW && temp_row[j].count == 1)) {
+					cout << "  ";
+					Sleep(10);
 				}
 			}
 
@@ -104,26 +129,7 @@ int Board::check_full_line(int& level, int& score)
 				}
 			}
 
-			// 시각적 효과 표시 (Yellow 블록이 처음 지워지는 경우는 제외)
 			Renderer::show_total_block(level);
-			SetColor(BLUE);
-			gotoxy(1 * 2 + ab_x, i + ab_y);
-			for (j = 1; j < 13; j++) {
-				if (!(temp_row[j].color == YELLOW && temp_row[j].count == 1)) {  // Yellow 블록이 처음 지워지는 경우 제외
-					cout << "□";
-					Sleep(10);
-				}
-				else {
-					cout << "  ";  // Yellow 블록 위치는 이펙트 없이 빈칸
-				}
-			}
-			gotoxy(1 * 2 + ab_x, i + ab_y);
-			for (j = 1; j < 13; j++) {
-				if (!(temp_row[j].color == YELLOW && temp_row[j].count == 1)) {
-					cout << "  ";
-					Sleep(10);
-				}
-			}
 
 			score += 10;
 
