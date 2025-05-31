@@ -1,5 +1,6 @@
 #include "RedBlock.h"
 #include "PurpleBlock.h"
+#include "Renderer.h"
 #include <queue>
 
 RedBlock::RedBlock(int shape, int angle, int x, int y)
@@ -70,6 +71,12 @@ void RedBlock::active(Board& board)
     //벡터나 셋으로 구현?
     //위치 저장하고 갖고와서 지우게
    //지우고 나서 꼭 벡터 비우기
+    for (pair<int, int> del : delete_red) {
+        total_block[del.first][del.second].color = DARK_RED;
+        //total_block[del.first][del.second].occupied = 0;
+    }
+    Renderer::show_inner_block();
+    Sleep(150);
     for (pair<int, int> del : delete_red) {
         total_block[del.first][del.second].color = 0;
         total_block[del.first][del.second].occupied = 0;

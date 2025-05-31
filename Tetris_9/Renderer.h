@@ -7,6 +7,7 @@
 class Renderer {
 public:
 	static int show_total_block(int& level);
+	static int show_inner_block();
 	static int show_gameover();
 	static void show_pause();
 	static void erase_pause();
