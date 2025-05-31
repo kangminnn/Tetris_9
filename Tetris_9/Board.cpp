@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Block.h"
 #include "StoryManager.h"
+#include"PurpleBlock.h"
 #include <cstdlib>   // std::srand, std::rand
 #include <ctime>     // std::time
 #include <cstring>   // std::memset
@@ -237,6 +238,10 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score)
 		if (b->check(*this, level)) {// check 조건이 맞으면
 			//string test1 = b->getColorName(); //중단점 test용
 			b->active(*this); // active로 능력 발동
+		}
+		// 보라색블록 작동되는지 확인
+		if (stage_data[level].abilities.purpleBlockAbility) {
+			PurpleBlock::update();
 		}
 		check_full_line(level, score);
 		Renderer::show_total_block(level);

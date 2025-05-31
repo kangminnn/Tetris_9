@@ -11,7 +11,7 @@ bool RedBlock::check(const Board& board, int& level) const
 {
 
     // 보라색블록 작동되는지 확인
-    if (!stage_data[level].abilities.purpleBlockAbility) {
+    if (stage_data[level].abilities.purpleBlockAbility) {
         PurpleBlock::update();
     }
 
