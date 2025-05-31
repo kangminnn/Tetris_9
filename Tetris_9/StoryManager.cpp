@@ -215,6 +215,36 @@ void StoryManager::particle(int color, int c)
         gotoxy(52, 18); cout << "*";
         gotoxy(63, 18); cout << "*";
     }
+    else if (c == 3) {
+            
+        int cx=55, cy=17;
+            SetColor(RED);
+
+            gotoxy(46, 17);
+            cout << "* *  *";
+
+            // 중심
+            gotoxy(cx, cy);         cout << "*";
+
+            // 상하
+            gotoxy(cx, cy - 1);     cout << "|";
+            gotoxy(cx, cy - 2);     cout << "|";
+            gotoxy(cx, cy + 1);     cout << "|";
+            gotoxy(cx, cy + 2);     cout << "|";
+
+            // 좌우
+            gotoxy(cx - 1, cy);     cout << "-";
+            gotoxy(cx - 2, cy);     cout << "-";
+            gotoxy(cx + 1, cy);     cout << "-";
+            gotoxy(cx + 2, cy);     cout << "-";
+
+            // 대각선
+            gotoxy(cx - 2, cy - 2); cout << "\\";
+            gotoxy(cx + 2, cy - 2); cout << "/";
+            gotoxy(cx - 2, cy + 2); cout << "/";
+            gotoxy(cx + 2, cy + 2); cout << "\\";
+
+    }
 }
 
 void StoryManager::drawWizard(int level)
@@ -275,6 +305,6 @@ void StoryManager::drawWizard(int level)
         centerPrint(17, "   (o_o) /", 80);
         centerPrint(18, "  <|||>/", 80);
         centerPrint(19, " /   \\", 80);
-        particle(GRAY, 2);
+        particle(GRAY, 3);
     }
 }
