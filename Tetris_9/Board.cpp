@@ -125,6 +125,7 @@ int Board::check_full_line(int& level, int& score)
 				}
 			}
 
+			Renderer::particle(level);
 			score += 10;
 
 			if (stage_data[level].score <= score)	//클리어 조건달성
