@@ -90,7 +90,7 @@ void initStageData()
 
 	// Stage 6 //boss stage
 	stage_data[6].speed = 15;
-	stage_data[6].score = SCORE;
+	stage_data[6].score = HP;
 	stage_data[6].abilities = { true, true, true, true, true, true };
 
 	// Stage 7 //infinite mode

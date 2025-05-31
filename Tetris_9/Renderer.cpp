@@ -166,11 +166,13 @@ int Renderer::show_gamestat(int level, int score)
 		gotoxy(30 + ab_x, 19 + ab_y);
 		cout << "曲收收收收收收收收收收收收收收收收收收收收收收收收收收收收旭";
 		gotoxy(45 + ab_x, 9 + ab_y);
-		cout << "SCORE";
+		if (level == 6) cout << "HP";
+		else cout << "SCORE";
 	}
 
 	gotoxy(51 + ab_x, 9 + ab_y);
-	cout << score;
+	if (level == 6) cout << HP - score;
+	else cout << score;
 	return 0;
 }
 

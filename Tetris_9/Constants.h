@@ -15,6 +15,7 @@ using namespace std;
 #define KEY_DOWN 0x50
 
 #define SCORE 30 //디버그용 실제론 100으로할거
+#define HP 200 //보스 체력
 
 enum {
 	BLACK,      /*  0 : 까망 */
