@@ -243,8 +243,8 @@ void StoryManager::particle(int color, int c)
             gotoxy(cx + 2, cy - 2); cout << "/";
             gotoxy(cx - 2, cy + 2); cout << "/";
             gotoxy(cx + 2, cy + 2); cout << "\\";
-
     }
+    SetColor(WHITE);
 }
 
 void StoryManager::drawWizard(int level)

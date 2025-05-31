@@ -75,7 +75,7 @@ int Board::check_full_line(int& level, int& score)
 					cout << "бр";
 					SetColor(BLACK);
 					cout << "бр";
-					Sleep(50);
+					Sleep(40);
 				}
 				else {
 					SetColor(YELLOW);
@@ -142,6 +142,7 @@ int Board::check_full_line(int& level, int& score)
 				else {
 					level++;
 					StoryManager::showLevelUp(level);
+					Renderer::showWizard(level);
 					score = 0;
 				}
 			}
@@ -305,7 +306,7 @@ void Board::checkAndRemoveCyanBlocks(int& level) {
 		SetColor(BLUE);
 		gotoxy(x * 2 + ab_x, y + ab_y);
 		cout << "бр";
-		Sleep(10);
+		Sleep(40);
 
 		gotoxy(x * 2 + ab_x, y + ab_y);
 		cout << "  ";

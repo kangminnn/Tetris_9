@@ -142,6 +142,7 @@ void Game::run()
 				else {
 					level++;
 					StoryManager::showLevelUp(level);
+					Renderer::showWizard(level);
 					score = 0;
 				}
 			}

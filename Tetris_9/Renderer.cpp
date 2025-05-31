@@ -371,9 +371,6 @@ void Renderer::eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 
 void Renderer::showWizard(int level)
 {
-	
-
-
 		if (level == 0) {
 			gotoxy(ab_x + 65, ab_y + 10); cout << "    /^\\";
 			gotoxy(ab_x + 65, ab_y + 11); cout << "   (o_o) /";
@@ -437,59 +434,59 @@ void Renderer::particle(int color)
 
 	gotoxy(base_x, base_y);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x, base_y);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 	
 	gotoxy(base_x+2, base_y+1);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+2, base_y+1);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x+4, base_y+2);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+4, base_y+2);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x+6, base_y+1);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+6, base_y+1);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x+8, base_y);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+8, base_y);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x+10, base_y+1);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+10, base_y+1);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x+12, base_y+2);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+12, base_y+2);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x+14, base_y+1);
 	cout << "*";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x+14, base_y+1);
 	cout << " ";
-	Sleep(100);
+	Sleep(20);
 
 	gotoxy(base_x + 16, base_y + 0);
 	cout << " *";
@@ -497,14 +494,14 @@ void Renderer::particle(int color)
 	cout << "* * *";
 	gotoxy(base_x + 16, base_y + 2);
 	cout << " *";
-	Sleep(150);
+	Sleep(70);
 	gotoxy(base_x + 16, base_y + 0);
 	cout << "  ";
 	gotoxy(base_x + 15, base_y + 1);
 	cout << "     ";
 	gotoxy(base_x + 16, base_y + 2);
 	cout << "  ";
-	Sleep(100);
+	Sleep(30);
 }
 
 
