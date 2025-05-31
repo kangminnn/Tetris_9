@@ -108,15 +108,15 @@ int Renderer::show_gamestat(int level, int score)
 	SetColor(GRAY);
 	if (printed_text == 0)
 	{
-		gotoxy(30, 10);
+		gotoxy(30 + ab_x, 10 + ab_y);
 		cout << "STAGE";
 
-		gotoxy(30, 13);
+		gotoxy(30 + ab_x, 13 + ab_y);
 		cout << "SCORE";
 	}
-	gotoxy(36, 10);
+	gotoxy(36 + ab_x, 10 + ab_y);
 	cout << level + 1;
-	gotoxy(36, 13);
+	gotoxy(36 + ab_x, 13 + ab_y);
 	cout << score;
 	return 0;
 }
@@ -158,10 +158,10 @@ int Renderer::show_logo()
 
 	for (i = 0;; i++) {
 		if (i % 40 == 0) {
-			clear_block(6, 14);
-			clear_block(12, 14);
-			clear_block(19, 14);
-			clear_block(26, 14);
+			clear_block(6 - ab_x / 2, 14 - ab_y);
+			clear_block(12 - ab_x / 2, 14 - ab_y);
+			clear_block(19 - ab_x / 2, 14 - ab_y);
+			clear_block(26 - ab_x / 2, 14 - ab_y);
 
 			int color[7] = { 0,1,2,3,4,5,6 };
 			int shape[7] = { 0,1,2,3,4,5,6 };
@@ -179,16 +179,16 @@ int Renderer::show_logo()
 
 			unique_ptr<Block> bl;
 			bl = BlockFactory::makeLogoBlock(color[0], shape[0]);
-			bl->setX(6); bl->setY(14);
+			bl->setX(6 - ab_x / 2); bl->setY(14 - ab_y);
 			showCurBlock(bl);
 			bl = BlockFactory::makeLogoBlock(color[1], shape[1]);
-			bl->setX(12); bl->setY(14);
+			bl->setX(12 - ab_x / 2); bl->setY(14 - ab_y);
 			showCurBlock(bl);
 			bl = BlockFactory::makeLogoBlock(color[2], shape[2]);
-			bl->setX(19); bl->setY(14);
+			bl->setX(19 - ab_x / 2); bl->setY(14 - ab_y);
 			showCurBlock(bl);
 			bl = BlockFactory::makeLogoBlock(color[3], shape[3]);
-			bl->setX(26); bl->setY(14);
+			bl->setX(26 - ab_x / 2); bl->setY(14 - ab_y);
 			showCurBlock(bl);
 		}
 
@@ -207,7 +207,7 @@ void Renderer::showNextBlock(unique_ptr<Block>& b)
 	SetColor(GRAY);
 	for (i = 1; i < 7; i++)
 	{
-		gotoxy(30, i);
+		gotoxy(30 + ab_x, i + ab_y);
 		for (j = 0; j < 6; j++)
 		{
 			if (i == 1 || i == 6 || j == 0 || j == 5)
@@ -237,7 +237,7 @@ void Renderer::showCurBlock(unique_ptr<Block>& b)
 	{
 		for (j = 0; j < 4; j++)
 		{
-			if ((j + b->getY()) < 0)
+			if ((j + b->getY() + ab_y) < 0)
 				continue;
 
 			if (block[b->getShape()][b->getAngle()][j][i] == 1)
