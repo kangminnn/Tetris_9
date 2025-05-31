@@ -50,6 +50,31 @@ int Renderer::show_total_block(int& level)
 	return 0;
 }
 
+int Renderer::show_inner_block()
+{
+	int i, j;
+	for (i = 0; i < 21; i++)
+	{
+		for (j = 0; j < 14; j++)
+		{
+			
+			SetColor(total_block[i][j].color);
+			gotoxy((j * 2) + ab_x, i + ab_y);
+			if (total_block[i][j].occupied == 1)
+			{
+				cout << "бс";
+			}
+			else {
+				cout << "  ";
+			}
+			
+		}
+	}
+	SetColor(BLACK);
+	gotoxy(77, 23);
+	return 0;
+}
+
 int Renderer::show_gameover()
 {
 	SetColor(RED);
