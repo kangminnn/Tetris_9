@@ -25,8 +25,8 @@ void Game::run()
 	{
 		showCursor();
 		InputHandler::input_data(level);
-		StoryManager::showLevelUp(level);
 		hideCursor();
+		StoryManager::showLevelUp(level);
 		initStageData();
 		Renderer::show_total_block(level);
 		curBlock = BlockFactory::makeBlock(level);
