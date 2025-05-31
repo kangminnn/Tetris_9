@@ -2,6 +2,7 @@
 #pragma once
 #include <iostream>
 #include <Windows.h>
+#include <conio.h>
 #include <memory>
 using namespace std;
 
@@ -70,6 +71,8 @@ void clear_block(int x, int y);
 void initStageData();
 void hideCursor();
 void showCursor();
+void centerPrint(int y, const string& text, int width);
+void waitForKeyAfterDelay();
 
 class Constants
 {	

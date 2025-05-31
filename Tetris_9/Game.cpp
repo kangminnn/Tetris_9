@@ -25,6 +25,7 @@ void Game::run()
 	{
 		showCursor();
 		InputHandler::input_data(level);
+		StoryManager::showLevelUp(level);
 		hideCursor();
 		initStageData();
 		Renderer::show_total_block(level);
@@ -107,11 +108,9 @@ void Game::run()
 					Renderer::showCurBlock(curBlock);
 				}
 				if (keytemp == 27) {//esc눌럿을때
-					while (!_kbhit()) {
-						// 대기 루프 (아무 키 입력될 때까지)
-						Renderer::show_pause();
-						Sleep(100);
-					}
+					// 대기 루프 (아무 키 입력될 때까지)
+					Renderer::show_pause();
+					_getch();
 					Renderer::erase_pause();
 				}
 			}

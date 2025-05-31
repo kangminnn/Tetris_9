@@ -13,7 +13,16 @@ int Renderer::show_total_block(int& level)
 		{
 			if (j == 0 || j == 13 || i == 20)		//레벨에 따라 외벽 색이 변함
 			{
-				SetColor((level % 6) + 1);
+				switch (level) {
+				case 0: SetColor(BLUE); break;
+				case 1: SetColor(YELLOW); break;
+				case 2: SetColor(SKY_BLUE); break;
+				case 3: SetColor(RED); break;
+				case 4: SetColor(VOILET); break;
+				case 5: SetColor(GREEN); break;
+				case 6: SetColor(GRAY); break;
+				default: SetColor(WHITE); break;
+				}
 				gotoxy((j * 2) + ab_x, i + ab_y);
 				if (total_block[i][j].occupied == 1)
 				{

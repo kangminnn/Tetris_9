@@ -112,3 +112,16 @@ void showCursor() {
 	cursorInfo.bVisible = TRUE; // 커서 표시
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
+
+void centerPrint(int y, const string& text, int width) {
+	int x = (width - text.length()) / 2;
+	gotoxy(x, y);
+	cout << text;
+}
+
+// 엔딩이나 스테이지 출력 후 대기
+void waitForKeyAfterDelay() {
+	Sleep(2000);       // 1. 대기
+	while (_kbhit()) _getch();    // 2. 버퍼 비우기 (연타 방지)
+	_getch();              // 3. 키 입력 대기
+}
