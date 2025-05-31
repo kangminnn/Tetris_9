@@ -424,10 +424,19 @@ void Renderer::showWizard(int level)
 
 }
 
-void Renderer::particle(int color)
+void Renderer::particle(int level)
 {
+	
+
 	int colors[] = { RED, YELLOW, SKY_BLUE, RED, VOILET, GREEN };
-	SetColor(colors[color]);
+	if (level >= 6) {
+		SetColor(rand()%6);
+	}
+	else {
+		SetColor(colors[level]);
+	}
+
+	
 
 	int base_x = ab_x + 75;
 	int base_y = ab_y + 10;

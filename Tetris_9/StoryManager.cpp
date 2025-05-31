@@ -296,7 +296,7 @@ void StoryManager::drawWizard(int level)
         centerPrint(17, "   (o_o) /", 80);
         centerPrint(18, "  <|||>/", 80);
         centerPrint(19, " /   \\", 80);
-        particle(GREEN, 3);
+        particle(GREEN, 2);
     }
     else if (level == 6) {
         centerPrint(14, "  /^\\", 80);
