@@ -81,6 +81,7 @@ int Board::check_full_line(int& level, int& score, bool& bomb)
 					cout << "■";  // Yellow 블록 위치는 이펙트 없이 빈칸
 					SetColor(BLACK);
 					cout << "□";
+					Sleep(10);
 				}
 			}
 			gotoxy(1 * 2 + ab_x, i + ab_y);
@@ -112,6 +113,7 @@ int Board::check_full_line(int& level, int& score, bool& bomb)
 						total_block[i][j] = temp_row[j];
 					}
 				}
+				check_full_line(level, score, bomb);
 			}
 			else {
 				// 일반적인 줄 제거 처리
