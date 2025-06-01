@@ -134,7 +134,8 @@ int Board::check_full_line(int& level, int& score, bool& bomb)
 
 			Renderer::particle(level);
 			score += 10;
-
+			Renderer::show_gamestat(level, score, bomb);
+			Sleep(20);
 			if (stage_data[level].score <= score)	//클리어 조건달성
 			{
 				if(level != 6) {
@@ -260,6 +261,18 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, bool& bomb)
 			b->active(*this); // active로 능력 발동
 			if (b->getColor() == RED) {
 				score += 20;
+				Renderer::show_gamestat(level, score, bomb);
+				Sleep(20);
+				if (stage_data[level].score <= score)	//클리어 조건달성
+				{
+					if (level != 6) {
+						level++;
+						bomb = true;
+						StoryManager::showLevelUp(level);
+						Renderer::showWizard(level);
+						score = 0;
+					}
+				}
 				Renderer::show_gamestat(level, score, bomb);
 			}
 		}
