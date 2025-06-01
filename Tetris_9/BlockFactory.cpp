@@ -26,7 +26,7 @@ unique_ptr<Block> BlockFactory::makeBlock(int& level)
 {
 	int shape = rand() % 7;		//shape에는 0~6의 값이 들어감
     int r = rand() % 100 + 1; // 1 ~ 100 (확률 나누기 위함)
-    if (r>0 && r <= blockRate[level][0]) return make_unique<BlueBlock>(shape, 0, 5, -4);
+    if (r > 0 && r <= blockRate[level][0]) return make_unique<BlueBlock>(shape, 0, 5, -4);
     if (r> blockRate[level][0] && r<= blockRate[level][1]) return make_unique<YellowBlock>(shape, 0, 5, -4);
     if (r > blockRate[level][1] && r <= blockRate[level][2]) return make_unique<CyanBlock>(shape, 0, 5, -4);
     if (r > blockRate[level][2] && r <= blockRate[level][3]) return make_unique<RedBlock>(shape, 0, 5, -4);

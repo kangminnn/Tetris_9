@@ -258,6 +258,10 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, bool& bomb)
 		// 착지한 블록의 능력 조건 체크 및 능력 발동
 		if (b->check(*this, level)) {// check 조건이 맞으면
 			b->active(*this); // active로 능력 발동
+			if (b->getColor() == RED) {
+				score += 20;
+				Renderer::show_gamestat(level, score, bomb);
+			}
 		}
 		// 보라색블록 작동되는지 확인
 		if (stage_data[level].abilities.purpleBlockAbility) {
