@@ -552,13 +552,6 @@ void Renderer::showEnemy(int level)
 		gotoxy(base_x, base_y + 6); cout << "      |";
 	}
 
-
-	gotoxy(ab_x + 65, ab_y + 8); cout << "   /^\\";
-	gotoxy(ab_x + 65, ab_y + 9); cout << "  /^*^\\";
-	gotoxy(ab_x + 65, ab_y + 10); cout << " /^***^\\";
-	gotoxy(ab_x + 65, ab_y + 11); cout << "  (o_o) /";
-	gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
-	gotoxy(ab_x + 65, ab_y + 13); cout << "  /   \\";
 }
 
 
