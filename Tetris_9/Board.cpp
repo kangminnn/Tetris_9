@@ -222,10 +222,10 @@ bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
 	return false;
 }
 
-bool Board::tryRotate(unique_ptr<Block>& b)
+bool Board::tryRotate(unique_ptr<Block>& b, int i)
 {
 	Renderer::eraseCurBlock(b);
-	b->setX(b->getX() - 1);
+	b->setX(b->getX() - i);
 	if (rotateStrikeCheck(b) == false)
 	{
 		Renderer::eraseCurBlock(b);
@@ -233,6 +233,7 @@ bool Board::tryRotate(unique_ptr<Block>& b)
 		Renderer::showCurBlock(b);
 		return true;
 	}
+	b->setX(b->getX() + i);
 	Renderer::showCurBlock(b);
 	return false;
 }

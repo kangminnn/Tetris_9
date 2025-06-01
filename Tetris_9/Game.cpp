@@ -54,7 +54,8 @@ void Game::run()
 							Renderer::showCurBlock(curBlock);
 						}
 						else {
-							while(!board.tryRotate(curBlock));
+							int count = 1;
+							while (!board.tryRotate(curBlock, count) && count <= 3) count++;
 						}
 						break;
 					case KEY_LEFT:		//왼쪽으로 이동
