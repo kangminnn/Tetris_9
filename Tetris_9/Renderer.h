@@ -22,4 +22,5 @@ public:
 	static void eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2);
 	static void showWizard(int level);
 	static void particle(int level);
+	static void showEnemy(int level);
 };
