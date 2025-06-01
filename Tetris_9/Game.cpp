@@ -8,7 +8,7 @@
 
 
 Game::Game()
-	:level(0), score(0), isGameOver(0), board(), curBlock(), nextBlock()
+	:level(0), score(0), isGameOver(0), board(), curBlock(), nextBlock(), bomb(false)
 {
 }
 
@@ -33,7 +33,7 @@ void Game::run()
 		nextBlock = BlockFactory::makeBlock(level);
 		unique_ptr<Block> silhouetteBlock = make_unique<Block>(*curBlock);
 		Renderer::showNextBlock(nextBlock);
-		Renderer::show_gamestat(level, score);
+		Renderer::show_gamestat(level, score, bomb);
 		Renderer::showWizard(level);
 		for (i = 1; 1; i++)
 		{
@@ -81,7 +81,7 @@ void Game::run()
 						}
 						break;
 					case KEY_DOWN:		//아래로 이동
-						isGameOver = board.moveBlock(curBlock, level, score);
+						isGameOver = board.moveBlock(curBlock, level, score, bomb);
 						if (isGameOver == 2) {
 							curBlock = move(nextBlock);
 							curBlock->setX(5);
@@ -98,7 +98,7 @@ void Game::run()
 				{
 					while (isGameOver == 0)
 					{
-						isGameOver = board.moveBlock(curBlock, level, score);
+						isGameOver = board.moveBlock(curBlock, level, score, bomb);
 						if (isGameOver == 2) {
 							curBlock = move(nextBlock);
 							curBlock->setX(5);
@@ -118,10 +118,20 @@ void Game::run()
 					Renderer::erase_pause();
 				}
 			}
+			if (bomb && ((GetAsyncKeyState(VK_LSHIFT) & 0x8000) || (GetAsyncKeyState(VK_RSHIFT) & 0x8000))) {
+				board.clearBottomLines(level, 4);
+				bomb = false;
+				Renderer::show_gamestat(level, score, bomb);
+			}
+			
+			if (stage_data[level].score <= score && level == 6) {
+				StoryManager::showEnding();
+				break;
+			}
 
 			if (i % stage_data[level].speed == 0)
 			{
-				isGameOver = board.moveBlock(curBlock, level, score);
+				isGameOver = board.moveBlock(curBlock, level, score, bomb);
 				if (isGameOver == 2) {
 					curBlock = move(nextBlock);
 					curBlock->setX(5);
@@ -134,19 +144,6 @@ void Game::run()
 
 			}
 
-			if (stage_data[level].score <= score)	//클리어 스테이지
-			{
-				if (level == 6) {
-					StoryManager::showEnding();
-					break;
-				}
-				else {
-					level++;
-					StoryManager::showLevelUp(level);
-					Renderer::showWizard(level);
-					score = 0;
-				}
-			}
 			if (isGameOver == 1)
 			{
 				Renderer::show_gameover();

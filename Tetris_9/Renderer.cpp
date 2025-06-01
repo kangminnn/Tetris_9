@@ -118,7 +118,7 @@ void Renderer::erase_pause()
 }
 
 
-int Renderer::show_gamestat(int level, int score)
+void Renderer::show_gamestat(int level, int score, bool bomb)
 {
 	static int printed_text = 0;
 	SetColor(GRAY);
@@ -137,43 +137,48 @@ int Renderer::show_gamestat(int level, int score)
 		case 6: cout << "보스 스테이지"; break;
 		case 7: cout << "무한 모드"; break;
 		}
-
-		SetColor(GRAY);
-		gotoxy(30 + ab_x, 11 + ab_y);
-		cout << "┏━━━━━━━━━━<GAME KEY>━━━━━━━━┓";
-		Sleep(10);
-		gotoxy(30 + ab_x, 12 + ab_y);
-		cout << "┃ UP   : Rotate Block        ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 13 + ab_y);
-		cout << "┃ DOWN : Move One-Step Down  ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 14 + ab_y);
-		cout << "┃ SPACE: Move Bottom Down    ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 15 + ab_y);
-		cout << "┃ LEFT : Move Left           ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 16 + ab_y);
-		cout << "┃ RIGHT: Move Right          ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 17 + ab_y);
-		cout << "┃ ESC  : pause               ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 18 + ab_y);
-		cout << "┃ SHIFT: block hold          ┃";
-		Sleep(10);
-		gotoxy(30 + ab_x, 19 + ab_y);
-		cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
 		gotoxy(45 + ab_x, 9 + ab_y);
 		if (level == 6) cout << "HP";
 		else cout << "SCORE";
 	}
-
+	show_gamekey(bomb);
 	gotoxy(51 + ab_x, 9 + ab_y);
-	if (level == 6) cout << HP - score;
+	if (level == 6) cout << HP - score << " ";
 	else cout << score;
-	return 0;
+}
+
+void Renderer::show_gamekey(bool bomb) {
+	SetColor(GRAY);
+	gotoxy(30 + ab_x, 11 + ab_y);
+	cout << "┏━━━━━━━━━━<GAME KEY>━━━━━━━━┓";
+	Sleep(10);
+	gotoxy(30 + ab_x, 12 + ab_y);
+	cout << "┃ UP   : Rotate Block        ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 13 + ab_y);
+	cout << "┃ DOWN : Move One-Step Down  ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 14 + ab_y);
+	cout << "┃ SPACE: Move Bottom Down    ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 15 + ab_y);
+	cout << "┃ LEFT : Move Left           ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 16 + ab_y);
+	cout << "┃ RIGHT: Move Right          ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 17 + ab_y);
+	cout << "┃ ESC  : pause               ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 18 + ab_y);
+	cout << "┃ SHIFT: ";
+	if (bomb) SetColor(RED);
+	cout << "BOMB";
+	SetColor(GRAY);
+	cout << "                ┃";
+	Sleep(10);
+	gotoxy(30 + ab_x, 19 + ab_y);
+	cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛";
 }
 
 int Renderer::show_logo()

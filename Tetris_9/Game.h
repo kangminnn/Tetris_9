@@ -13,6 +13,7 @@ private:
     int level;
     int score;
     int isGameOver;
+    bool bomb;
 public:
     Game();
     void run();

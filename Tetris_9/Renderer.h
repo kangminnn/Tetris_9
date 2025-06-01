@@ -11,7 +11,8 @@ public:
 	static int show_gameover();
 	static void show_pause();
 	static void erase_pause();
-	static int show_gamestat(int level, int score);
+	static void show_gamestat(int level, int score, bool bomb);
+	static void show_gamekey(bool bomb);
 	static int show_logo();
 
 	static void showNextBlock(unique_ptr<Block>& b);

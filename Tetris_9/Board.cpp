@@ -32,7 +32,7 @@ void Board::init() {
 
 
 
-int Board::check_full_line(int& level, int& score)
+int Board::check_full_line(int& level, int& score, bool& bomb)
 {
 	int i, j, k;
 	for (i = 0; i < 20; i++)
@@ -74,7 +74,7 @@ int Board::check_full_line(int& level, int& score)
 					cout << "□";
 					SetColor(BLACK);
 					cout << "□";
-					Sleep(40);
+					Sleep(10);
 				}
 				else {
 					SetColor(YELLOW);
@@ -135,17 +135,15 @@ int Board::check_full_line(int& level, int& score)
 
 			if (stage_data[level].score <= score)	//클리어 조건달성
 			{
-				if (level == 6) {
-					//StoryManager::showEnding();
-				}
-				else {
+				if(level != 6) {
 					level++;
+					bomb = true;
 					StoryManager::showLevelUp(level);
 					Renderer::showWizard(level);
 					score = 0;
 				}
 			}
-			Renderer::show_gamestat(level, score);
+			Renderer::show_gamestat(level, score, bomb);
 		}
 	}
 	return 0;
@@ -235,7 +233,7 @@ bool Board::tryRotate(unique_ptr<Block>& b, int i)
 	return false;
 }
 
-int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score)
+int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, bool& bomb)
 {
 	Renderer::eraseCurBlock(b);
 
@@ -263,7 +261,7 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score)
 		if (stage_data[level].abilities.purpleBlockAbility) {
 			PurpleBlock::update();
 		}
-		check_full_line(level, score);
+		check_full_line(level, score, bomb);
 		Renderer::show_total_block(level);
 
 		
@@ -277,6 +275,7 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score)
 	}
 	return 0;
 }
+
 
 void Board::checkAndRemoveCyanBlocks(int& level) {
 	// 현재 스테이지에서 하늘색 블록의 능력이 비활성화되어 있다면 false 반환
@@ -321,3 +320,35 @@ void Board::checkAndRemoveCyanBlocks(int& level) {
 	//}
 }
 
+void Board::clearBottomLines(int& level, int lines) {
+	int i, j;
+	for (int phase = 0; phase < 3; phase++) {
+		for (i = 20 - lines; i < 20; i++) {
+			for (j = 1; j < 13; j++) {
+				gotoxy(j * 2 + ab_x, i + ab_y);
+				switch (phase) {
+				case 0: SetColor(YELLOW); cout << "●"; break;
+				case 1: SetColor(RED); cout << "◈"; break;
+				case 2: SetColor(DARK_RED); cout << "■"; break;
+				}
+			}
+		}
+		Sleep(100); // 깜빡임 간격
+	}
+	// 데이터 이동 처리 (아래쪽부터 위로 올려붙이기)
+	for (i = 19; i >= lines; i--) {
+		for (j = 1; j < 13; j++) {
+			total_block[i][j] = total_block[i - lines][j];
+		}
+	}
+
+	// 최상단 lines줄 초기화
+	for (i = 0; i < lines; i++) {
+		for (j = 1; j < 13; j++) {
+			total_block[i][j].occupied = 0;
+			total_block[i][j].color = 0;
+			total_block[i][j].count = 0;
+		}
+	}
+	Renderer::show_total_block(level);
+}
