@@ -16,7 +16,6 @@ public:
 
     // 블록 색상 및 이름(필요시 오버라이딩)
     virtual int getColor() const { return DARK_GRAY; }  // 기본값
-    virtual std::string getColorName() const { return "Dark_Gray"; }
 
     // --- 능력 시스템: 가상함수 추가 ---
     // 조건이 맞는지 체크 (Board 정보 필요시 const Board& 사용)
@@ -24,7 +23,6 @@ public:
     // 능력 실행
     virtual void active(Board& board) { /* do nothing by default */ }
 
-    //void rotate_block();
     int getShape() const;
     int getAngle() const;
     int getX() const;

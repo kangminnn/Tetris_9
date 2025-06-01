@@ -4,9 +4,9 @@
 #include "Block.h"
 #include "StoryManager.h"
 #include"PurpleBlock.h"
-#include <cstdlib>   // std::srand, std::rand
-#include <ctime>     // std::time
-#include <cstring>   // std::memset
+#include <cstdlib>   
+#include <ctime>    
+#include <cstring>   
 #include <vector>
 
 
@@ -14,7 +14,6 @@ void Board::init() {
     // 전체 블록 배열을 0으로 초기화
     std::memset(total_block, 0, sizeof(total_block));
 
-    // 시드 설정 (중복 호출 방지하고 싶다면 클래스 외부에서 한 번만 설정 추천)
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 
     // 벽 생성
@@ -179,8 +178,6 @@ bool Board::strikeCheck(unique_ptr<Block>& b)
 
 void Board::mergeBlock(unique_ptr<Block>& b)
 {
-	string test1 = b->getColorName(); //중단점 test용
-
 	int i, j;
 	for (i = 0; i < 4; i++)
 	{
@@ -260,7 +257,6 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score)
 		// --- 능력 발동 구간 ---
 		// 착지한 블록의 능력 조건 체크 및 능력 발동
 		if (b->check(*this, level)) {// check 조건이 맞으면
-			//string test1 = b->getColorName(); //중단점 test용
 			b->active(*this); // active로 능력 발동
 		}
 		// 보라색블록 작동되는지 확인

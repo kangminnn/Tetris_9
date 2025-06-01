@@ -1,10 +1,7 @@
 #include "Constants.h"
 #include <string>
 
-//int level;
 int ab_x = 4, ab_y = 4;	//화면중 블럭이 나타나는 좌표의 절대위치
-//int score;
-//int lines;
 Cell total_block[21][14];		//화면에 표시되는 블럭들
 struct STAGE stage_data[8];
 
@@ -58,42 +55,42 @@ void SetStageColor(int level) {
 //abilities {blue, green, cyan, yellow, red, purple}
 void initStageData()
 {
-	// Stage 0 (Tutorial stage)
+	// Stage 1 
 	stage_data[0].speed = 40;
 	stage_data[0].score = SCORE;
 	stage_data[0].abilities = { true, false, false, false, false, false };  // Only blue block ability enabled
 
-	// Stage 1
+	// Stage 2
 	stage_data[1].speed = 38;
 	stage_data[1].score = SCORE;
 	stage_data[1].abilities = { true, true, false, false, false, false };  // Blue and yellow abilities
 
-	// Stage 2
+	// Stage 3
 	stage_data[2].speed = 35;
 	stage_data[2].score = SCORE;
 	stage_data[2].abilities = { true, true, true, false, false, false };  // Blue, yellow, and sky blue abilities
 
-	// Stage 3
+	// Stage 4
 	stage_data[3].speed = 30;
 	stage_data[3].score = SCORE;
 	stage_data[3].abilities = { true, true, true, true, false, false };  // Blue, yellow, sky blue, red
 
-	// Stage 4 (Mix it up - disable some abilities)
+	// Stage 5
 	stage_data[4].speed = 25;
 	stage_data[4].score = SCORE;
 	stage_data[4].abilities = { true, true, true, true, true, false }; // Blue, yellow, sky blue, red, purple
 
-	// Stage 5
+	// Stage 6
 	stage_data[5].speed = 20;
 	stage_data[5].score = SCORE;
 	stage_data[5].abilities = { true, true, true, true, true, true }; // Blue, yellow, sky blue, red, purple, green
 
-	// Stage 6 //boss stage
+	// Stage 7 //boss stage
 	stage_data[6].speed = 15;
 	stage_data[6].score = HP;
 	stage_data[6].abilities = { true, true, true, true, true, true };
 
-	// Stage 7 //infinite mode
+	// Stage 8 //infinite mode
 	stage_data[7].speed = 10;
 	stage_data[7].score = 10000000;
 	stage_data[7].abilities = { true, true, true, true, true, true };
