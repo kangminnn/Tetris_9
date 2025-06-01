@@ -28,7 +28,8 @@ int Renderer::show_total_block(int& level)
 				gotoxy((j * 2) + ab_x, i + ab_y);
 				if (total_block[i][j].occupied == 1)
 				{
-					cout << "бс";
+					if (total_block[i][j].color == YELLOW && total_block[i][j].count == 1) cout << "в├";
+					else cout << "бс";
 				}
 				else {
 					cout << "  ";
