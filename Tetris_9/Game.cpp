@@ -9,7 +9,7 @@
 
 
 Game::Game()
-	:level(0), score(0), isGameOver(0), board(), curBlock(), nextBlock(), bomb(false)
+	:level(0), score(0), total_score(0), isGameOver(0), board(), curBlock(), nextBlock(), bomb(false)
 {
 }
 
@@ -83,7 +83,7 @@ void Game::run()
 						}
 						break;
 					case KEY_DOWN:		//아래로 이동
-						isGameOver = board.moveBlock(curBlock, level, score, bomb);
+						isGameOver = board.moveBlock(curBlock, level, score, total_score, bomb);
 						if (isGameOver == 2) {
 							curBlock = move(nextBlock);
 							curBlock->setX(5);
@@ -100,7 +100,7 @@ void Game::run()
 				{
 					while (isGameOver == 0)
 					{
-						isGameOver = board.moveBlock(curBlock, level, score, bomb);
+						isGameOver = board.moveBlock(curBlock, level, score, total_score, bomb);
 						if (isGameOver == 2) {
 							curBlock = move(nextBlock);
 							curBlock->setX(5);
@@ -133,7 +133,7 @@ void Game::run()
 
 			if (i % stage_data[level].speed == 0)
 			{
-				isGameOver = board.moveBlock(curBlock, level, score, bomb);
+				isGameOver = board.moveBlock(curBlock, level, score, total_score, bomb);
 				if (isGameOver == 2) {
 					curBlock = move(nextBlock);
 					curBlock->setX(5);
@@ -149,7 +149,8 @@ void Game::run()
 			if (isGameOver == 1)
 			{
 				//for save
-				ScoreHandler::save_score(score, saved_score);
+				total_score += score;
+				ScoreHandler::save_score(total_score, saved_score);
 				ScoreHandler::load_score(saved_score);
 				Renderer::show_score(saved_score);
 				Renderer::show_gameover();
@@ -189,4 +190,5 @@ void Game::gameInit()
 	level = 0;
 	score = 0;
 	isGameOver = 0;
+	total_score = 0;
 }

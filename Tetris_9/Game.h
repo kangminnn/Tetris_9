@@ -16,6 +16,7 @@ private:
     int isGameOver;
     bool bomb;
     //data ÀúÀå¿ë
+    int total_score;
     list<int> saved_score;
 public:
     Game();

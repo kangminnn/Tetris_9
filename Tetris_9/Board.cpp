@@ -32,7 +32,7 @@ void Board::init() {
 
 
 
-int Board::check_full_line(int& level, int& score, bool& bomb)
+int Board::check_full_line(int& level, int& score, int& total_score, bool& bomb)
 {
 	int i, j, k;
 	for (i = 0; i < 20; i++)
@@ -113,7 +113,7 @@ int Board::check_full_line(int& level, int& score, bool& bomb)
 						total_block[i][j] = temp_row[j];
 					}
 				}
-				check_full_line(level, score, bomb);
+				check_full_line(level, score, total_score, bomb);
 			}
 			else {
 				// 老馆利牢 临 力芭 贸府
@@ -143,6 +143,7 @@ int Board::check_full_line(int& level, int& score, bool& bomb)
 					bomb = true;
 					StoryManager::showLevelUp(level);
 					Renderer::showWizard(level);
+					total_score += score;
 					score = 0;
 				}
 			}
@@ -236,7 +237,7 @@ bool Board::tryRotate(unique_ptr<Block>& b, int i)
 	return false;
 }
 
-int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, bool& bomb)
+int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& total_score, bool& bomb)
 {
 	Renderer::eraseCurBlock(b);
 
@@ -280,7 +281,7 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, bool& bomb)
 		if (stage_data[level].abilities.purpleBlockAbility) {
 			PurpleBlock::update();
 		}
-		check_full_line(level, score, bomb);
+		check_full_line(level, score, total_score, bomb);
 		Renderer::show_total_block(level);
 
 		

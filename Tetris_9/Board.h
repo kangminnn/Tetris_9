@@ -11,11 +11,11 @@ private:
 public:
     Board() = default;
     void init();
-    int check_full_line(int& level, int& score, bool& bomb);
+    int check_full_line(int& level, int& score, int& total_score, bool& bomb);
     bool strikeCheck(unique_ptr<Block>& b);
     void mergeBlock(unique_ptr<Block>& b);
     bool rotateStrikeCheck(unique_ptr<Block>& b);
     bool tryRotate(unique_ptr<Block>& b, int i);
-    int moveBlock(unique_ptr<Block>& b, int& level, int& score, bool& bomb);
+    int moveBlock(unique_ptr<Block>& b, int& level, int& score, int& total_score, bool& bomb);
     void clearBottomLines(int& level, int lines);
 };
