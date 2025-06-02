@@ -191,4 +191,5 @@ void Game::gameInit()
 	score = 0;
 	isGameOver = 0;
 	total_score = 0;
+	bomb = false;
 }
