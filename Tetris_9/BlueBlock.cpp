@@ -1,6 +1,6 @@
 #include "BlueBlock.h"
 #include "Constants.h"
-#include "PurpleBlock.h"
+#include <vector>
 
 BlueBlock::BlueBlock(int shape, int angle, int x, int y)
     :Block(shape, angle, x, y)
@@ -9,33 +9,33 @@ BlueBlock::BlueBlock(int shape, int angle, int x, int y)
 
 bool BlueBlock::check(const Board& board, int& level) const
 {
-    // 보라색블록 작동되는지 확인
-    if (stage_data[level].abilities.purpleBlockAbility) {
-        PurpleBlock::update();
-    }
-    // 현재 스테이지에서 파란색 블록의 능력이 비활성화되어 있다면 false 반환
     if (!stage_data[level].abilities.blueBlockAbility) {
         return false;
     }
-    
-    // 블록의 각 열을 확인
-    for (int j = 0; j < 4; j++) {
-        bool hasBlockInColumn = false;
-        int lowestBlockY = -1;
 
-        // 현재 블록의 해당 열에서 가장 아래에 있는 블록 찾기
+    // 블록의 가장 아래 부분이 다른 블록과 접촉하는지 확인
+    for (int j = 0; j < 4; j++) {
+        bool hasBlock = false;
+        int lowestY = -1;
+
+        // 현재 열에서 가장 아래 블록 찾기
         for (int i = 3; i >= 0; i--) {
             if (block[shape][angle][i][j] == 1) {
-                hasBlockInColumn = true;
-                lowestBlockY = y + i;
+                hasBlock = true;
+                lowestY = y + i;
                 break;
             }
         }
 
-        if (hasBlockInColumn && lowestBlockY >= 0 && lowestBlockY < 19) {  // 경계 체크
-            // 파란 블록 바로 아래 칸 확인
-            if (total_block[lowestBlockY + 1][x + j].occupied == 1) {
-                return true;  // 능력 발동 조건 만족
+        if (hasBlock && lowestY >= 0 && lowestY < 19) {
+            // 파란 블록 바로 아래에 다른 블록이 있고
+            if (total_block[lowestY + 1][x + j].occupied == 1) {
+                // 그 아래에 빈 공간이 있는지 확인
+                for (int checkY = lowestY + 2; checkY < 20; checkY++) {
+                    if (total_block[checkY][x + j].occupied == 0) {
+                        return true;
+                    }
+                }
             }
         }
     }
@@ -44,42 +44,102 @@ bool BlueBlock::check(const Board& board, int& level) const
 
 void BlueBlock::active(Board& board)
 {
-    // 블록의 각 열을 확인
+    // 각 열별로 처리
     for (int j = 0; j < 4; j++) {
-        bool hasBlockInColumn = false;
-        int lowestBlockY = -1;
-        int highestBlockY = -1;
-
-        // 현재 블록의 해당 열에서 가장 아래와 가장 위에 있는 블록 찾기
-        for (int i = 3; i >= 0; i--) {
+        // 현재 열에서 파란 블록들의 위치 찾기 (위에서부터)
+        vector<int> blockPositions;
+        for (int i = 0; i < 4; i++) {
             if (block[shape][angle][i][j] == 1) {
-                if (lowestBlockY == -1) {
-                    lowestBlockY = y + i;
+                int realY = y + i;
+                if (realY >= 0 && realY < 20) {
+                    blockPositions.push_back(realY);
                 }
-                highestBlockY = y + i;
             }
         }
 
-        if (total_block[lowestBlockY][x + j].color == VOILET) { return; }
+        if (blockPositions.empty()) continue;
 
-        if (lowestBlockY >= 0 && lowestBlockY < 19) {  // 경계 체크
-            // 파란 블록 바로 아래 칸에 블록이 있고, 그 아래가 보드 범위 내라면
-            if (total_block[lowestBlockY + 1][x + j].occupied == 1 &&
-                lowestBlockY + 2 < 20) {  // 보드 바닥 체크
-                // 아래 블록을 한 칸 아래로 이동
-                total_block[lowestBlockY + 2][x + j] = total_block[lowestBlockY + 1][x + j];
-                total_block[lowestBlockY + 1][x + j].occupied = 0;
-                total_block[lowestBlockY + 1][x + j].color = BLACK;
-                total_block[lowestBlockY + 1][x + j].count = 0;
+        // 가장 아래에 있는 블록 찾기
+        int lowestY = blockPositions.back();
+        if (lowestY >= 19) continue;
 
-                // 파란 블록의 해당 열도 한 칸씩 아래로 이동
-                for (int i = lowestBlockY; i >= highestBlockY; i--) {
-                    if (i >= 0 && i < 20) {  // 보드 범위 체크
-                        total_block[i + 1][x + j] = total_block[i][x + j];
-                        if (i == highestBlockY) {  // 가장 위의 블록 위치는 비우기
-                            total_block[i][x + j].occupied = 0;
-                            total_block[i][x + j].color = BLACK;
-                            total_block[i][x + j].count = 0;
+        // 아래 블록과 접촉 확인
+        if (total_block[lowestY + 1][x + j].occupied == 1) {
+            // 모든 빈 공간 찾기
+            vector<int> emptySpaces;
+            bool foundOccupied = false;
+
+            // 접촉한 블록 바로 아래부터 검사
+            for (int checkY = lowestY + 2; checkY < 20; checkY++) {
+                if (!foundOccupied && total_block[checkY][x + j].occupied == 0) {
+                    emptySpaces.push_back(checkY);
+                }
+                else if (total_block[checkY][x + j].occupied == 1) {
+                    foundOccupied = true;  // 블록을 만남
+                }
+                else if (foundOccupied && total_block[checkY][x + j].occupied == 0) {
+                    emptySpaces.push_back(checkY);  // 다음 빈 공간 시작
+                    foundOccupied = false;
+                }
+            }
+
+            if (!emptySpaces.empty()) {
+                // 이동 전 현재 열의 상태 저장
+                vector<pair<int, bool>> columnState;  // {y좌표, 이동했는지 여부}
+                for (int pos : blockPositions) {
+                    columnState.push_back({ pos, false });
+                }
+
+                // 파란 블록들을 아래서부터 이동 (가장 아래 있는 블록부터)
+                for (int i = blockPositions.size() - 1; i >= 0; i--) {
+                    int currentY = blockPositions[i];
+
+                    // 현재 블록 아래의 가장 먼 빈 공간 찾기
+                    int targetY = -1;
+                    for (int k = emptySpaces.size() - 1; k >= 0; k--) {
+                        if (emptySpaces[k] > currentY) {
+                            targetY = emptySpaces[k];
+                            emptySpaces.pop_back();  // 사용한 빈 공간 제거
+                            break;
+                        }
+                    }
+
+                    if (targetY != -1) {
+                        // 현재 위치 비우기
+                        total_block[currentY][x + j].occupied = 0;
+                        total_block[currentY][x + j].color = 0;
+                        total_block[currentY][x + j].count = 0;
+
+                        // 새 위치에 블록 배치
+                        total_block[targetY][x + j].occupied = 1;
+                        total_block[targetY][x + j].color = BLUE;
+                        total_block[targetY][x + j].count = 0;
+
+                        // 이동 표시
+                        columnState[i].second = true;
+                    }
+                }
+
+                // 이동하지 않은 블록들을 아래로 이동
+                int maxMoveDown = 0;  // 최대 이동 가능 거리
+                for (int i = columnState.size() - 1; i >= 0; i--) {
+                    if (columnState[i].second) {  // 이동한 블록 발견
+                        maxMoveDown++;  // 위의 블록들이 내려올 수 있는 거리 증가
+                    }
+                    else if (maxMoveDown > 0) {  // 이동하지 않은 블록을 아래로 이동
+                        int fromY = columnState[i].first;
+                        int toY = fromY + maxMoveDown;
+
+                        if (toY < 20) {
+                            // 현재 위치 비우기
+                            total_block[fromY][x + j].occupied = 0;
+                            total_block[fromY][x + j].color = 0;
+                            total_block[fromY][x + j].count = 0;
+
+                            // 새 위치에 블록 배치
+                            total_block[toY][x + j].occupied = 1;
+                            total_block[toY][x + j].color = BLUE;
+                            total_block[toY][x + j].count = 0;
                         }
                     }
                 }
