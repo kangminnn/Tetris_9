@@ -4,6 +4,7 @@
 #include "BlockFactory.h"
 #include "InputHandler.h"
 #include "StoryManager.h"
+#include "ScoreHandler.h"
 #include <conio.h>
 
 
@@ -21,6 +22,7 @@ void Game::run()
 	Renderer::show_logo();
 	StoryManager::showIntro();
 	board.init();
+	ScoreHandler::load_score(saved_score);
 	while (1)
 	{
 		showCursor();
@@ -147,6 +149,12 @@ void Game::run()
 			if (isGameOver == 1)
 			{
 				Renderer::show_gameover();
+				//for save
+				//ScoreHandler::load_score(saved_score);
+				ScoreHandler::save_score(score, saved_score);
+				//Renderer::print_score() 
+				ScoreHandler::load_score(saved_score);
+				
 				SetColor(GRAY);
 				break;
 			}

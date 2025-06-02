@@ -4,6 +4,7 @@
 #include "Block.h"
 #include "Renderer.h"
 #include "BlockFactory.h"
+#include <list>
 
 class Game {
 private:
@@ -14,6 +15,8 @@ private:
     int score;
     int isGameOver;
     bool bomb;
+    //data ÀúÀå¿ë
+    list<int> saved_score;
 public:
     Game();
     void run();

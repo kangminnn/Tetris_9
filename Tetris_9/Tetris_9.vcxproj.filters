@@ -75,6 +75,9 @@
     <ClCompile Include="YellowBlock.cpp">
       <Filter>소스 파일\block</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreHandler.cpp">
+      <Filter>소스 파일\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -122,5 +125,13 @@
     <ClInclude Include="WhiteBlock.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreHandler.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="save_score.txt">
+      <Filter>소스 파일\data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

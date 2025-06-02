@@ -152,6 +152,7 @@
     <ClCompile Include="PurpleBlock.cpp" />
     <ClCompile Include="RedBlock.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ScoreHandler.cpp" />
     <ClCompile Include="StoryManager.cpp" />
     <ClCompile Include="tetris.cpp" />
     <ClCompile Include="WhiteBlock.cpp" />
@@ -170,9 +171,13 @@
     <ClInclude Include="PurpleBlock.h" />
     <ClInclude Include="RedBlock.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="ScoreHandler.h" />
     <ClInclude Include="StoryManager.h" />
     <ClInclude Include="WhiteBlock.h" />
     <ClInclude Include="YellowBlock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="save_score.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
