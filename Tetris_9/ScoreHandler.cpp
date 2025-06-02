@@ -57,7 +57,7 @@ void ScoreHandler::base64_decode(string save, list<int>& saved_score)
             saved_score.push_back(value);
         }
     }
-    saved_score.sort();
+    saved_score.sort(greater<>());
 }
 
 void ScoreHandler::load_score(list<int>& saved_score)

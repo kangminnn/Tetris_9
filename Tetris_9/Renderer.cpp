@@ -2,7 +2,7 @@
 #include "Constants.h"
 #include <conio.h>
 #include <iomanip>
-
+#include <list>
 
 int Renderer::show_total_block(int& level)
 {
@@ -261,6 +261,31 @@ int Renderer::show_logo()
 	_getche();
 	system("cls");
 	return 0;
+}
+
+void Renderer::show_score(list<int>saved_score)
+{
+	SetColor(GRAY);
+	gotoxy(30 + ab_x, 11 + ab_y);   
+	cout << "旨收收收收收收收收收<  SCORE  >收收收收收收收收旬";
+	Sleep(10);
+
+	int i = 0;
+	const int MAX_PRINT = 7;
+	for (auto it = saved_score.begin(); it != saved_score.end() && i<MAX_PRINT; it++, i++) {
+		gotoxy(30 + ab_x, 12 + i + ab_y);
+		cout << "早        score: "<< setw(5) << setfill(' ') << *it <<"        早";
+		Sleep(10);
+	}
+	while (i != MAX_PRINT) {
+		gotoxy(30 + ab_x, 12 + i + ab_y);
+		cout << "早                            早";
+		i++;
+		Sleep(10);
+	}
+	gotoxy(30 + ab_x, 12 + i + ab_y);
+	cout << "曲收收收收收收收收收收收收收收收收收收收收收收收收收收收收旭";
+	return;
 }
 
 void Renderer::showNextBlock(unique_ptr<Block>& b)

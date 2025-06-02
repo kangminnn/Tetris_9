@@ -3,6 +3,7 @@
 #include "Board.h"
 #include "Block.h"
 #include "BlockFactory.h"
+#include <list>
 
 class Renderer {
 public:
@@ -14,6 +15,7 @@ public:
 	static void show_gamestat(int level, int score, bool bomb);
 	static void show_gamekey(bool bomb);
 	static int show_logo();
+	static void show_score(list<int>saved_score);
 
 	static void showNextBlock(unique_ptr<Block>& b);
 	static void showCurBlock(unique_ptr<Block>& b);

@@ -148,12 +148,12 @@ void Game::run()
 
 			if (isGameOver == 1)
 			{
-				Renderer::show_gameover();
 				//for save
-				//ScoreHandler::load_score(saved_score);
 				ScoreHandler::save_score(score, saved_score);
-				//Renderer::print_score() 
 				ScoreHandler::load_score(saved_score);
+				Renderer::show_score(saved_score);
+				Renderer::show_gameover();
+				
 				
 				SetColor(GRAY);
 				break;
