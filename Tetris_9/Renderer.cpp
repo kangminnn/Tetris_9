@@ -445,7 +445,7 @@ void Renderer::showWizard(int level)
 			gotoxy(ab_x + 65, ab_y + 12); cout << "  <|||>/";
 			gotoxy(ab_x + 65, ab_y + 13); cout << "  /   \\";
 		}
-		else if (level == 6) {
+		else if (level >= 6) {
 			gotoxy(ab_x + 65, ab_y + 8); cout << "   /^\\";
 			gotoxy(ab_x + 65, ab_y + 9); cout << "  /^*^\\";
 			gotoxy(ab_x + 65, ab_y + 10); cout << " /^***^\\";
