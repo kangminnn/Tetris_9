@@ -22,6 +22,7 @@ public:
 	static void showSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2);
 	static void eraseCurBlock(unique_ptr<Block>& b);
 	static void eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2);
+	static void updateSilhouetteBlock(Board& board, unique_ptr<Block>& b, unique_ptr<Block>& b2);
 	static void showWizard(int level);
 	static void particle(int level);
 	static void showEnemy(int level);

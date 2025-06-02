@@ -59,6 +59,7 @@ void Game::run()
 							int count = 1;
 							while (!board.tryRotate(curBlock, count) && count <= 3) count++;
 						}
+						Renderer::updateSilhouetteBlock(board, silhouetteBlock, curBlock);
 						break;
 					case KEY_LEFT:		//왼쪽으로 이동
 						if (curBlock->getX() > 1)
@@ -69,6 +70,7 @@ void Game::run()
 								curBlock->setX(curBlock->getX() + 1);
 
 							Renderer::showCurBlock(curBlock);
+							Renderer::updateSilhouetteBlock(board, silhouetteBlock, curBlock);
 						}
 						break;
 					case KEY_RIGHT:		//오른쪽으로 이동
@@ -80,6 +82,7 @@ void Game::run()
 								curBlock->setX(curBlock->getX() - 1);
 
 							Renderer::showCurBlock(curBlock);
+							Renderer::updateSilhouetteBlock(board, silhouetteBlock, curBlock);
 						}
 						break;
 					case KEY_DOWN:		//아래로 이동
@@ -159,21 +162,6 @@ void Game::run()
 				SetColor(GRAY);
 				break;
 			}
-
-			// 잔상 보이기
-			
-			if (silhouetteBlock != nullptr) {
-				Renderer::eraseSilhouetteBlock(silhouetteBlock, curBlock);
-			}
-			silhouetteBlock = make_unique<Block>(*curBlock);
-			while (!board.strikeCheck(silhouetteBlock))
-			{
-				silhouetteBlock->setY(silhouetteBlock->getY() + 1);
-			}
-			silhouetteBlock->setY(silhouetteBlock->getY() - 1);
-
-			SetColor(GRAY);
-			Renderer::showSilhouetteBlock(silhouetteBlock, curBlock);
 
 			gotoxy(77, 23);
 			Sleep(15);

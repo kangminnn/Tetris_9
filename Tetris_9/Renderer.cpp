@@ -401,6 +401,23 @@ void Renderer::eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 	return;
 }
 
+void Renderer::updateSilhouetteBlock(Board& board, unique_ptr<Block>& b, unique_ptr<Block>& b2) {
+	// ¿‹ªÛ ∫∏¿Ã±‚
+
+	if (b != nullptr) {
+		Renderer::eraseSilhouetteBlock(b, b2);
+	}
+	b = make_unique<Block>(*b2);
+	while (!board.strikeCheck(b))
+	{
+		b->setY(b->getY() + 1);
+	}
+	b->setY(b->getY() - 1);
+
+	SetColor(GRAY);
+	Renderer::showSilhouetteBlock(b, b2);
+}
+
 void Renderer::showWizard(int level)
 {
 		if (level == 0) {
