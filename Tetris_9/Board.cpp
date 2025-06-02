@@ -4,6 +4,7 @@
 #include "Block.h"
 #include "StoryManager.h"
 #include"PurpleBlock.h"
+#include "BlueBlock.h"
 #include <cstdlib>   
 #include <ctime>    
 #include <cstring>   
@@ -129,6 +130,9 @@ int Board::check_full_line(int& level, int& score, int& total_score, bool& bomb)
 					total_block[0][j].count = 0;
 				}
 			}
+			Renderer::show_total_block(level);
+			Sleep(200);
+			BlueBlock::update();
 
 			Renderer::show_total_block(level);
 
@@ -255,6 +259,10 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& total_sc
 
 		// 블록이 착지할 때마다 하늘색 블록 체크
 		checkAndRemoveCyanBlocks(level);
+		// 보라색블록 작동되는지 확인
+		if (stage_data[level].abilities.purpleBlockAbility) {
+			PurpleBlock::update();
+		}
 
 		// --- 능력 발동 구간 ---
 		// 착지한 블록의 능력 조건 체크 및 능력 발동

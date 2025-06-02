@@ -8,7 +8,7 @@ PurpleBlock::PurpleBlock(int shape, int angle, int x, int y)
 
 bool PurpleBlock::check(const Board& board, int& level) const
 {
-    // 현재 스테이지에서 하늘색 블록의 능력이 비활성화되어 있다면 false 반환
+    // 현재 스테이지에서 보라색 블록의 능력이 비활성화되어 있다면 false 반환
     if (!stage_data[level].abilities.purpleBlockAbility) {
         return false;
     }

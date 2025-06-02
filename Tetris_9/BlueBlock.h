@@ -9,4 +9,5 @@ public:
 
     bool check(const Board& board, int& level) const override;// 무조건 발동 예시
     void active(Board& board) override; // 구현은 cpp에서
+    static void update();
 };
