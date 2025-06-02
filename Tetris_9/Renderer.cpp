@@ -29,6 +29,7 @@ int Renderer::show_total_block(int& level)
 				if (total_block[i][j].occupied == 1)
 				{
 					if (total_block[i][j].color == YELLOW && total_block[i][j].count == 1) cout << "〡";
+					else if(total_block[i][j].color == SKY_BLUE && total_block[i][j].count == 4) cout << "〡";
 					else cout << "﹥";
 				}
 				else {
@@ -186,34 +187,34 @@ int Renderer::show_logo()
 {
 	int i;
 
-	gotoxy(13, 3);
-	cout << "旨收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收旬";
+	gotoxy(12, 3);
+	cout << "旨收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收旬";
 	Sleep(100);
-	gotoxy(13, 4);
-	cout << "早"; SetColor(RED); cout << "﹣ ﹣ ﹣"; SetColor(BLUE); cout << "  ﹣ ﹣ ﹣"; SetColor(GREEN); cout << "  ﹣ ﹣ ﹣"; SetColor(YELLOW); cout << "   ﹣ ﹣ ﹣";
-	SetColor(VOILET); cout << "   ﹣"; SetColor(SKY_BLUE); cout << "  ﹣ ﹣ ﹣ "; SetColor(WHITE); cout << "早";
+	gotoxy(12, 4);
+	cout << "早 "; SetColor(RED); cout << "﹥ ﹥ ﹥"; SetColor(BLUE); cout << "  ﹥ ﹥ ﹥"; SetColor(GREEN); cout << "  ﹥ ﹥ ﹥"; SetColor(YELLOW); cout << "   ﹥ ﹥ ﹥";
+	SetColor(VOILET); cout << "   ﹥"; SetColor(SKY_BLUE); cout << "  ﹥ ﹥ ﹥ "; SetColor(WHITE); cout << "早";
 	Sleep(100);
-	gotoxy(13, 5);
-	cout << "早"; SetColor(RED); cout << "  ﹣"; SetColor(BLUE); cout << "    ﹣"; SetColor(GREEN); cout << "        ﹣"; SetColor(YELLOW); cout << "     ﹣   ﹣";
-	SetColor(VOILET); cout << "   ﹣"; SetColor(SKY_BLUE); cout << "  ﹣"; SetColor(WHITE); cout << "     早";
+	gotoxy(12, 5);
+	cout << "早 "; SetColor(RED); cout << "  ﹥"; SetColor(BLUE); cout << "    ﹥"; SetColor(GREEN); cout << "        ﹥"; SetColor(YELLOW); cout << "     ﹥   ﹥";
+	SetColor(VOILET); cout << "   ﹥"; SetColor(SKY_BLUE); cout << "  ﹥"; SetColor(WHITE); cout << "     早";
 	Sleep(100);
-	gotoxy(13, 6);
-	cout << "早"; SetColor(RED); cout << "  ﹣"; SetColor(BLUE); cout << "    ﹣ ﹣ ﹣"; SetColor(GREEN); cout << "    ﹣"; SetColor(YELLOW); cout << "     ﹣ ﹣";
-	SetColor(VOILET); cout << "     ﹣"; SetColor(SKY_BLUE); cout << "    ﹣"; SetColor(WHITE); cout << "   早";
+	gotoxy(12, 6);
+	cout << "早 "; SetColor(RED); cout << "  ﹥"; SetColor(BLUE); cout << "    ﹥ ﹥ ﹥"; SetColor(GREEN); cout << "    ﹥"; SetColor(YELLOW); cout << "     ﹥ ﹥";
+	SetColor(VOILET); cout << "     ﹥"; SetColor(SKY_BLUE); cout << "    ﹥"; SetColor(WHITE); cout << "   早";
 	Sleep(100);
-	gotoxy(13, 7);
-	cout << "早"; SetColor(RED); cout << "  ﹣"; SetColor(BLUE); cout << "    ﹣"; SetColor(GREEN); cout << "        ﹣"; SetColor(YELLOW); cout << "     ﹣  ﹣";
-	SetColor(VOILET); cout << "    ﹣"; SetColor(SKY_BLUE); cout << "      ﹣"; SetColor(WHITE); cout << " 早";
+	gotoxy(12, 7);
+	cout << "早 "; SetColor(RED); cout << "  ﹥"; SetColor(BLUE); cout << "    ﹥"; SetColor(GREEN); cout << "        ﹥"; SetColor(YELLOW); cout << "     ﹥  ﹥";
+	SetColor(VOILET); cout << "    ﹥"; SetColor(SKY_BLUE); cout << "      ﹥"; SetColor(WHITE); cout << " 早";
 	Sleep(100);
-	gotoxy(13, 8);
-	cout << "早"; SetColor(RED); cout << "  ﹣"; SetColor(BLUE); cout << "    ﹣ ﹣ ﹣"; SetColor(GREEN); cout << "    ﹣"; SetColor(YELLOW); cout << "     ﹣   ﹣";
-	SetColor(VOILET); cout << "   ﹣"; SetColor(SKY_BLUE); cout << "  ﹣ ﹣ ﹣"; SetColor(WHITE); cout << " 早";
+	gotoxy(12, 8);
+	cout << "早 "; SetColor(RED); cout << "  ﹥"; SetColor(BLUE); cout << "    ﹥ ﹥ ﹥"; SetColor(GREEN); cout << "    ﹥"; SetColor(YELLOW); cout << "     ﹥   ﹥";
+	SetColor(VOILET); cout << "   ﹥"; SetColor(SKY_BLUE); cout << "  ﹥ ﹥ ﹥"; SetColor(WHITE); cout << " 早";
 	Sleep(100);
-	gotoxy(13, 9);
-	cout << "曲收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收旭";
+	gotoxy(12, 9);
+	cout << "曲收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收收旭";
 
 
-	gotoxy(23, 20);
+	gotoxy(22, 20);
 	cout << "Please Press Any Key~!";
 
 
