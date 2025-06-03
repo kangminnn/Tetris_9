@@ -342,7 +342,6 @@ void Renderer::showCurBlock(unique_ptr<Block>& b)
 
 void Renderer::showSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 {
-	if (b->getY() - b2->getY() <= 4) return;
 	SetColor(b->getColor());
 	for (int i = 0; i < 4; i++)
 	{
@@ -384,7 +383,6 @@ void Renderer::eraseCurBlock(unique_ptr<Block>& b)
 
 void Renderer::eraseSilhouetteBlock(unique_ptr<Block>& b, unique_ptr<Block>& b2)
 {
-	if (b->getY() - b2->getY() < 4) return;
 	int i, j;
 	for (i = 0; i < 4; i++)
 	{
@@ -416,6 +414,7 @@ void Renderer::updateSilhouetteBlock(Board& board, unique_ptr<Block>& b, unique_
 
 	SetColor(GRAY);
 	Renderer::showSilhouetteBlock(b, b2);
+	Renderer::showCurBlock(b2);
 }
 
 void Renderer::showWizard(int level)
