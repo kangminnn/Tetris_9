@@ -46,9 +46,9 @@ int Renderer::show_total_block(int& level)
 int Renderer::show_inner_block()
 {
 	int i, j;
-	for (i = 0; i < 21; i++)
+	for (i = 0; i < 20; i++)
 	{
-		for (j = 0; j < 14; j++)
+		for (j = 1; j < 13; j++)
 		{
 			
 			SetColor(total_block[i][j].color);

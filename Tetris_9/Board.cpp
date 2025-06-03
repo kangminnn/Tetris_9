@@ -259,10 +259,6 @@ int Board::moveBlock(unique_ptr<Block>& b, int& level, int& score, int& total_sc
 
 		// 블록이 착지할 때마다 하늘색 블록 체크
 		checkAndRemoveCyanBlocks(level);
-		// 보라색블록 작동되는지 확인
-		if (stage_data[level].abilities.purpleBlockAbility) {
-			PurpleBlock::update();
-		}
 
 		// --- 능력 발동 구간 ---
 		// 착지한 블록의 능력 조건 체크 및 능력 발동
@@ -341,7 +337,7 @@ void Board::checkAndRemoveCyanBlocks(int& level) {
 		total_block[y][x].color = 0;
 		total_block[y][x].count = 0;
 	}
-
+	BlueBlock::update();
 	//// 변경사항이 있으면 화면 갱신
 	//if (!cellsToRemove.empty()) {
 	//	Renderer::show_total_block(0);
