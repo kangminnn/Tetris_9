@@ -26,7 +26,7 @@ void Game::run()
 	while (1)
 	{
 		showCursor();
-		InputHandler::input_data(level);
+		StoryManager::input_data(level);
 		hideCursor();
 		StoryManager::showLevelUp(level);
 		initStageData();
