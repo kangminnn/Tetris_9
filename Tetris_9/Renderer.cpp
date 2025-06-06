@@ -145,7 +145,7 @@ void Renderer::show_gamestat(int level, int score, bool bomb)
 	}
 	show_gamekey(bomb);
 	gotoxy(51 + ab_x, 9 + ab_y);
-	if (level == 6) cout << HP - score << " ";
+	if (level == 6) cout << (HP - score>0 ? HP - score : 0) << " ";
 	else cout << score;
 }
 

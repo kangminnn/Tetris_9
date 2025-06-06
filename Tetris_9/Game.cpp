@@ -57,7 +57,7 @@ void Game::run()
 						}
 						else {
 							int count = 1;
-							while (!board.tryRotate(curBlock, count) && count <= 3) count++;
+							while (!board.tryRotate(curBlock, count) && count <= 3) { count++; }
 						}
 						Renderer::updateSilhouetteBlock(board, silhouetteBlock, curBlock);
 						break;

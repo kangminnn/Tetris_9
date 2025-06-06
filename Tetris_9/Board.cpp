@@ -210,7 +210,7 @@ bool Board::rotateStrikeCheck(unique_ptr<Block>& b)
 	{
 		for (j = 0; j < 4; j++)
 		{
-			if (((b->getX() + j) == 0) || ((b->getX() + j) == 13))
+			if (((b->getX() + j) <= 0) || ((b->getX() + j) >= 13))
 				block_dat = 1;
 			else if (b->getY() + i >= 0)
 				block_dat = total_block[b->getY() + i][b->getX() + j].occupied;
