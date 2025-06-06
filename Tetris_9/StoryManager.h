@@ -2,7 +2,7 @@
 #pragma once
 #include <string>
 #include "Constants.h"
-
+#include"InputHandler.h"
 class StoryManager {
 public:
     static void showIntro();
@@ -18,4 +18,5 @@ public:
     static void showEnding();
     static void particle(int color, int c);
     static void drawWizard(int level);
+    static int input_data(int& level);
 };
