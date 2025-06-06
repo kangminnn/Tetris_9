@@ -16,13 +16,13 @@
     <Filter Include="소스 파일\ui">
       <UniqueIdentifier>{423b75e2-14c6-4403-adfa-1a6aacee328b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\game">
-      <UniqueIdentifier>{64a2a1da-86cb-44b2-b6ab-6cbb0a16af74}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\data">
       <UniqueIdentifier>{f6827bc4-620f-4ea0-affe-7ec507100131}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\game\block">
+    <Filter Include="소스 파일\data\game">
+      <UniqueIdentifier>{64a2a1da-86cb-44b2-b6ab-6cbb0a16af74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\data\game\block">
       <UniqueIdentifier>{0d4f4997-7b74-4581-b525-1ce02351c45c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -37,16 +37,16 @@
       <Filter>소스 파일\ui</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>소스 파일\game</Filter>
+      <Filter>소스 파일\data\game</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
-      <Filter>소스 파일\game</Filter>
+      <Filter>소스 파일\data\game</Filter>
     </ClCompile>
     <ClCompile Include="Board.cpp">
-      <Filter>소스 파일\game</Filter>
+      <Filter>소스 파일\data\game</Filter>
     </ClCompile>
     <ClCompile Include="BlockFactory.cpp">
-      <Filter>소스 파일\game</Filter>
+      <Filter>소스 파일\data\game</Filter>
     </ClCompile>
     <ClCompile Include="Constants.cpp">
       <Filter>소스 파일\data</Filter>
@@ -55,28 +55,28 @@
       <Filter>소스 파일\data</Filter>
     </ClCompile>
     <ClCompile Include="RedBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="BlueBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="CyanBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="GreenBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="PurpleBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="WhiteBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="YellowBlock.cpp">
-      <Filter>소스 파일\game\block</Filter>
+      <Filter>소스 파일\data\game\block</Filter>
     </ClCompile>
     <ClCompile Include="ScoreHandler.cpp">
-      <Filter>소스 파일\game</Filter>
+      <Filter>소스 파일\data\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

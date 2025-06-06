@@ -26,4 +26,5 @@ public:
 	static void showWizard(int level);
 	static void particle(int level);
 	static void showEnemy(int level);
+	static void drawInput();
 };

@@ -35,7 +35,7 @@ void Board::init() {
 
 int Board::check_full_line(int& level, int& score, int& total_score, bool& bomb)
 {
-	int i, j, k;
+	int i, j, k, count;
 	for (i = 0; i < 20; i++)
 	{
 		for (j = 1; j < 13; j++)
@@ -135,7 +135,7 @@ int Board::check_full_line(int& level, int& score, int& total_score, bool& bomb)
 			BlueBlock::update();
 
 			Renderer::show_total_block(level);
-
+			
 			Renderer::particle(level);
 			score += 10;
 			Renderer::show_gamestat(level, score, bomb);
