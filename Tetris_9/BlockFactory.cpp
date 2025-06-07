@@ -1,8 +1,5 @@
 #include "BlockFactory.h"
-#include "Constants.h"
-#include "Renderer.h"
 #include <cstdlib>
-#include <ctime>
 #include "RedBlock.h"
 #include "BlueBlock.h"
 #include "GreenBlock.h"

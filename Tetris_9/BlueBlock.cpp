@@ -2,7 +2,6 @@
 #include "PurpleBlock.h"
 #include "Constants.h"
 #include "Renderer.h"
-#include <vector>
 
 BlueBlock::BlueBlock(int shape, int angle, int x, int y)
     :Block(shape, angle, x, y)

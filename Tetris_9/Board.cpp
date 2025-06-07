@@ -9,6 +9,7 @@
 #include <ctime>    
 #include <cstring>   
 #include <vector>
+#include "RedBlock.h"
 
 
 void Board::init() {
@@ -130,6 +131,8 @@ int Board::check_full_line(int& level, int& score, int& total_score, bool& bomb)
 					total_block[0][j].count = 0;
 				}
 			}
+			RedBlock redtemp(0,0,0,0); //임시 레드블로 객체생성
+			if (redtemp.check(*this, level)) redtemp.active(*this);
 			Renderer::show_total_block(level);
 			Sleep(200);
 			BlueBlock::update();

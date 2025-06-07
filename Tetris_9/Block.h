@@ -1,7 +1,6 @@
 //블록 정보, 회전, 이동
 #pragma once
 #include "Constants.h"
-//#include "Board.h"
 
 class Board;
  

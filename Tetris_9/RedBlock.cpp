@@ -2,6 +2,8 @@
 #include "PurpleBlock.h"
 #include "Renderer.h"
 #include <queue>
+#include "BlueBlock.h"
+#include "Board.h"
 
 RedBlock::RedBlock(int shape, int angle, int x, int y)
     :Block(shape, angle, x, y)
@@ -82,4 +84,7 @@ void RedBlock::active(Board& board)
         total_block[del.first][del.second].occupied = 0;
     }
     delete_red.clear();
+    BlueBlock::update();
 }
+
+
