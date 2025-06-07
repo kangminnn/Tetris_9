@@ -146,7 +146,7 @@ int Board::check_full_line(int& level, int& score, int& total_score, bool& bomb)
 			if (stage_data[level].score <= score)	//클리어 조건달성
 			{
 				if(level != 6) {
-					level++;
+					if(level != 7) level++;
 					bomb = true;
 					StoryManager::showLevelUp(level);
 					Renderer::showWizard(level);
